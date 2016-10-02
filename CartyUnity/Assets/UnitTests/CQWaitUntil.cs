@@ -7,7 +7,6 @@ public class CQWaitUntil : MonoBehaviour {
 
     private CoroutineQueue queue;
     private float _wait = 1.5f;
-    private int UpdateCount { get; set; }
     private float TimeElapsed { get; set; }
     private bool _wait_until_done = false;
 
@@ -21,18 +20,18 @@ public class CQWaitUntil : MonoBehaviour {
     {
         queue = new CoroutineQueue();
         queue.Start();
-        queue.AddWait(1.5f);
-        UpdateCount = 0;
+        queue.AddWait(_wait);
         StartCoroutine(AssertWaitUntilDone());
     }
 
     void Update () {
-
-        // Starting queue + Realizing it's empty + Assert getting hit + ???
-        if(TimeElapsed >= _wait && UpdateCount == 4)
+        if(TimeElapsed >= _wait)
         {
-            IntegrationTest.Assert(_wait_until_done == true);
-            IntegrationTest.Pass(gameObject);
+            if(_wait_until_done == true)
+            {
+                IntegrationTest.Assert(queue.Empty == true);
+                IntegrationTest.Pass(gameObject);
+            }
         }
         else
         {
@@ -40,6 +39,5 @@ public class CQWaitUntil : MonoBehaviour {
         }
 
         TimeElapsed += Time.deltaTime;
-        if (TimeElapsed >= _wait) UpdateCount++;
     }
 }
