@@ -112,12 +112,38 @@ namespace CartyLib
         }
 
         /// <summary>
-        /// Add a coroutine as child of root node.
+        /// Add a coroutine as a child of the root node.
         /// </summary>
         /// <param name="value">Coroutine to add.</param>
         public void AddRoot(IEnumerator value)
         {
             Root.AddChild(value);
+        }
+
+        /// <summary>
+        /// Add a coroutine as a child of the current node which waits for specified amount of time.
+        /// </summary>
+        /// <param name="seconds"></param>
+        public void AddCurrentWait(float seconds)
+        {
+            CurrentNode.AddChild(UnityBridge.Instance.Wait(seconds));
+        }
+
+        /// <summary>
+        /// Add a coroutine as a child of the root node which waits for specified amount of time.
+        /// </summary>
+        /// <param name="seconds"></param>
+        public void AddRootWait(float seconds)
+        {
+            Root.AddChild(UnityBridge.Instance.Wait(seconds));
+        }
+
+        /// <summary>
+        /// Returns true if the tree is empty, false otherwise.
+        /// </summary>
+        public bool Empty
+        {
+            get { return Root == CurrentNode && Root.ChildrenCount <= 0; }
         }
 
         private IEnumerator ProcessChildrenOfNode(CoroutineNode node)
