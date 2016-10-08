@@ -44,8 +44,9 @@
   <ItemGroup>
     <Compile Include="CoroutineQueue.cs" />
     <Compile Include="CoroutineTree.cs" />
-    <Compile Include="Detachable.cs" />
+    <Compile Include="CanBeDetached.cs" />
     <Compile Include="GameManager.cs" />
+    <Compile Include="CanBeMousedOver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnityBridge.cs" />
   </ItemGroup>

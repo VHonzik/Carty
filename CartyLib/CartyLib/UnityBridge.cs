@@ -4,45 +4,11 @@ using UnityEngine;
 namespace CartyLib
 {
     /// <summary>
-    /// Interface between CartyLib and Unity coroutine calls.
-    /// Originally for unit-testing purposes, now mostly just layer of abstraction.
+    /// Singleton serving as a bridge between CartyLib and Unity engine.
+    /// Used for unit-testing purposes.
     /// </summary>
-    internal interface IUnityBridge
+    public class UnityBridge
     {
-        Coroutine StartCoroutine(IEnumerator coroutine);
-
-        IEnumerator Wait(float seconds);
-    }
-
-    /// <summary>
-    /// Implementation of IUnityBridge which calls actual Unity methods.
-    /// </summary>
-    internal class UnityBridgeReal : IUnityBridge
-    {
-        public Coroutine StartCoroutine(IEnumerator coroutine)
-        {
-            return GameManager.Instance.StartCoroutine(coroutine);
-        }
-
-        public IEnumerator Wait(float seconds)
-        {
-            yield return new WaitForSeconds(seconds);
-        }
-    }
-
-    /// <summary>
-    /// Singleton serving as a bridge between CartyLib and Unity engine. 
-    /// Has switchable implementation which defaults to UnityBridgeReal.
-    /// </summary>
-    internal class UnityBridge : IUnityBridge
-    {
-        public IUnityBridge Bridge { get; set; }
-
-        private UnityBridge()
-        {
-            Bridge = new UnityBridgeReal();
-        }
-
         private static UnityBridge _the_one_and_only;
         public static UnityBridge Instance
         {
@@ -57,14 +23,35 @@ namespace CartyLib
             }          
         }
 
+        private bool _override_mouse_position = false;
+        private Vector3 _override_mouse_wanted_position = Vector3.zero;
+
+        public void OverrideMousePosition(bool on, Vector3 wanted_position)
+        {
+            _override_mouse_position = on;
+            _override_mouse_wanted_position = wanted_position;
+        }
+
         public Coroutine StartCoroutine(IEnumerator coroutine)
         {
-            return Bridge.StartCoroutine(coroutine);
-        }
+            return GameManager.Instance.StartCoroutine(coroutine);        }
 
         public IEnumerator Wait(float seconds)
         {
-            return Bridge.Wait(seconds);
+            yield return new WaitForSeconds(seconds);
+        }
+
+        public Vector3 MousePosition()
+        {
+            if(_override_mouse_position)
+            {
+                return _override_mouse_wanted_position;
+            }
+            else
+            {
+                return Input.mousePosition;
+            }
+            
         }
     }
 }

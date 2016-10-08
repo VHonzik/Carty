@@ -12,7 +12,7 @@ namespace CartyLib.CardsComponenets
     /// The only child game object transform is the rendered transform.
     /// The child game object moves independently to the gameObject. 
     /// </summary>
-    class Detachable : MonoBehaviour
+    public class CanBeDetached : MonoBehaviour
     {
         /// <summary>
         /// True if the card or the minion is detached.
@@ -36,6 +36,13 @@ namespace CartyLib.CardsComponenets
                 {
                     UpdateAttached();
                 }
+                else if(value != _detached && value == true)
+                {
+                    DetachedPosition = transform.position;
+                    DetachedRotation = transform.rotation;
+                    UpdateDetached();
+                }
+
                 _detached = value;
             }
         }
