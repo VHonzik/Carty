@@ -9,6 +9,9 @@ namespace CartyLib
     /// </summary>
     public class UnityBridge
     {
+
+        private UnityBridge() { }
+
         private static UnityBridge _the_one_and_only;
         public static UnityBridge Instance
         {
@@ -34,7 +37,8 @@ namespace CartyLib
 
         public Coroutine StartCoroutine(IEnumerator coroutine)
         {
-            return GameManager.Instance.StartCoroutine(coroutine);        }
+            return GameManager.Instance.StartCoroutine(coroutine);
+        }
 
         public IEnumerator Wait(float seconds)
         {
