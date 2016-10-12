@@ -10,7 +10,7 @@ namespace CartyLib.CardsComponenets
     /// <summary>
     /// Interface for customization of card movement.
     /// </summary>
-    interface ICardMovement
+    public interface ICardMovement
     {
         /// <summary>
         /// Move the card from its current position to a new position.

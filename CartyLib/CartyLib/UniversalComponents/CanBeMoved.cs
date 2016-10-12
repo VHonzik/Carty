@@ -15,9 +15,6 @@ namespace CartyLib.CardsComponenets
     public class CanBeMoved : MonoBehaviour
     {
 
-        public static Quaternion Flipped_On = Quaternion.Euler(-90, 90, 90);
-        public static Quaternion Flipped_Off = Quaternion.Euler(90, 90, 90);
-
         /// <summary>
         /// Implementation of movement and rotation coroutines taken from VisualBridge.
         /// </summary>
@@ -82,7 +79,7 @@ namespace CartyLib.CardsComponenets
         /// <returns>Returns this for call chaining.</returns>
         public CanBeMoved RotateInstantly(Quaternion rotation)
         {
-            _rotation_queue.Add(_card_movement_implementation.Rotate(this, rotation));
+            _rotation_queue.Add(_card_movement_implementation.RotateInstantly(this, rotation));
             return this;
         }
 

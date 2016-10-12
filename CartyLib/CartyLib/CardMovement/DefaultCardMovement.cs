@@ -19,11 +19,11 @@ namespace CartyLib.CardsComponenets
         {
             float t = 0.0f;
 
-            float difference = Quaternion.Angle(card.transform.rotation, CanBeMoved.Flipped_On);
+            float difference = Quaternion.Angle(card.transform.rotation, VisualBridge.Flipped_On);
             bool initialy_flipped_on = difference < 5.0f;
 
-            Quaternion initial_state = initialy_flipped_on ? CanBeMoved.Flipped_On : CanBeMoved.Flipped_Off;
-            Quaternion wanted_state = (!initialy_flipped_on) ? CanBeMoved.Flipped_On : CanBeMoved.Flipped_Off;
+            Quaternion initial_state = initialy_flipped_on ? VisualBridge.Flipped_On : VisualBridge.Flipped_Off;
+            Quaternion wanted_state = (!initialy_flipped_on) ? VisualBridge.Flipped_On : VisualBridge.Flipped_Off;
 
             while (true)
             {
@@ -38,8 +38,8 @@ namespace CartyLib.CardsComponenets
 
         public IEnumerator FlipInstantly(CanBeMoved card)
         {
-            card.transform.rotation = Quaternion.Angle(card.transform.rotation, CanBeMoved.Flipped_On) < 5.0f ? 
-                CanBeMoved.Flipped_Off : CanBeMoved.Flipped_On;
+            card.transform.rotation = Quaternion.Angle(card.transform.rotation, VisualBridge.Flipped_On) < 5.0f ?
+                VisualBridge.Flipped_Off : VisualBridge.Flipped_On;
             yield break;
         }
 
@@ -56,10 +56,14 @@ namespace CartyLib.CardsComponenets
                 float t = 0.0f;
                 while (true)
                 {
-                    if (t >= 1.0f) break;
-
                     card.transform.position = Vector3.Lerp(previous_position, position, t);
                     t += Time.deltaTime * speed_modifier;
+
+                    if (t >= 1.0f)
+                    {
+                        card.transform.position = position;
+                        break;
+                    }
 
                     yield return null;
                 }
