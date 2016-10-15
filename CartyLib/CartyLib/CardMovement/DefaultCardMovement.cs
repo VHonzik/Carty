@@ -27,10 +27,15 @@ namespace CartyLib.CardsComponenets
 
             while (true)
             {
-                if (t >= 1.0f) break;
 
                 card.transform.rotation = Quaternion.Lerp(initial_state, wanted_state, t);
                 t += Time.deltaTime;
+
+                if (t >= 1.0f)
+                {
+                    card.transform.rotation = wanted_state;
+                    break;
+                }
 
                 yield return null;
             }
@@ -103,10 +108,15 @@ namespace CartyLib.CardsComponenets
 
             while (true)
             {
-                if (t >= 1.0f) break;
 
                 card.transform.rotation = Quaternion.Lerp(initial_state, wanted_state, t);
                 t += speed_modifier * Time.deltaTime;
+
+                if (t >= 1.0f)
+                {
+                    card.transform.rotation = wanted_state;
+                    break;
+                }
 
                 yield return null;
             }
