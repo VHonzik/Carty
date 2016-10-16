@@ -1,11 +1,13 @@
-﻿using System;
+﻿using CartyLib;
+using CartyLib.CardsComponenets;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace CartyLib.CardsComponenets
+namespace CartyVisuals
 {
     /// <summary>
     /// Default implementation of ICardMovement.
@@ -19,11 +21,11 @@ namespace CartyLib.CardsComponenets
         {
             float t = 0.0f;
 
-            float difference = Quaternion.Angle(card.transform.rotation, VisualBridge.Flipped_On);
+            float difference = Quaternion.Angle(card.transform.rotation, VisualBridge.Instance.Flipped_On);
             bool initialy_flipped_on = difference < 5.0f;
 
-            Quaternion initial_state = initialy_flipped_on ? VisualBridge.Flipped_On : VisualBridge.Flipped_Off;
-            Quaternion wanted_state = (!initialy_flipped_on) ? VisualBridge.Flipped_On : VisualBridge.Flipped_Off;
+            Quaternion initial_state = initialy_flipped_on ? VisualBridge.Instance.Flipped_On : VisualBridge.Instance.Flipped_Off;
+            Quaternion wanted_state = (!initialy_flipped_on) ? VisualBridge.Instance.Flipped_On : VisualBridge.Instance.Flipped_Off;
 
             while (true)
             {
@@ -43,8 +45,8 @@ namespace CartyLib.CardsComponenets
 
         public IEnumerator FlipInstantly(CanBeMoved card)
         {
-            card.transform.rotation = Quaternion.Angle(card.transform.rotation, VisualBridge.Flipped_On) < 5.0f ?
-                VisualBridge.Flipped_Off : VisualBridge.Flipped_On;
+            card.transform.rotation = Quaternion.Angle(card.transform.rotation, VisualBridge.Instance.Flipped_On) < 5.0f ?
+                VisualBridge.Instance.Flipped_Off : VisualBridge.Instance.Flipped_On;
             yield break;
         }
 

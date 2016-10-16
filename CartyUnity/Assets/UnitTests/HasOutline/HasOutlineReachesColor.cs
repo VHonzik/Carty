@@ -2,26 +2,30 @@
 using System.Collections;
 using CartyLib;
 using Testing;
+using CartyLib.CardsComponenets;
 
 [IntegrationTest.DynamicTest("CartyLibTests")]
-class CanBeMovedFlip : MonoBehaviour
+class HasOutlineReachesColor : MonoBehaviour
 {
     private float UpdateTime { get; set; }
     private GameObject _card;
+    private HasOutline _outline;
 
     void Start()
     {
         UpdateTime = 0;
         _card = CardsGameObjects.OnlyDetachHandle();
-        var move = _card.AddComponent<CartyLib.CardsComponenets.CanBeMoved>();
-        move.Flip();
+        _card.AddComponent<CartyLib.CardsComponenets.CanBeDetached>();
+        _outline = _card.AddComponent<CartyLib.CardsComponenets.HasOutline>();
+        _outline.Request(this, Color.red);
     }
 
     void Update()
     {
-        if (UpdateTime >= 2.0f)
+        if (UpdateTime >= 0.5f)
         {
-            IntegrationTest.Assert(Quaternion.Angle(_card.transform.rotation, VisualBridge.Instance.Flipped_Off) <= 0.1f);
+            IntegrationTest.Assert(_outline.WantedColor == Color.red);
+            IntegrationTest.Assert(_outline.T >= 1.0f);
             Destroy(_card);
             IntegrationTest.Pass(gameObject);
         }

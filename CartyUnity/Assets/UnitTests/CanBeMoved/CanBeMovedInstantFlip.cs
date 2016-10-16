@@ -21,7 +21,7 @@ class CanBeMovedInstantFlip : MonoBehaviour
     {
         if (UpdateCount == 1)
         {
-            IntegrationTest.Assert(_card.transform.rotation == VisualBridge.Flipped_Off);
+            IntegrationTest.Assert(_card.transform.rotation == VisualBridge.Instance.Flipped_Off);
             Destroy(_card);
             IntegrationTest.Pass(gameObject);
         }

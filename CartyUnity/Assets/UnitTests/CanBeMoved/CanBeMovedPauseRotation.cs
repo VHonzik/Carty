@@ -21,7 +21,7 @@ class CanBeMovedPauseRotation : MonoBehaviour
     {
         if (UpdateTime <= 1.0f)
         {
-            IntegrationTest.Assert(_card.transform.rotation == VisualBridge.Flipped_On);
+            IntegrationTest.Assert(_card.transform.rotation == VisualBridge.Instance.Flipped_On);
         }
         else if (UpdateTime >= 1.1f)
         {

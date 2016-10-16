@@ -12,11 +12,6 @@ namespace CartyLib
     /// </summary>
     public class VisualBridge
     {
-        private VisualBridge()
-        {
-            CardMovement = new DefaultCardMovement();
-        }
-
         private static VisualBridge _the_one_and_only;
         public static VisualBridge Instance
         {
@@ -36,9 +31,23 @@ namespace CartyLib
         /// Card movement customization.
         /// Assign your own implementation in order to customize how cards move and rotate.
         /// </summary>
-        public ICardMovement CardMovement { get; set;}
+        public ICardMovement CardMovement { get; set; }
 
-        public static Quaternion Flipped_On = Quaternion.Euler(-90, 90, 90);
-        public static Quaternion Flipped_Off = Quaternion.Euler(90, 90, 90);
+        /// <summary>
+        /// Card outline customization.
+        /// Assign your own implementation in order to customize how card outline is rendered.
+        /// </summary>
+        public IOutline CardOutline { get; set; }
+
+        /// <summary>
+        /// Default rotation of the card when its face is facing camera.
+        /// </summary>
+        public Quaternion Flipped_On { get; set; }
+
+
+        /// <summary>
+        /// Default rotation of the card when its back is facing camera.
+        /// </summary>
+        public Quaternion Flipped_Off { get; set; }
     }
 }
