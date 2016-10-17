@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using CartyLib.Visuals;
 
 namespace CartyVisuals
 {
     /// <summary>
     /// Default card implementation of IOutline.
+    /// Outline uses the same model as a card but which is slightly larger and has texture which gradients to transparency.
     /// </summary>
     class DefaultCardOutline : IOutline
     {

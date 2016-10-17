@@ -1,11 +1,12 @@
-﻿using System;
+﻿using CartyLib.CardsComponenets;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace CartyLib.CardsComponenets
+namespace CartyLib.Visuals
 {
     /// <summary>
     /// Interface for customization of card movement.

@@ -42,6 +42,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CardsComponents\CanBeInHand.cs" />
+    <Compile Include="CardsComponents\CanBeOwned.cs" />
+    <Compile Include="Visuals\IHandCardPositioning.cs" />
     <Compile Include="Visuals\IOutline.cs" />
     <Compile Include="CardsComponents\CanBeMoved.cs" />
     <Compile Include="CoroutineQueue.cs" />

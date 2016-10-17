@@ -6,11 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using CartyLib.Visuals;
 
 namespace CartyVisuals
 {
     /// <summary>
     /// Default implementation of ICardMovement.
+    /// Generally lerps between values with constant speed.
+    /// However Move over larger distances lerps with speed being triangular function over the distance.
     /// </summary>
     class DefaultCardMovement : ICardMovement
     {
@@ -21,11 +24,11 @@ namespace CartyVisuals
         {
             float t = 0.0f;
 
-            float difference = Quaternion.Angle(card.transform.rotation, VisualBridge.Instance.Flipped_On);
+            float difference = Quaternion.Angle(card.transform.rotation, VisualBridge.Instance.FlippedOn);
             bool initialy_flipped_on = difference < 5.0f;
 
-            Quaternion initial_state = initialy_flipped_on ? VisualBridge.Instance.Flipped_On : VisualBridge.Instance.Flipped_Off;
-            Quaternion wanted_state = (!initialy_flipped_on) ? VisualBridge.Instance.Flipped_On : VisualBridge.Instance.Flipped_Off;
+            Quaternion initial_state = initialy_flipped_on ? VisualBridge.Instance.FlippedOn : VisualBridge.Instance.FlippedOff;
+            Quaternion wanted_state = (!initialy_flipped_on) ? VisualBridge.Instance.FlippedOn : VisualBridge.Instance.FlippedOff;
 
             while (true)
             {
@@ -45,8 +48,8 @@ namespace CartyVisuals
 
         public IEnumerator FlipInstantly(CanBeMoved card)
         {
-            card.transform.rotation = Quaternion.Angle(card.transform.rotation, VisualBridge.Instance.Flipped_On) < 5.0f ?
-                VisualBridge.Instance.Flipped_Off : VisualBridge.Instance.Flipped_On;
+            card.transform.rotation = Quaternion.Angle(card.transform.rotation, VisualBridge.Instance.FlippedOn) < 5.0f ?
+                VisualBridge.Instance.FlippedOff : VisualBridge.Instance.FlippedOn;
             yield break;
         }
 

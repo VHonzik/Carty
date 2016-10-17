@@ -15,7 +15,7 @@ namespace Testing
             GameObject root = new GameObject("RootCard");
             GameObject handle = new GameObject("Handle");
             handle.transform.parent = root.transform;
-            root.transform.rotation = VisualBridge.Instance.Flipped_On;
+            root.transform.rotation = VisualBridge.Instance.FlippedOn;
             return root;
         }
 

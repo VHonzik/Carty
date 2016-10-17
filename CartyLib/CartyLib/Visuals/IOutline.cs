@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace CartyLib.CardsComponenets
+namespace CartyLib.Visuals
 {
     /// <summary>
     /// Interface for customization of how card outline looks like.

@@ -21,7 +21,7 @@ class CanBeMovedFlip : MonoBehaviour
     {
         if (UpdateTime >= 2.0f)
         {
-            IntegrationTest.Assert(Quaternion.Angle(_card.transform.rotation, VisualBridge.Instance.Flipped_Off) <= 0.1f);
+            IntegrationTest.Assert(Quaternion.Angle(_card.transform.rotation, VisualBridge.Instance.FlippedOff) <= 0.1f);
             Destroy(_card);
             IntegrationTest.Pass(gameObject);
         }
