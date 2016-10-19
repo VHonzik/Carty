@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3B1C3582-09B6-4936-B12B-72E8970594CA}</ProjectGuid>
+    <ProjectGuid>{3F9A4E0B-3A54-44A8-B190-375872BCB939}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CartyLib</RootNamespace>
-    <AssemblyName>CartyLib</AssemblyName>
+    <RootNamespace>CartyVisuals</RootNamespace>
+    <AssemblyName>CartyVisuals</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CartyVisuals">
-      <HintPath>..\..\CartyUnity\Assets\CartyVisuals\CartyVisuals.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -45,22 +42,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CardsComponents\CanBeInHand.cs" />
-    <Compile Include="CardsComponents\CanBeOwned.cs" />
-    <Compile Include="CardsComponents\CanBeMoved.cs" />
-    <Compile Include="CoroutineQueue.cs" />
-    <Compile Include="CoroutineTree.cs" />
-    <Compile Include="CardsComponents\CanBeDetached.cs" />
-    <Compile Include="GameManager.cs" />
-    <Compile Include="CardsComponents\CanBeMousedOver.cs" />
+    <Compile Include="DefaultVisuals\DefaultCardMovement.cs" />
+    <Compile Include="DefaultVisuals\DefaultCardOutline.cs" />
+    <Compile Include="DefaultVisuals\DefaultCardPositionInHand.cs" />
+    <Compile Include="Interfaces\ICardMovement.cs" />
+    <Compile Include="Interfaces\IHandCardPositioning.cs" />
+    <Compile Include="Interfaces\IOutline.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnityBridge.cs" />
-    <Compile Include="CardsComponents\HasOutline.cs" />
+    <Compile Include="VisualManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)..\CartyUnity\Assets\CartyLib\$(TargetName).dll"
-copy /Y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)..\CartyUnity\Assets\CartyLib\$(TargetName).pdb"</PostBuildEvent>
+    <PostBuildEvent>copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)..\CartyUnity\Assets\CartyVisuals\$(TargetName).dll"
+copy /Y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)..\CartyUnity\Assets\CartyVisuals\$(TargetName).pdb"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

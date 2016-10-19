@@ -1,7 +1,5 @@
-﻿using System;
+﻿using CartyVisuals;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace CartyLib.CardsComponenets
@@ -34,7 +32,7 @@ namespace CartyLib.CardsComponenets
     public class HasOutline : MonoBehaviour
     {
         /// <summary>
-        /// GameObject representing the outline. Created via IOutline.CreateOutlineObject from VisualBridge.
+        /// GameObject representing the outline. Created via IOutline.CreateOutlineObject from VisualManager.
         /// </summary>
         private GameObject Outline_GO { get; set; }
 
@@ -69,7 +67,7 @@ namespace CartyLib.CardsComponenets
 
         void Start()
         {
-            Outline_GO = VisualBridge.Instance.CardOutline.CreateOutlineObject();
+            Outline_GO = VisualManager.Instance.CardOutline.CreateOutlineObject();
             Outline_GO.transform.parent = GetComponent<CanBeDetached>().Handle.transform;
 
             OriginalColor = HiddenColor;
@@ -107,7 +105,7 @@ namespace CartyLib.CardsComponenets
             if(T < 1.0f)
             {
                 Color wanted = Color.Lerp(OriginalColor, WantedColor, T);
-                VisualBridge.Instance.CardOutline.ApplyColor(Outline_GO, wanted);
+                VisualManager.Instance.CardOutline.ApplyColor(Outline_GO, wanted);
 
                 T += SpeedModifier * Time.deltaTime;
 
@@ -117,7 +115,7 @@ namespace CartyLib.CardsComponenets
 
                     if (WantedColor.a <= 0.0f) WantedColor = HiddenColor;
 
-                    VisualBridge.Instance.CardOutline.ApplyColor(Outline_GO, WantedColor);
+                    VisualManager.Instance.CardOutline.ApplyColor(Outline_GO, WantedColor);
                 }
             }
             

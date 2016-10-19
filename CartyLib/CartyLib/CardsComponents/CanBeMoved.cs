@@ -1,23 +1,19 @@
-﻿using System;
+﻿using CartyVisuals;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
-using CartyLib.Visuals;
 
 namespace CartyLib.CardsComponenets
 {
     /// <summary>
     /// Component to allow a card or minion move in the game world.
     /// All the calls are queued in movement or rotation queue which are executed parallelly to each other.
-    /// Note that the actual movement is done by ICardMovement interface living in VisualBridge singleton.
+    /// Note that the actual movement is done by ICardMovement interface living in VisualManager singleton.
     /// </summary>
     public class CanBeMoved : MonoBehaviour
     {
 
         /// <summary>
-        /// Implementation of movement and rotation coroutines taken from VisualBridge.
+        /// Implementation of movement and rotation coroutines taken from VisualManager.
         /// </summary>
         private ICardMovement _card_movement_implementation;
 
@@ -35,7 +31,7 @@ namespace CartyLib.CardsComponenets
         {
             _movement_queue = new CoroutineQueue();
             _rotation_queue = new CoroutineQueue();
-            _card_movement_implementation = VisualBridge.Instance.CardMovement;
+            _card_movement_implementation = VisualManager.Instance.CardMovement;
             _movement_queue.Start();
             _rotation_queue.Start();
         }
@@ -47,7 +43,7 @@ namespace CartyLib.CardsComponenets
         /// <returns>Returns this for call chaining.</returns>
         public CanBeMoved Move(Vector3 position)
         {
-            _movement_queue.Add(_card_movement_implementation.Move(this, position));
+            _movement_queue.Add(_card_movement_implementation.Move(gameObject, position));
             return this;
         }
 
@@ -58,7 +54,7 @@ namespace CartyLib.CardsComponenets
         /// <returns>Returns this for call chaining.</returns>
         public CanBeMoved MoveInstantly(Vector3 position)
         {
-            _movement_queue.Add(_card_movement_implementation.MoveInstantly(this, position));
+            _movement_queue.Add(_card_movement_implementation.MoveInstantly(gameObject, position));
             return this;
         }
 
@@ -69,7 +65,7 @@ namespace CartyLib.CardsComponenets
         /// <returns>Returns this for call chaining.</returns>
         public CanBeMoved Rotate(Quaternion rotation)
         {
-            _rotation_queue.Add(_card_movement_implementation.Rotate(this, rotation));
+            _rotation_queue.Add(_card_movement_implementation.Rotate(gameObject, rotation));
             return this;
         }
 
@@ -80,7 +76,7 @@ namespace CartyLib.CardsComponenets
         /// <returns>Returns this for call chaining.</returns>
         public CanBeMoved RotateInstantly(Quaternion rotation)
         {
-            _rotation_queue.Add(_card_movement_implementation.RotateInstantly(this, rotation));
+            _rotation_queue.Add(_card_movement_implementation.RotateInstantly(gameObject, rotation));
             return this;
         }
 
@@ -90,7 +86,7 @@ namespace CartyLib.CardsComponenets
         /// <returns>Returns this for call chaining.</returns>
         public CanBeMoved Flip()
         {
-            _rotation_queue.Add(_card_movement_implementation.Flip(this));
+            _rotation_queue.Add(_card_movement_implementation.Flip(gameObject));
             return this;
         }
 
@@ -100,7 +96,7 @@ namespace CartyLib.CardsComponenets
         /// <returns>Returns this for call chaining.</returns>
         public CanBeMoved FlipInstantly()
         {
-            _rotation_queue.Add(_card_movement_implementation.FlipInstantly(this));
+            _rotation_queue.Add(_card_movement_implementation.FlipInstantly(gameObject));
             return this;
         }
 

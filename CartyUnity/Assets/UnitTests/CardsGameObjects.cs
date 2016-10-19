@@ -1,9 +1,4 @@
-﻿using CartyLib;
-using CartyLib.CardsComponenets;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using CartyVisuals;
 using UnityEngine;
 
 namespace Testing
@@ -15,7 +10,7 @@ namespace Testing
             GameObject root = new GameObject("RootCard");
             GameObject handle = new GameObject("Handle");
             handle.transform.parent = root.transform;
-            root.transform.rotation = VisualBridge.Instance.FlippedOn;
+            root.transform.rotation = VisualManager.Instance.FlippedOn;
             return root;
         }
 

@@ -2,6 +2,7 @@
 using System.Collections;
 using CartyLib;
 using Testing;
+using CartyVisuals;
 
 [IntegrationTest.DynamicTest("CartyLibTests")]
 class CanBeMovedPauseRotation : MonoBehaviour
@@ -21,7 +22,7 @@ class CanBeMovedPauseRotation : MonoBehaviour
     {
         if (UpdateTime <= 1.0f)
         {
-            IntegrationTest.Assert(_card.transform.rotation == VisualBridge.Instance.FlippedOn);
+            IntegrationTest.Assert(_card.transform.rotation == VisualManager.Instance.FlippedOn);
         }
         else if (UpdateTime >= 1.1f)
         {

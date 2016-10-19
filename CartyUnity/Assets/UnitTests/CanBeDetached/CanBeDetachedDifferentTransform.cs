@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using CartyLib;
 using Testing;
 
 [IntegrationTest.DynamicTest("CartyLibTests")]

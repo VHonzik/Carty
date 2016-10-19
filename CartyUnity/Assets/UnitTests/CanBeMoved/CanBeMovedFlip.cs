@@ -2,6 +2,7 @@
 using System.Collections;
 using CartyLib;
 using Testing;
+using CartyVisuals;
 
 [IntegrationTest.DynamicTest("CartyLibTests")]
 class CanBeMovedFlip : MonoBehaviour
@@ -21,7 +22,7 @@ class CanBeMovedFlip : MonoBehaviour
     {
         if (UpdateTime >= 2.0f)
         {
-            IntegrationTest.Assert(Quaternion.Angle(_card.transform.rotation, VisualBridge.Instance.FlippedOff) <= 0.1f);
+            IntegrationTest.Assert(Quaternion.Angle(_card.transform.rotation, VisualManager.Instance.FlippedOff) <= 0.1f);
             Destroy(_card);
             IntegrationTest.Pass(gameObject);
         }

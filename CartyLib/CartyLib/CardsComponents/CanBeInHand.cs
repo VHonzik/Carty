@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using CartyVisuals;
 using UnityEngine;
 
 namespace CartyLib.CardsComponenets
@@ -10,7 +7,7 @@ namespace CartyLib.CardsComponenets
     /// Component to handle the card transform when it is in hand.
     /// When the hand informs this component that the card position in hand or number of cards in hand has changed,
     /// this component take cares of the necessary movement.
-    /// Gathers information about wanted transform from VisualBridge.Instance.HandPositioning
+    /// Gathers information about wanted transform from VisualManager.Instance.HandPositioning
     /// </summary>
     public class CanBeInHand : MonoBehaviour
     {
@@ -45,13 +42,13 @@ namespace CartyLib.CardsComponenets
 
                 if (GetComponent<CanBeOwned>() && GetComponent<CanBeOwned>().PlayerOwned)
                 {
-                    position = VisualBridge.Instance.HandPositioning.PositionPlayer(index, cards);
-                    rotation = VisualBridge.Instance.HandPositioning.RotationPlayer(index, cards);
+                    position = VisualManager.Instance.HandPositioning.PositionPlayer(index, cards);
+                    rotation = VisualManager.Instance.HandPositioning.RotationPlayer(index, cards);
                 }
                 else
                 {
-                    position = VisualBridge.Instance.HandPositioning.PositionEnemy(index, cards);
-                    rotation = VisualBridge.Instance.HandPositioning.RotationEnemy(index, cards);
+                    position = VisualManager.Instance.HandPositioning.PositionEnemy(index, cards);
+                    rotation = VisualManager.Instance.HandPositioning.RotationEnemy(index, cards);
                 }
 
                 var moveComponent = GetComponent<CanBeMoved>();
