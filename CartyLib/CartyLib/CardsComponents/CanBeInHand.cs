@@ -1,4 +1,5 @@
-﻿using CartyVisuals;
+﻿using CartyLib.BoardComponents;
+using CartyVisuals;
 using UnityEngine;
 
 namespace CartyLib.CardsComponenets
@@ -18,20 +19,33 @@ namespace CartyLib.CardsComponenets
         public bool IsInHand { get; set; }
 
         /// <summary>
-        /// Inform the component that the card was added to hand.
+        /// Inform the component that the card was added to a hand.
         /// </summary>
         /// <param name="index">Index of the card in the hand.</param>
         /// <param name="cards">Number of cards in the hand.</param>
-        public void AddedToHand(int index, int cards)
+        /// <param name="hand">Hand to which the card was added.</param>
+        public void AddedToHand(int index, int cards, Hand hand)
         {
             IsInHand = true;
+            var owned = GetComponent<CanBeOwned>();
+            if (owned && owned.PlayerOwned != hand.PlayerOwned) owned.PlayerOwned = hand.PlayerOwned;
             OnIndexChanged(index, cards);
+            transform.parent = hand.transform;
+        }
+
+        /// <summary>
+        /// Inform the component that the card was removed from a hand.
+        /// </summary>
+        public void RemovedFromHand()
+        {
+            IsInHand = false;
+            transform.parent = null;
         }
 
         /// <summary>
         /// Inform the component that the card position in hand or number of cards in hand has changed.
         /// </summary>
-        /// <param name="index">Possibly new index of the card in the hand.</param>
+        /// <param name="index">Index, possibly a new one, of the card in the hand.</param>
         /// <param name="cards">Number of cards in the hand.</param>
         public void OnIndexChanged(int index, int cards)
         {

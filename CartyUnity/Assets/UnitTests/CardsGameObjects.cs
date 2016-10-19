@@ -1,4 +1,5 @@
-﻿using CartyVisuals;
+﻿using CartyLib.BoardComponents;
+using CartyVisuals;
 using UnityEngine;
 
 namespace Testing
@@ -22,6 +23,14 @@ namespace Testing
             collider.center = Vector3.zero;
             collider.size = Vector3.one;
             return card;
+        }
+
+        public static Hand PlayerHand()
+        {
+            GameObject hand = new GameObject();
+            var result = hand.AddComponent<Hand>();
+            result.PlayerOwned = true;
+            return result;
         }
     }
 }

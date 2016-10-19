@@ -59,6 +59,8 @@ namespace CartyVisuals.Defaults
                 float t = 0.0f;
                 while (true)
                 {
+                    if (card == null) yield break;
+
                     card.transform.position = Vector3.Lerp(previous_position, position, t);
                     t += Time.deltaTime * speed_modifier;
 

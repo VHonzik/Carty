@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoardComponents\Hand.cs" />
     <Compile Include="CardsComponents\CanBeInHand.cs" />
     <Compile Include="CardsComponents\CanBeOwned.cs" />
     <Compile Include="CardsComponents\CanBeMoved.cs" />

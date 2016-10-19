@@ -1,18 +1,16 @@
 ﻿using UnityEngine;
-using System.Collections;
-using CartyLib;
 using Testing;
 using CartyLib.CardsComponenets;
 using CartyVisuals;
 using CartyLib.BoardComponents;
 
 [IntegrationTest.DynamicTest("CartyLibTests")]
-class CanBeInHandAddToHand : MonoBehaviour
+class HandAddingMovesCard : MonoBehaviour
 {
     private float UpdateTime { get; set; }
     private GameObject _card;
     private CanBeInHand _canbeinhand;
-    Hand _hand;
+    private Hand _hand;
 
     void Start()
     {
@@ -26,8 +24,7 @@ class CanBeInHandAddToHand : MonoBehaviour
         _hand = CardsGameObjects.PlayerHand();
         _canbeinhand = _card.AddComponent<CartyLib.CardsComponenets.CanBeInHand>();
 
-        _canbeinhand.AddedToHand(0, 1, _hand);
-        IntegrationTest.Assert(_canbeinhand.IsInHand == true);
+        _hand.Add(_canbeinhand);
     }
 
     void Update()
@@ -40,8 +37,8 @@ class CanBeInHandAddToHand : MonoBehaviour
             var wanted_rot = VisualManager.Instance.HandPositioning.RotationPlayer(0, 1);
             IntegrationTest.Assert(_card.transform.rotation == wanted_rot);
 
-            Destroy(_hand.gameObject);
             Destroy(_card);
+            Destroy(_hand);
 
             IntegrationTest.Pass(gameObject);
         }
