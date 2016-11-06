@@ -44,5 +44,5 @@ TODO
 
 ## History
 
-Late August 2016 - Precursor of Carty - TCG Game - is created for Ludum Dare 36 ([link]{http://ludumdare.com/compo/ludum-dare-36/?action=preview&uid=36014}). 
-September 2016 - December 2016 - First iteraction of Carty is in development. While functionaly it is almost identical to the precursor, heavy refactoring is happening.
+* Late August 2016 - Precursor of Carty - TCG Game - is created for Ludum Dare 36 ([link](http://ludumdare.com/compo/ludum-dare-36/?action=preview&uid=36014)). 
+* September 2016 - December 2016 - First iteraction of Carty is in development. While functionaly it is almost identical to the precursor, heavy refactoring is happening.
