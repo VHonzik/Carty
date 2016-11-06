@@ -3,6 +3,7 @@ using Testing;
 using CartyLib.CardsComponenets;
 using CartyVisuals;
 using CartyLib.BoardComponents;
+using CartyLib;
 
 [IntegrationTest.DynamicTest("CartyLibTests")]
 class HandAddingMovesCard : MonoBehaviour
@@ -21,7 +22,7 @@ class HandAddingMovesCard : MonoBehaviour
         var owned = _card.AddComponent<CartyLib.CardsComponenets.CanBeOwned>();
         owned.PlayerOwned = true;
 
-        _hand = CardsGameObjects.PlayerHand();
+        _hand = CartyEntitiesConstructors.CreateHand(true);
         _canbeinhand = _card.AddComponent<CartyLib.CardsComponenets.CanBeInHand>();
 
         _hand.Add(_canbeinhand);

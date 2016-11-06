@@ -28,13 +28,15 @@ namespace CartyVisuals
             CardMovement = new DefaultCardMovement();
             CardOutline = new DefaultCardOutline();
             HandPositioning = new DefaultCardPositionInHand();
+            PhysicalCard = new DefaultPhysicalCard();
 
-            FlippedOn = Quaternion.Euler(-90, 90, 90);
-            FlippedOff = Quaternion.Euler(90, 90, 90);
+            FlippedOn = Quaternion.Euler(0, 0, 0);
+            FlippedOff = Quaternion.Euler(0, 0, -180);
 
             MaxCardsInHand = 10;
 
             PlayerHandPosition = new Vector3(0, 4, -3f);
+            EnemyHandPosition = new Vector3(0, 4, 3f);
 
             CardHeight = (0.075f + 0.118f) * 0.125f;
         }
@@ -59,6 +61,12 @@ namespace CartyVisuals
         public IHandCardPositioning HandPositioning { get; set; }
 
         /// <summary>
+        /// Customization of how the actual card looks like.
+        /// Assign your own implementation in order to customize how cards look like.
+        /// </summary>
+        public IPhysicalCard PhysicalCard { get; set; }
+
+        /// <summary>
         /// Default rotation of the card when its face is facing camera.
         /// </summary>
         public Quaternion FlippedOn { get; set; }
@@ -77,6 +85,11 @@ namespace CartyVisuals
         /// Position of the center of the player hand.
         /// </summary>
         public Vector3 PlayerHandPosition { get; set; }
+
+        /// <summary>
+        /// Position of the center of the enemy hand.
+        /// </summary>
+        public Vector3 EnemyHandPosition { get; set; }        
 
         /// <summary>
         /// Height of the physical card.

@@ -48,6 +48,8 @@ namespace CartyVisuals.Defaults
 
         public IEnumerator Move(GameObject card, Vector3 position)
         {
+            if (card == null) yield break;
+
             Vector3 previous_position = card.transform.position;
             Vector3 middle = Vector3.Lerp(position, previous_position, 0.5f);
             float distance = Vector3.Distance(previous_position, position);
@@ -100,6 +102,8 @@ namespace CartyVisuals.Defaults
 
         public IEnumerator Rotate(GameObject card, Quaternion rotation)
         {
+            if (card == null) yield break;
+
             float t = 0.0f;
             float speed_modifier = 3.0f;
 
@@ -108,6 +112,7 @@ namespace CartyVisuals.Defaults
 
             while (true)
             {
+                if (card == null) yield break;
 
                 card.transform.rotation = Quaternion.Lerp(initial_state, wanted_state, t);
                 t += speed_modifier * Time.deltaTime;

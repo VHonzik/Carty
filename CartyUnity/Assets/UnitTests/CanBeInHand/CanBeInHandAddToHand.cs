@@ -23,7 +23,7 @@ class CanBeInHandAddToHand : MonoBehaviour
         var owned = _card.AddComponent<CartyLib.CardsComponenets.CanBeOwned>();
         owned.PlayerOwned = true;
 
-        _hand = CardsGameObjects.PlayerHand();
+        _hand = CartyEntitiesConstructors.CreateHand(true);
         _canbeinhand = _card.AddComponent<CartyLib.CardsComponenets.CanBeInHand>();
 
         _canbeinhand.AddedToHand(0, 1, _hand);

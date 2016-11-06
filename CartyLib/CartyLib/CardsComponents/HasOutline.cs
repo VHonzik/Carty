@@ -69,6 +69,7 @@ namespace CartyLib.CardsComponenets
         {
             Outline_GO = VisualManager.Instance.CardOutline.CreateOutlineObject();
             Outline_GO.transform.parent = GetComponent<CanBeDetached>().Handle.transform;
+            Outline_GO.transform.localPosition = Vector3.zero;
 
             OriginalColor = HiddenColor;
             WantedColor = HiddenColor;

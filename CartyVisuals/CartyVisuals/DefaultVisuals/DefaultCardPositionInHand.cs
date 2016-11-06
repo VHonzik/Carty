@@ -39,17 +39,18 @@ namespace CartyVisuals.Defaults
             float angle = sign * initial_offset_pos + index_relative_to_center * angle_pos_dif;
 
             Quaternion result = (player ? VisualManager.Instance.FlippedOn : VisualManager.Instance.FlippedOff)
-                * Quaternion.Euler(0, 0, angle);
+                * Quaternion.Euler(0, angle, 0);
 
             return result;
         }
 
         private Vector3 Position(int index, int cards, bool player)
         {
+            Vector3 hand_pos = player ? VisualManager.Instance.PlayerHandPosition : VisualManager.Instance.EnemyHandPosition;
             bool even_cards = cards % 2 == 0;
             if (!even_cards && (index == (cards / 2)))
             {
-                return VisualManager.Instance.PlayerHandPosition;
+                return hand_pos;
             }
 
             float how_full = Mathf.Clamp((float)cards / (float)VisualManager.Instance.MaxCardsInHand, 0, 1);
@@ -74,6 +75,8 @@ namespace CartyVisuals.Defaults
             result -= middle_card;
             result.y = (player ? sign : -sign) * VisualManager.Instance.CardHeight * (index_relative_to_center + 1);
             result.z *= (player ? 1 : -1);
+
+            result += hand_pos;
 
             return result;
         }

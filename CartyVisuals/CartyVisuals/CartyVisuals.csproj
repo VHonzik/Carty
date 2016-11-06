@@ -45,9 +45,11 @@
     <Compile Include="DefaultVisuals\DefaultCardMovement.cs" />
     <Compile Include="DefaultVisuals\DefaultCardOutline.cs" />
     <Compile Include="DefaultVisuals\DefaultCardPositionInHand.cs" />
+    <Compile Include="DefaultVisuals\DefaultPhysicalCard.cs" />
     <Compile Include="Interfaces\ICardMovement.cs" />
     <Compile Include="Interfaces\IHandCardPositioning.cs" />
     <Compile Include="Interfaces\IOutline.cs" />
+    <Compile Include="Interfaces\IPhysicalCard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VisualManager.cs" />
   </ItemGroup>

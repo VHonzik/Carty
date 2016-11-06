@@ -13,7 +13,7 @@ namespace CartyLib.BoardComponents
         /// <summary>
         /// List of cards that are currently in the hand.
         /// </summary>
-        public List<CanBeInHand> Cards { get; set; }
+        public List<CanBeInHand> Cards { get; private set; }
 
         /// <summary>
         /// Whether it is a player hand or an enemy hand.
