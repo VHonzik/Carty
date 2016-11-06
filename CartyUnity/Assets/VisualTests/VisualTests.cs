@@ -14,8 +14,8 @@ public class VisualTests : MonoBehaviour {
     public bool PlayerHandFullTest = true;
     public bool EnemyHandFullTest = true;
     public bool PlayerHandFillingTest = true;
+    public bool EnemyHandFillingTest = true;
     
-
     // Use this for initialization
     void Start () {
         StartCoroutine(StartTests());
@@ -28,6 +28,7 @@ public class VisualTests : MonoBehaviour {
         if (PlayerHandFullTest) yield return StartCoroutine(PlayerHandFull());
         if (EnemyHandFullTest) yield return StartCoroutine(EnemyHandFull());
         if (PlayerHandFillingTest) yield return StartCoroutine(PlayerHandFilling());
+        if (EnemyHandFillingTest) yield return StartCoroutine(EnemyHandFilling());
         
     }
 
@@ -101,9 +102,13 @@ public class VisualTests : MonoBehaviour {
     private IEnumerator PlayerHandFilling()
     {
         Hand hand = CartyEntitiesConstructors.CreateHand(true);
-        
+
+
         int max = CartyVisuals.VisualManager.Instance.MaxCardsInHand;
         GameObject[] cards = new GameObject[max];
+
+        Text.text = "Player hand is being filled with " + max + " cards.";
+
         for (int i = 0; i < max; i++)
         {
             hand.PrepareAddingCard();
@@ -113,7 +118,32 @@ public class VisualTests : MonoBehaviour {
             yield return new WaitForSeconds(2.0f);
         }
 
-        Text.text = "Player hand is being filled with " + max + " cards.";
+        yield return new WaitForSeconds(2.0f);
+
+        for (int i = 0; i < max; i++)
+        {
+            Destroy(cards[i]);
+        }
+    }
+
+    private IEnumerator EnemyHandFilling()
+    {
+        Hand hand = CartyEntitiesConstructors.CreateHand(false);
+
+        int max = CartyVisuals.VisualManager.Instance.MaxCardsInHand;
+        GameObject[] cards = new GameObject[max];
+
+        Text.text = "Enemy hand is being filled with " + max + " cards.";
+
+        for (int i = 0; i < max; i++)
+        {
+            hand.PrepareAddingCard();
+            cards[i] = CartyEntitiesConstructors.CreateCard();
+            cards[i].transform.rotation = VisualManager.Instance.FlippedOff;
+            cards[i].GetComponent<CanBeOwned>().PlayerOwned = false;
+            hand.Add(cards[i].GetComponent<CanBeInHand>());
+            yield return new WaitForSeconds(2.0f);
+        }
 
         yield return new WaitForSeconds(2.0f);
 
