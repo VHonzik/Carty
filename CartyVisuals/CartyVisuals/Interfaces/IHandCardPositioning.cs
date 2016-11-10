@@ -11,7 +11,7 @@ namespace CartyVisuals
         /// Position a card should have when it occupies specified index of player hand.
         /// </summary>
         /// <param name="index">Zero-based index of the card in hand from left to right. Should be less than cards parameter.</param>
-        /// <param name="cards">Number of cards in the hand. Should be less than VisualBridge.Instance.MaxCardsInHand.</param>
+        /// <param name="cards">Number of cards in the hand. Should be less than VisualManager.Instance.MaxCardsInHand.</param>
         /// <returns>Wanted world position.</returns>
         Vector3 PositionPlayer(int index, int cards);
 
@@ -19,7 +19,7 @@ namespace CartyVisuals
         /// Rotation a card should have when it occupies specified index of player hand.
         /// </summary>
         /// <param name="index">Zero-based index of the card in hand from left to right. Should be less than cards parameter.</param>
-        /// <param name="cards">Number of cards in the hand. Should be less than VisualBridge.Instance.MaxCardsInHand.</param>
+        /// <param name="cards">Number of cards in the hand. Should be less than VisualManager.Instance.MaxCardsInHand.</param>
         /// <returns>Wanted rotation.</returns>
         Quaternion RotationPlayer(int index, int cards);
 
@@ -27,7 +27,7 @@ namespace CartyVisuals
         /// Position a card should have when it occupies specified index of enemy hand.
         /// </summary>
         /// <param name="index">Zero-based index of the card in hand from left to right. Should be less than cards parameter.</param>
-        /// <param name="cards">Number of cards in the hand. Should be less than VisualBridge.Instance.MaxCardsInHand.</param>
+        /// <param name="cards">Number of cards in the hand. Should be less than VisualManager.Instance.MaxCardsInHand.</param>
         /// <returns>Wanted world position.</returns>
         Vector3 PositionEnemy(int index, int cards);
 
@@ -35,7 +35,7 @@ namespace CartyVisuals
         /// Rotation a card should have when it occupies specified index of enemy hand.
         /// </summary>
         /// <param name="index">Zero-based index of the card in hand from left to right. Should be less than cards parameter.</param>
-        /// <param name="cards">Number of cards in the hand. Should be less than VisualBridge.Instance.MaxCardsInHand.</param>
+        /// <param name="cards">Number of cards in the hand. Should be less than VisualManager.Instance.MaxCardsInHand.</param>
         /// <returns>Wanted rotation.</returns>
         Quaternion RotationEnemy(int index, int cards);
     }

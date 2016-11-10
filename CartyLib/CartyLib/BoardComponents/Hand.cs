@@ -6,7 +6,7 @@ using UnityEngine;
 namespace CartyLib.BoardComponents
 {
     /// <summary>
-    /// Component representing the hand of a player of enemy.
+    /// Component representing the hand of a player or enemy.
     /// </summary>
     public class Hand : MonoBehaviour
     {
@@ -70,6 +70,7 @@ namespace CartyLib.BoardComponents
 
         /// <summary>
         /// Adds a card into the hand.
+        /// Does not update already present cards, use PrepareAddingCard for that.
         /// Will move and rotate the card to have a correct transform.
         /// </summary>
         /// <param name="card">Card to be added.</param>

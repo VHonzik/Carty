@@ -13,8 +13,9 @@ namespace CartyLib
         /// <summary>
         /// Assembles a card.
         /// </summary>
+        /// <param name="player">Whether the card is owned by player.</param>
         /// <returns>Created card game object.</returns>
-        public static GameObject CreateCard()
+        public static GameObject CreateCard(bool player)
         {
             GameObject card = new GameObject("card");
 
@@ -34,11 +35,29 @@ namespace CartyLib
             return card;
         }
 
+        /// <summary>
+        /// Assembles a hand.
+        /// </summary>
+        /// <param name="player">Whether the hand is owned by player.</param>
+        /// <returns>Created hand object.</returns>
         public static Hand CreateHand(bool player)
         {
             GameObject go = new GameObject( player ? "PlayerHand" : "EnemyHand");
             go.transform.position = player ? VisualManager.Instance.PlayerHandPosition : VisualManager.Instance.EnemyHandPosition;
             var result = go.AddComponent<Hand>();
+            result.PlayerOwned = player;
+            return result;
+        }
+
+        /// <summary>
+        /// Assembles a deck.
+        /// </summary>
+        /// <param name="player">Whether the deck is owned by player.</param>
+        /// <returns>Created deck object.</returns>
+        public static Deck CreateDeck(bool player)
+        {
+            GameObject go = new GameObject(player ? "PlayerDeck" : "EnemyDeck");
+            var result = go.AddComponent<Deck>();
             result.PlayerOwned = player;
             return result;
         }

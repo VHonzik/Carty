@@ -16,11 +16,7 @@ class HandAddingMovesCard : MonoBehaviour
     void Start()
     {
         UpdateTime = 0;
-        _card = CardsGameObjects.OnlyDetachHandle();
-        _card.AddComponent<CartyLib.CardsComponenets.CanBeDetached>();
-        _card.AddComponent<CartyLib.CardsComponenets.CanBeMoved>();
-        var owned = _card.AddComponent<CartyLib.CardsComponenets.CanBeOwned>();
-        owned.PlayerOwned = true;
+        _card = CardsGameObjects.DetachHandleWithHand(true);
 
         _hand = CartyEntitiesConstructors.CreateHand(true);
         _canbeinhand = _card.AddComponent<CartyLib.CardsComponenets.CanBeInHand>();

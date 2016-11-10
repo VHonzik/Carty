@@ -1,4 +1,5 @@
 ﻿using CartyLib.BoardComponents;
+using CartyLib.CardsComponenets;
 using CartyVisuals;
 using UnityEngine;
 
@@ -13,6 +14,16 @@ namespace Testing
             handle.transform.parent = root.transform;
             root.transform.rotation = VisualManager.Instance.FlippedOn;
             return root;
+        }
+
+        public static GameObject DetachHandleWithHand(bool player)
+        {
+            GameObject card = OnlyDetachHandle();
+            card.AddComponent<CanBeDetached>();
+            card.AddComponent<CanBeMoved>();
+            card.AddComponent<CanBeOwned>().PlayerOwned = player;
+            card.AddComponent<CanBeInHand>();
+            return card;
         }
 
         public static GameObject DetachHandleWithCollisionBox()

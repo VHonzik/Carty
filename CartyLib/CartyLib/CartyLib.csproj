@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoardComponents\Deck.cs" />
     <Compile Include="BoardComponents\Hand.cs" />
     <Compile Include="CartyEntitiesConstructors.cs" />
     <Compile Include="CardsComponents\CanBeInHand.cs" />

@@ -29,6 +29,7 @@ namespace CartyVisuals
             CardOutline = new DefaultCardOutline();
             HandPositioning = new DefaultCardPositionInHand();
             PhysicalCard = new DefaultPhysicalCard();
+            DeckPositioning = new DefaultCardPositionInDeck();
 
             FlippedOn = Quaternion.Euler(0, 0, 0);
             FlippedOff = Quaternion.Euler(0, 0, -180);
@@ -37,8 +38,11 @@ namespace CartyVisuals
 
             PlayerHandPosition = new Vector3(0, 4, -3f);
             EnemyHandPosition = new Vector3(0, 4, 3f);
+            
+            PlayerDeckPosition = new Vector3(6.11f, 0, -1.9f);
+            EnemyDeckPosition = new Vector3(6.11f, 0, 1.9f);
 
-            CardHeight = (0.075f + 0.118f) * 0.125f;
+            CardHeight = 0.013f;
         }
 
 
@@ -59,6 +63,12 @@ namespace CartyVisuals
         /// Assign your own implementation in order to customize how cards in hand are positioned.
         /// </summary>
         public IHandCardPositioning HandPositioning { get; set; }
+
+        /// <summary>
+        /// Card positioning in deck customization.
+        /// Assign your own implementation in order to customize how cards in deck are positioned.
+        /// </summary>
+        public IDeckCardPositioning DeckPositioning { get; set; }
 
         /// <summary>
         /// Customization of how the actual card looks like.
@@ -89,7 +99,17 @@ namespace CartyVisuals
         /// <summary>
         /// Position of the center of the enemy hand.
         /// </summary>
-        public Vector3 EnemyHandPosition { get; set; }        
+        public Vector3 EnemyHandPosition { get; set; }
+
+        /// <summary>
+        /// Position of the bottom-center of the player's deck.
+        /// </summary>
+        public Vector3 PlayerDeckPosition { get; set; }
+
+        /// <summary>
+        /// Position of the bottom-center of the enemy's deck.
+        /// </summary>
+        public Vector3 EnemyDeckPosition { get; set; }
 
         /// <summary>
         /// Height of the physical card.

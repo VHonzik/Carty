@@ -9,7 +9,7 @@ class CartyEntitiesConstructorsConstructsCard : MonoBehaviour
 {
     void Awake()
     {
-        GameObject card = CartyEntitiesConstructors.CreateCard();
+        GameObject card = CartyEntitiesConstructors.CreateCard(true);
         IntegrationTest.Assert(card.GetComponent<CanBeDetached>() != null);
         IntegrationTest.Assert(card.GetComponent<CanBeDetached>().Handle != null);
         IntegrationTest.Assert(card.GetComponent<CanBeInHand>() != null);
