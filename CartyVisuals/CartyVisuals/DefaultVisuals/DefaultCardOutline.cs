@@ -15,7 +15,14 @@ namespace CartyVisuals.Defaults
 
         public GameObject CreateOutlineObject()
         {
-            GameObject result = GameObject.Instantiate(Resources.Load("CardOutline") as GameObject) as GameObject;
+            GameObject outline = Resources.Load("CardOutline") as GameObject;
+            if (outline == null)
+            {
+                Debug.Log("There is no prefab called CardOutline in Resources folder. See CartyVisuals for more details.");
+                return VisualManager.CreateErrorObject("Error: Outline not found.");
+            }
+
+            GameObject result = GameObject.Instantiate(outline) as GameObject;
             return result;
         }
     }

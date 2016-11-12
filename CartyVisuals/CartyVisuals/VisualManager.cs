@@ -45,6 +45,13 @@ namespace CartyVisuals
             CardHeight = 0.013f;
         }
 
+        public static GameObject CreateErrorObject(string error)
+        {
+            GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            go.GetComponent<Renderer>().material.color = Color.red;
+            go.name = error;
+            return go;
+        }
 
         /// <summary>
         /// Card movement customization.
