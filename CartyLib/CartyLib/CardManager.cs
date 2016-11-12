@@ -16,19 +16,19 @@ namespace CartyLib
         /// <summary>
         /// Map between unique card type id <-> card type.
         /// </summary>
-        private Dictionary<string, Type> Type_mapping { get; set; }
+        private Dictionary<string, Type> TypeMapping { get; set; }
 
         public CardManager() {
-            Type_mapping = new Dictionary<string, Type>();
+            TypeMapping = new Dictionary<string, Type>();
         }
 
         private void AddCardImplementation(GameObject card, string type)
         {
-            var card_type = Type_mapping[type];
+            var cardType = TypeMapping[type];
 
-            if(card_type != null)
+            if(cardType != null)
             {
-                card.AddComponent(card_type);
+                card.AddComponent(cardType);
             }            
         }
 
@@ -46,7 +46,7 @@ namespace CartyLib
                 GameObject obj = new GameObject();
 
                 string id = (obj.AddComponent(card) as ICard).GetInfo().UniqueCardTypeId;
-                Type_mapping.Add(id, card);
+                TypeMapping.Add(id, card);
                 GameObject.Destroy(obj);
             }
         }
@@ -61,11 +61,11 @@ namespace CartyLib
         {
             GameObject card = new GameObject("card");
 
-            GameObject detach_handle = new GameObject("handle");
-            detach_handle.transform.parent = card.transform;
+            GameObject detachHandle = new GameObject("handle");
+            detachHandle.transform.parent = card.transform;
 
-            GameObject physical_card = CartyVisuals.VisualManager.Instance.PhysicalCard.CreatePhysicalCardObject();
-            physical_card.transform.parent = detach_handle.transform;
+            GameObject physicalCard = CartyVisuals.VisualManager.Instance.PhysicalCard.CreatePhysicalCardObject();
+            physicalCard.transform.parent = detachHandle.transform;
 
             card.AddComponent<CanBeDetached>();
             card.AddComponent<CanBeOwned>();

@@ -6,17 +6,17 @@ namespace CartyLib
     {
         public static GameManager Instance { get; set; }
 
-        private CardManager _card_manager;
+        private CardManager _cardManager;
         public CardManager CardManager
         {
             get
             {
-                if (_card_manager == null)
+                if (_cardManager == null)
                 {
-                    _card_manager = new CardManager();
+                    _cardManager = new CardManager();
                 }
 
-                return _card_manager;
+                return _cardManager;
             }
         }
 

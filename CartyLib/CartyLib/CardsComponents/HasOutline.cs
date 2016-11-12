@@ -34,7 +34,7 @@ namespace CartyLib.CardsComponenets
         /// <summary>
         /// GameObject representing the outline. Created via IOutline.CreateOutlineObject from VisualManager.
         /// </summary>
-        private GameObject Outline_GO { get; set; }
+        private GameObject OutlineGO { get; set; }
 
         /// <summary>
         /// List of outline requests.
@@ -67,9 +67,9 @@ namespace CartyLib.CardsComponenets
 
         void Start()
         {
-            Outline_GO = VisualManager.Instance.CardOutline.CreateOutlineObject();
-            Outline_GO.transform.parent = GetComponent<CanBeDetached>().Handle.transform;
-            Outline_GO.transform.localPosition = Vector3.zero;
+            OutlineGO = VisualManager.Instance.CardOutline.CreateOutlineObject();
+            OutlineGO.transform.parent = GetComponent<CanBeDetached>().Handle.transform;
+            OutlineGO.transform.localPosition = Vector3.zero;
 
             OriginalColor = HiddenColor;
             WantedColor = HiddenColor;
@@ -106,7 +106,7 @@ namespace CartyLib.CardsComponenets
             if(T < 1.0f)
             {
                 Color wanted = Color.Lerp(OriginalColor, WantedColor, T);
-                VisualManager.Instance.CardOutline.ApplyColor(Outline_GO, wanted);
+                VisualManager.Instance.CardOutline.ApplyColor(OutlineGO, wanted);
 
                 T += SpeedModifier * Time.deltaTime;
 
@@ -116,7 +116,7 @@ namespace CartyLib.CardsComponenets
 
                     if (WantedColor.a <= 0.0f) WantedColor = HiddenColor;
 
-                    VisualManager.Instance.CardOutline.ApplyColor(Outline_GO, WantedColor);
+                    VisualManager.Instance.CardOutline.ApplyColor(OutlineGO, WantedColor);
                 }
             }
             

@@ -12,27 +12,27 @@ namespace CartyLib
 
         private UnityBridge() { }
 
-        private static UnityBridge _the_one_and_only;
+        private static UnityBridge _theOneAndOnly;
         public static UnityBridge Instance
         {
            get
             {
-                if(_the_one_and_only == null)
+                if(_theOneAndOnly == null)
                 {
-                    _the_one_and_only = new UnityBridge();
+                    _theOneAndOnly = new UnityBridge();
                 }
 
-                return _the_one_and_only;
+                return _theOneAndOnly;
             }          
         }
 
-        private bool _override_mouse_position = false;
-        private Vector3 _override_mouse_wanted_position = Vector3.zero;
+        private bool _overrideMousePosition = false;
+        private Vector3 _overrideMouseWantedPosition = Vector3.zero;
 
-        public void OverrideMousePosition(bool on, Vector3 wanted_position)
+        public void OverrideMousePosition(bool on, Vector3 wantedPosition)
         {
-            _override_mouse_position = on;
-            _override_mouse_wanted_position = wanted_position;
+            _overrideMousePosition = on;
+            _overrideMouseWantedPosition = wantedPosition;
         }
 
         public Coroutine StartCoroutine(IEnumerator coroutine)
@@ -47,9 +47,9 @@ namespace CartyLib
 
         public Vector3 MousePosition()
         {
-            if(_override_mouse_position)
+            if(_overrideMousePosition)
             {
-                return _override_mouse_wanted_position;
+                return _overrideMouseWantedPosition;
             }
             else
             {

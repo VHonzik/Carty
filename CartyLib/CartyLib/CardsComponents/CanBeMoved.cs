@@ -15,25 +15,25 @@ namespace CartyLib.CardsComponenets
         /// <summary>
         /// Implementation of movement and rotation coroutines taken from VisualManager.
         /// </summary>
-        private ICardMovement _card_movement_implementation;
+        private ICardMovement _cardMovementImplementation;
 
         /// <summary>
         /// Coroutine queue for movement.
         /// </summary>
-        private CoroutineQueue _movement_queue;
+        private CoroutineQueue _movementQueue;
 
         /// <summary>
         /// Coroutine queue for rotations.
         /// </summary>
-        private CoroutineQueue _rotation_queue;
+        private CoroutineQueue _rotationQueue;
 
         void Awake()
         {
-            _movement_queue = new CoroutineQueue();
-            _rotation_queue = new CoroutineQueue();
-            _card_movement_implementation = VisualManager.Instance.CardMovement;
-            _movement_queue.Start();
-            _rotation_queue.Start();
+            _movementQueue = new CoroutineQueue();
+            _rotationQueue = new CoroutineQueue();
+            _cardMovementImplementation = VisualManager.Instance.CardMovement;
+            _movementQueue.Start();
+            _rotationQueue.Start();
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace CartyLib.CardsComponenets
         /// <returns>Returns this for call chaining.</returns>
         public CanBeMoved Move(Vector3 position)
         {
-            _movement_queue.Add(_card_movement_implementation.Move(gameObject, position));
+            _movementQueue.Add(_cardMovementImplementation.Move(gameObject, position));
             return this;
         }
 
@@ -54,7 +54,7 @@ namespace CartyLib.CardsComponenets
         /// <returns>Returns this for call chaining.</returns>
         public CanBeMoved MoveInstantly(Vector3 position)
         {
-            _movement_queue.Add(_card_movement_implementation.MoveInstantly(gameObject, position));
+            _movementQueue.Add(_cardMovementImplementation.MoveInstantly(gameObject, position));
             return this;
         }
 
@@ -65,7 +65,7 @@ namespace CartyLib.CardsComponenets
         /// <returns>Returns this for call chaining.</returns>
         public CanBeMoved Rotate(Quaternion rotation)
         {
-            _rotation_queue.Add(_card_movement_implementation.Rotate(gameObject, rotation));
+            _rotationQueue.Add(_cardMovementImplementation.Rotate(gameObject, rotation));
             return this;
         }
 
@@ -76,7 +76,7 @@ namespace CartyLib.CardsComponenets
         /// <returns>Returns this for call chaining.</returns>
         public CanBeMoved RotateInstantly(Quaternion rotation)
         {
-            _rotation_queue.Add(_card_movement_implementation.RotateInstantly(gameObject, rotation));
+            _rotationQueue.Add(_cardMovementImplementation.RotateInstantly(gameObject, rotation));
             return this;
         }
 
@@ -86,7 +86,7 @@ namespace CartyLib.CardsComponenets
         /// <returns>Returns this for call chaining.</returns>
         public CanBeMoved Flip()
         {
-            _rotation_queue.Add(_card_movement_implementation.Flip(gameObject));
+            _rotationQueue.Add(_cardMovementImplementation.Flip(gameObject));
             return this;
         }
 
@@ -96,7 +96,7 @@ namespace CartyLib.CardsComponenets
         /// <returns>Returns this for call chaining.</returns>
         public CanBeMoved FlipInstantly()
         {
-            _rotation_queue.Add(_card_movement_implementation.FlipInstantly(gameObject));
+            _rotationQueue.Add(_cardMovementImplementation.FlipInstantly(gameObject));
             return this;
         }
 
@@ -107,7 +107,7 @@ namespace CartyLib.CardsComponenets
         /// <returns>Returns this for call chaining.</returns>
         public CanBeMoved PauseMovement(float seconds)
         {
-            _movement_queue.AddWait(seconds);
+            _movementQueue.AddWait(seconds);
             return this;
         }
 
@@ -118,7 +118,7 @@ namespace CartyLib.CardsComponenets
         /// <returns>Returns this for call chaining.</returns>
         public CanBeMoved PauseRotation(float seconds)
         {
-            _rotation_queue.AddWait(seconds);
+            _rotationQueue.AddWait(seconds);
             return this;
         }
 
@@ -130,7 +130,7 @@ namespace CartyLib.CardsComponenets
         /// <returns>Returns this for call chaining.</returns>
         public CanBeMoved MovementArbitraryCoroutine(IEnumerator coroutine)
         {
-            _movement_queue.Add(coroutine);
+            _movementQueue.Add(coroutine);
             return this;
         }
     }
