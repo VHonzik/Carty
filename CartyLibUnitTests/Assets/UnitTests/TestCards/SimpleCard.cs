@@ -1,27 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
-using CartyLib.CardsImplementation;
+using CartyLib;
 using System;
 
 public class SimpleCard : MonoBehaviour, ICard
 {
-    public int GetCost()
+    public CardInfo GetInfo()
     {
-        return 1;
-    }
-
-    public string GetDescription()
-    {
-        return "I don't do much.";
-    }
-
-    public string GetTitle()
-    {
-        return "Simple card";
-    }
-
-    public string GetUniqueID()
-    {
-        return "simplecard";
+        return new CardInfo { Cost = 0, Description = "I don't do much.", Title = "Simple card", UniqueCardTypeId = "simplecard" };
     }
 }
