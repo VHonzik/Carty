@@ -47,6 +47,8 @@
   <ItemGroup>
     <Compile Include="BoardComponents\Deck.cs" />
     <Compile Include="BoardComponents\Hand.cs" />
+    <Compile Include="CardManager.cs" />
+    <Compile Include="CardsImplementation\ICard.cs" />
     <Compile Include="CartyEntitiesConstructors.cs" />
     <Compile Include="CardsComponents\CanBeInHand.cs" />
     <Compile Include="CardsComponents\CanBeOwned.cs" />
