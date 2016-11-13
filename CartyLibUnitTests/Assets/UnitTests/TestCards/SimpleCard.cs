@@ -6,6 +6,6 @@ public class SimpleCard : MonoBehaviour, ICardType
 {
     public CardInfo GetInfo()
     {
-        return new CardInfo { Cost = 0, Description = "I don't do much.", Title = "Simple card", UniqueCardTypeId = "simplecard" };
+        return new CardInfo { Cost = 0, UniqueCardTypeId = "simplecard" };
     }
 }

@@ -17,6 +17,8 @@ class GameManagerStartsGame : MonoBehaviour
         IntegrationTest.Assert(GameManager.Instance.EnemyDeck != null);
         IntegrationTest.Assert(GameManager.Instance.EnemyHand != null);
 
+        IntegrationTest.Assert(GameManager.Instance.Settings != null);
+
         IntegrationTest.Pass(gameObject);
     }
 }

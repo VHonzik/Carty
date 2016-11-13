@@ -25,12 +25,11 @@ namespace CartyLib.Internals
 
         private void AddCardImplementation(GameObject card, string type)
         {
-            var cardType = TypeMapping[type];
-
-            if(cardType != null)
+            Type cardType;
+            if(TypeMapping.TryGetValue(type, out cardType))
             {
                 card.AddComponent(cardType);
-            }            
+            }        
         }
 
         /// <summary>

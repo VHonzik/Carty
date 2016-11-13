@@ -18,23 +18,20 @@ namespace CartyLib
         public string UniqueCardTypeId;
 
         /// <summary>
-        /// Title displayed on the card's front.
-        /// Depending on the card visuals and font chosen, care should be taken regarding the length of the title.
-        /// </summary>
-        public string Title;
-
-        /// <summary>
-        /// Description of the card displayed on the card's front.
-        /// Depending on the card visuals and font chosen, care should be taken regarding the length of the description.
-        /// </summary>
-        public string Description;
-
-        /// <summary>
         /// Resource cost of playing the card.
         /// Is displayed on the card's front.
         /// </summary>
         public int Cost;
+
+        /// <summary>
+        /// Name of the texture of the card front.
+        /// Search order:
+        ///     1. Resources folder + VisualManager.Instance.CardTexturesPath
+        ///     2. Resources folder
+        /// </summary>
+        public string CardFrontTexture;
     }
+
 
     /// <summary>
     /// A bare minimum interface to consider a MonoBeaviour a card.

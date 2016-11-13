@@ -41,8 +41,15 @@ namespace CartyVisuals
             EnemyDeckPosition = new Vector3(6.11f, 0, 1.9f);
 
             CardHeight = 0.013f;
+
+            CardTexturesPath = "";
         }
 
+        /// <summary>
+        /// Creates a dummy object for when some goes wrong in visual objects creation.
+        /// </summary>
+        /// <param name="error">Error message, the game object will be called so.</param>
+        /// <returns>Dummy object.</returns>
         public static GameObject CreateErrorObject(string error)
         {
             GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -117,5 +124,11 @@ namespace CartyVisuals
         /// Influences board and hand positioning.
         /// </summary>
         public float CardHeight { get; set; }
+
+        /// <summary>
+        /// A path to folder containing cards and portrait pictures relative to the Resources folder.
+        /// The folder must be a child of Resources folder.
+        /// </summary>
+        public string CardTexturesPath { get; set; }
     }
 }

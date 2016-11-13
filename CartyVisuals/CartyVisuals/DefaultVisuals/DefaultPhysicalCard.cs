@@ -20,5 +20,46 @@ namespace CartyVisuals.Defaults
             GameObject result = GameObject.Instantiate(physicalCard) as GameObject;
             return result;
         }
+
+        public void SetCardBack(GameObject physicalCardGO, Texture backTexture)
+        {
+            string matName = "CardBack";
+            var renderer = physicalCardGO.GetComponent<Renderer>();
+            if (renderer != null)
+            {
+                foreach(var material in renderer.materials)
+                {
+                    if(material.name == matName)
+                    {
+                        material.mainTexture = backTexture;
+                        return;
+                    }
+                }
+            }
+
+            Debug.Log("Error: Physical card game object has no rendered or material named " + matName
+                + ". See implementation of IPhysicalCard.SetCardBack.");
+         
+        }
+
+        public void SetCardFront(GameObject physicalCardGO, Texture frontTexture)
+        {
+            string matName = "CardFront";
+            var renderer = physicalCardGO.GetComponent<Renderer>();
+            if (renderer != null)
+            {
+                foreach (var material in renderer.materials)
+                {
+                    if (material.name == matName)
+                    {
+                        material.mainTexture = frontTexture;
+                        return;
+                    }
+                }
+            }
+
+            Debug.Log("Error: Physical card game object has no rendered or material named " + matName
+                + ". See implementation of IPhysicalCard.SetCardFront.");
+        }
     }
 }
