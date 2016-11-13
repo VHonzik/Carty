@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using Testing;
-using CartyLib.CardsComponenets;
+using CartyLib.Internals.CardsComponents;
 using CartyVisuals;
-using CartyLib.BoardComponents;
+using CartyLib.Internals.BoardComponents;
 using CartyLib;
 
 [IntegrationTest.DynamicTest("CartyLibTests")]
@@ -25,7 +25,7 @@ class HandRemovingMovesCards : MonoBehaviour
         _card_remove.transform.position = VisualManager.Instance.HandPositioning.PositionPlayer(1, 2);
         _card_remove.transform.rotation = VisualManager.Instance.HandPositioning.RotationPlayer(1, 2);
 
-        _hand = CartyEntitiesConstructors.CreateHand(true);
+        _hand = Hand.CreateHand(true);
 
         _hand.Add(_card_stay.GetComponent<CanBeInHand>());
         _hand.Add(_card_remove.GetComponent<CanBeInHand>());

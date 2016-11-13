@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace CartyLib
+namespace CartyLib.Internals
 {
     /// <summary>
     /// A queue of Unity coroutines. As the name implies a new coroutine won't start before the previous one ended.

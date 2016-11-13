@@ -1,8 +1,8 @@
-﻿using CartyLib.BoardComponents;
+﻿using CartyLib.Internals.BoardComponents;
 using CartyVisuals;
 using UnityEngine;
 
-namespace CartyLib.CardsComponenets
+namespace CartyLib.Internals.CardsComponents
 {
     /// <summary>
     /// Component to handle the card transform when it is in hand.

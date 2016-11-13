@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CartyLib.CardsComponenets
+namespace CartyLib.Internals.CardsComponents
 {
     public class CanBeOwned : MonoBehaviour
     {

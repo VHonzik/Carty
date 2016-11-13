@@ -1,7 +1,8 @@
 ﻿using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
-namespace CartyLib
+namespace CartyLib.Internals
 {
     /// <summary>
     /// Singleton serving as a bridge between CartyLib and Unity engine.

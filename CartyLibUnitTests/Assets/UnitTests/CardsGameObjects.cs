@@ -1,5 +1,5 @@
-﻿using CartyLib.BoardComponents;
-using CartyLib.CardsComponenets;
+﻿using CartyLib.Internals.BoardComponents;
+using CartyLib.Internals.CardsComponents;
 using CartyVisuals;
 using UnityEngine;
 

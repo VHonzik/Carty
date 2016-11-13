@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
-using CartyLib;
 using Testing;
+using CartyLib.Internals.CardsComponents;
 
 [IntegrationTest.DynamicTest("CartyLibTests")]
 class CanBeMovedAlreadyInPlace : MonoBehaviour
@@ -13,7 +12,7 @@ class CanBeMovedAlreadyInPlace : MonoBehaviour
     {
         UpdateCount = 0;
         _card = CardsGameObjects.OnlyDetachHandle();
-        var move = _card.AddComponent<CartyLib.CardsComponenets.CanBeMoved>();
+        var move = _card.AddComponent<CanBeMoved>();
         _card.transform.position = Vector3.one;
         move.Move(Vector3.one);
     }

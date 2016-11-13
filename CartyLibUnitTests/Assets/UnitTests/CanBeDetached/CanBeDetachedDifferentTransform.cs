@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Testing;
+using CartyLib.Internals.CardsComponents;
 
 [IntegrationTest.DynamicTest("CartyLibTests")]
 public class CanBeDetachedDifferentTransform : MonoBehaviour
@@ -8,14 +9,14 @@ public class CanBeDetachedDifferentTransform : MonoBehaviour
 
     private GameObject _card;
     private GameObject _handle;
-    private CartyLib.CardsComponenets.CanBeDetached _detachable;
+    private CanBeDetached _detachable;
     private Vector3 _prev_trans_handle_pos;
     private Quaternion _prev_trans_handle_rot;
 
     void Awake()
     {
         _card = CardsGameObjects.OnlyDetachHandle();
-        _detachable = _card.AddComponent<CartyLib.CardsComponenets.CanBeDetached>();
+        _detachable = _card.AddComponent<CanBeDetached>();
         _handle = _detachable.Handle;
 
         _prev_trans_handle_pos = _handle.transform.position;

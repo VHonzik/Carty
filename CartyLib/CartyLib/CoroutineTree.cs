@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace CartyLib
+namespace CartyLib.Internals
 {
     /// <summary>
     /// A data structure representing one coroutine as node of a tree.

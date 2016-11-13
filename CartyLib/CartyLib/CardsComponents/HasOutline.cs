@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CartyLib.CardsComponenets
+namespace CartyLib.Internals.CardsComponents
 {
     /// <summary>
     /// Information about a card component requesting displaying or hiding of an outline from HasOutline component.

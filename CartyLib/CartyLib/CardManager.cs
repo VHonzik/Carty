@@ -1,11 +1,12 @@
-﻿using CartyLib.CardsComponenets;
+﻿using CartyLib.Internals.CardsComponents;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using UnityEngine;
 
-namespace CartyLib
+namespace CartyLib.Internals
 {
     /// <summary>
     /// Class responsible for creating and keeping track of cards.
@@ -34,20 +35,39 @@ namespace CartyLib
 
         /// <summary>
         /// Initializes the card manager. 
-        /// Scan all application assemblies for MonoBehaviours implementing CartyLib.ICard.
+        /// Scan all application assemblies for MonoBehaviours implementing CartyLib.ICardType.
         /// </summary>
         public void Initialize()
         {
-            var cards = AppDomain.CurrentDomain.GetAssemblies().SelectMany(s => s.GetTypes())
-                .Where(type => type.GetInterfaces().Contains(typeof(ICard)) && type.BaseType == typeof(MonoBehaviour));
-
-            foreach(var card in cards)
+            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
-                GameObject obj = new GameObject();
+                Type[] types = null;
 
-                string id = (obj.AddComponent(card) as ICard).GetInfo().UniqueCardTypeId;
-                TypeMapping.Add(id, card);
-                GameObject.Destroy(obj);
+                try
+                {
+                    types = assembly.GetTypes();
+                }
+                catch (ReflectionTypeLoadException ex)
+                {
+                    Debug.LogError("Failed to load types from: " + assembly.FullName);
+                    foreach (Exception loadEx in ex.LoaderExceptions)
+                        Debug.LogException(loadEx);
+                }
+
+                if (types == null)
+                    continue;
+
+                foreach (Type type in types)
+                {
+                    if(type.GetInterfaces().Contains(typeof(ICardType)) && type.BaseType == typeof(MonoBehaviour))
+                    {
+                        GameObject obj = new GameObject();
+
+                        string id = (obj.AddComponent(type) as ICardType).GetInfo().UniqueCardTypeId;
+                        TypeMapping.Add(id, type);
+                        GameObject.Destroy(obj);
+                    }
+                }
             }
         }
 

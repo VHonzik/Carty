@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
-using CartyLib;
 using Testing;
+using CartyLib.Internals.CardsComponents;
 
 [IntegrationTest.DynamicTest("CartyLibTests")]
 class CanBeMovedRotate : MonoBehaviour
@@ -14,7 +13,7 @@ class CanBeMovedRotate : MonoBehaviour
     {
         UpdateTime = 0;
         _card = CardsGameObjects.OnlyDetachHandle();
-        var move = _card.AddComponent<CartyLib.CardsComponenets.CanBeMoved>();
+        var move = _card.AddComponent<CanBeMoved>();
         _wanted_rot = _card.transform.rotation * Quaternion.Euler(45, 0, 0);
         move.Rotate(_wanted_rot);
     }

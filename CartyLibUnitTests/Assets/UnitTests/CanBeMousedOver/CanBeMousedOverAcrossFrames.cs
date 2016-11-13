@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
-using CartyLib;
 using Testing;
+using CartyLib.Internals.CardsComponents;
+using CartyLib.Internals;
 
 [IntegrationTest.DynamicTest("CartyLibTests")]
 public class CanBeMousedOverAcrossFrames : MonoBehaviour
@@ -9,15 +9,15 @@ public class CanBeMousedOverAcrossFrames : MonoBehaviour
     private int UpdateCount { get; set; }
 
     private GameObject _card;
-    private CartyLib.CardsComponenets.CanBeMousedOver _mouse_over;
+    private CanBeMousedOver _mouse_over;
 
     void Awake()
     {
         _card = CardsGameObjects.DetachHandleWithCollisionBox();
-        _mouse_over = _card.AddComponent<CartyLib.CardsComponenets.CanBeMousedOver>();
+        _mouse_over = _card.AddComponent<CanBeMousedOver>();
 
         Vector3 right_of_screen = new Vector3(Screen.width * 0.75f, Screen.height * 0.5f, 0.0f);
-        CartyLib.UnityBridge.Instance.OverrideMousePosition(true, right_of_screen);
+       UnityBridge.Instance.OverrideMousePosition(true, right_of_screen);
 
         UpdateCount = 0;
     }
@@ -31,7 +31,7 @@ public class CanBeMousedOverAcrossFrames : MonoBehaviour
         else if(UpdateCount == 1)
         {
             Vector3 middle_of_screen = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0.0f);
-            CartyLib.UnityBridge.Instance.OverrideMousePosition(true, middle_of_screen);
+            UnityBridge.Instance.OverrideMousePosition(true, middle_of_screen);
         }
         else if (UpdateCount == 2)
         {
@@ -41,7 +41,7 @@ public class CanBeMousedOverAcrossFrames : MonoBehaviour
         else if (UpdateCount == 3)
         {
             Vector3 left_of_screen = new Vector3(Screen.width * 0.25f, Screen.height * 0.5f, 0.0f);
-            CartyLib.UnityBridge.Instance.OverrideMousePosition(true, left_of_screen);
+            UnityBridge.Instance.OverrideMousePosition(true, left_of_screen);
         }
         else if (UpdateCount == 4)
         {

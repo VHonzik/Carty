@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using CartyLib;
 
 namespace CartyVisuals.Defaults
 {
@@ -22,7 +23,7 @@ namespace CartyVisuals.Defaults
                 return player ? VisualManager.Instance.FlippedOn : VisualManager.Instance.FlippedOff;
             }
 
-            float how_full = Mathf.Clamp((float)cards / (float)VisualManager.Instance.MaxCardsInHand, 0, 1);
+            float how_full = Mathf.Clamp((float)cards / (float)GameManager.Instance.Settings.MaxCardsInHand, 0, 1);
             float angle_pos_dif = Mathf.Lerp(MaxPosAngleDif, MinPosAngleDif, how_full);
 
             float index_relative_to_center = index - (cards / 2);
@@ -47,7 +48,7 @@ namespace CartyVisuals.Defaults
                 return hand_pos;
             }
 
-            float how_full = Mathf.Clamp((float)cards / (float)VisualManager.Instance.MaxCardsInHand, 0, 1);
+            float how_full = Mathf.Clamp((float)cards / (float)GameManager.Instance.Settings.MaxCardsInHand, 0, 1);
             float angle_pos_dif = Mathf.Lerp(MaxPosAngleDif, MinPosAngleDif, how_full);
 
             Vector3 middle_card = new Vector3(0, 0, Radius);

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CartyLib.CardsComponenets
+namespace CartyLib.Internals.CardsComponents
 {
     /// <summary>
     /// Component to detect the mouse is over a card or minion.

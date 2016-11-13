@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace CartyLib.CardsComponenets
+namespace CartyLib.Internals.CardsComponents
 {
     /// <summary>
     /// Component to allow a card or a minion rendering and simulation transforms being detached from each other.

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
-using CartyLib;
 using Testing;
+using CartyLib.Internals.CardsComponents;
 
 [IntegrationTest.DynamicTest("CartyLibTests")]
 public class HasOutlineRequestRevoke : MonoBehaviour
@@ -9,13 +8,13 @@ public class HasOutlineRequestRevoke : MonoBehaviour
     private int UpdateCount { get; set; }
 
     private GameObject _card;
-    private CartyLib.CardsComponenets.HasOutline _outline;
+    private HasOutline _outline;
 
     void Awake()
     {
         _card = CardsGameObjects.OnlyDetachHandle();
-        _card.AddComponent<CartyLib.CardsComponenets.CanBeDetached>();
-        _outline = _card.AddComponent<CartyLib.CardsComponenets.HasOutline>();
+        _card.AddComponent<CanBeDetached>();
+        _outline = _card.AddComponent<HasOutline>();
 
         UpdateCount = 0;
     }

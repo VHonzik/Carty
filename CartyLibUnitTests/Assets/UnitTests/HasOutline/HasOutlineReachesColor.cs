@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
-using CartyLib;
 using Testing;
-using CartyLib.CardsComponenets;
+using CartyLib.Internals.CardsComponents;
 
 [IntegrationTest.DynamicTest("CartyLibTests")]
 class HasOutlineReachesColor : MonoBehaviour
@@ -15,8 +13,8 @@ class HasOutlineReachesColor : MonoBehaviour
     {
         UpdateTime = 0;
         _card = CardsGameObjects.OnlyDetachHandle();
-        _card.AddComponent<CartyLib.CardsComponenets.CanBeDetached>();
-        _outline = _card.AddComponent<CartyLib.CardsComponenets.HasOutline>();
+        _card.AddComponent<CanBeDetached>();
+        _outline = _card.AddComponent<HasOutline>();
         _outline.Request(this, Color.red);
     }
 

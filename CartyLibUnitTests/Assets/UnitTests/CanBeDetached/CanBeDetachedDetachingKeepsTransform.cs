@@ -1,19 +1,18 @@
 ﻿using UnityEngine;
-using System.Collections;
-using CartyLib;
 using Testing;
+using CartyLib.Internals.CardsComponents;
 
 [IntegrationTest.DynamicTest("CartyLibTests")]
 public class CanBeDetachedDetachingKeepsTransform : MonoBehaviour
 {
     private GameObject _card;
     private GameObject _handle;
-    private CartyLib.CardsComponenets.CanBeDetached _detachable;
+    private CanBeDetached _detachable;
 
     void Awake()
     {
         _card = CardsGameObjects.OnlyDetachHandle();
-        _detachable = _card.AddComponent<CartyLib.CardsComponenets.CanBeDetached>();
+        _detachable = _card.AddComponent<CanBeDetached>();
         _handle = _detachable.Handle;
 
         _detachable.Detached = true;

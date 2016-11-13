@@ -5,6 +5,9 @@ using System.Text;
 
 namespace CartyLib
 {
+    /// <summary>
+    /// Basic information about a card type.
+    /// </summary>
     public struct CardInfo
     {
         /// <summary>
@@ -36,7 +39,7 @@ namespace CartyLib
     /// <summary>
     /// A bare minimum interface to consider a MonoBeaviour a card.
     /// </summary>
-    public interface ICard
+    public interface ICardType
     {
         /// <summary>
         /// Get basic information about the card.

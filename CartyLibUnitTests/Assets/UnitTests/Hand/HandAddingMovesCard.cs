@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using Testing;
-using CartyLib.CardsComponenets;
+using CartyLib.Internals.CardsComponents;
 using CartyVisuals;
-using CartyLib.BoardComponents;
-using CartyLib;
+using CartyLib.Internals.BoardComponents;
 
 [IntegrationTest.DynamicTest("CartyLibTests")]
 class HandAddingMovesCard : MonoBehaviour
@@ -18,8 +17,8 @@ class HandAddingMovesCard : MonoBehaviour
         UpdateTime = 0;
         _card = CardsGameObjects.DetachHandleWithHand(true);
 
-        _hand = CartyEntitiesConstructors.CreateHand(true);
-        _canbeinhand = _card.AddComponent<CartyLib.CardsComponenets.CanBeInHand>();
+        _hand = Hand.CreateHand(true);
+        _canbeinhand = _card.AddComponent<CanBeInHand>();
 
         _hand.Add(_canbeinhand);
     }

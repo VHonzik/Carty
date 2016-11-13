@@ -34,8 +34,6 @@ namespace CartyVisuals
             FlippedOn = Quaternion.Euler(0, 0, 0);
             FlippedOff = Quaternion.Euler(0, 0, -180);
 
-            MaxCardsInHand = 10;
-
             PlayerHandPosition = new Vector3(0, 4, -3f);
             EnemyHandPosition = new Vector3(0, 4, 3f);
             
@@ -92,11 +90,6 @@ namespace CartyVisuals
         /// Default rotation of the card when its back is facing camera.
         /// </summary>
         public Quaternion FlippedOff { get; set; }
-
-        /// <summary>
-        /// Maximal number of cards which can be in hand at one time.
-        /// </summary>
-        public int MaxCardsInHand { get; set; }
 
         /// <summary>
         /// Position of the center of the player hand.

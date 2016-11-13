@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
-using CartyLib;
 using Testing;
+using CartyLib.Internals.CardsComponents;
 
 [IntegrationTest.DynamicTest("CartyLibTests")]
 class CanBeMovedPauseMovement : MonoBehaviour
@@ -13,7 +12,7 @@ class CanBeMovedPauseMovement : MonoBehaviour
     {
         UpdateTime = 0;
         _card = CardsGameObjects.OnlyDetachHandle();
-        var move = _card.AddComponent<CartyLib.CardsComponenets.CanBeMoved>();
+        var move = _card.AddComponent<CanBeMoved>();
         move.PauseMovement(1.0f).MoveInstantly(Vector3.one);
     }
 

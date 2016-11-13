@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-using CartyLib;
 using Testing;
+using CartyLib.Internals;
 
 [IntegrationTest.DynamicTest("CartyLibTests")]
 public class CTOneChildCoroutine : MonoBehaviour

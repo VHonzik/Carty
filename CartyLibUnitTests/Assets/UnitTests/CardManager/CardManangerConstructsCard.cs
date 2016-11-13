@@ -2,7 +2,7 @@
 using System.Collections;
 using CartyLib;
 using Testing;
-using CartyLib.CardsComponenets;
+using CartyLib.Internals.CardsComponents;
 
 [IntegrationTest.DynamicTest("CartyLibTests")]
 class CardManangerConstructsCard : MonoBehaviour

@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace CartyLib.CardsComponenets
+namespace CartyLib.Internals.CardsComponents
 {
     /// <summary>
     /// Component to allow a card or minion move in the game world.

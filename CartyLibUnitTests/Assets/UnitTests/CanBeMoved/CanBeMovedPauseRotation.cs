@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
-using CartyLib;
 using Testing;
 using CartyVisuals;
+using CartyLib.Internals.CardsComponents;
 
 [IntegrationTest.DynamicTest("CartyLibTests")]
 class CanBeMovedPauseRotation : MonoBehaviour
@@ -14,7 +13,7 @@ class CanBeMovedPauseRotation : MonoBehaviour
     {
         UpdateTime = 0;
         _card = CardsGameObjects.OnlyDetachHandle();
-        var move = _card.AddComponent<CartyLib.CardsComponenets.CanBeMoved>();
+        var move = _card.AddComponent<CanBeMoved>();
         move.PauseRotation(1.0f).RotateInstantly(Quaternion.Euler(90, 0, 0));
     }
 

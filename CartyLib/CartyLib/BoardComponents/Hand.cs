@@ -1,9 +1,9 @@
-﻿using CartyLib.CardsComponenets;
+﻿using CartyLib.Internals.CardsComponents;
 using CartyVisuals;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CartyLib.BoardComponents
+namespace CartyLib.Internals.BoardComponents
 {
     /// <summary>
     /// Component representing the hand of a player or enemy.
@@ -19,6 +19,20 @@ namespace CartyLib.BoardComponents
         /// Whether it is a player hand or an enemy hand.
         /// </summary>
         public bool PlayerOwned { get; set; }
+
+        /// <summary>
+        /// Assembles a hand.
+        /// </summary>
+        /// <param name="player">Whether the hand is owned by player.</param>
+        /// <returns>Created hand object.</returns>
+        public static Hand CreateHand(bool player)
+        {
+            GameObject go = new GameObject(player ? "PlayerHand" : "EnemyHand");
+            go.transform.position = player ? VisualManager.Instance.PlayerHandPosition : VisualManager.Instance.EnemyHandPosition;
+            var result = go.AddComponent<Hand>();
+            result.PlayerOwned = player;
+            return result;
+        }
 
         void Awake()
         {

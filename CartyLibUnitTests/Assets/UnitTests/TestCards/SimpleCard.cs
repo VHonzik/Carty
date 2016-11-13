@@ -2,7 +2,7 @@
 using CartyLib;
 using System;
 
-public class SimpleCard : MonoBehaviour, ICard
+public class SimpleCard : MonoBehaviour, ICardType
 {
     public CardInfo GetInfo()
     {

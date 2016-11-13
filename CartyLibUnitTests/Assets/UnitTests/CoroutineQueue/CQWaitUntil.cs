@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using CartyLib;
+using CartyLib.Internals;
 
 [IntegrationTest.DynamicTest("CartyLibTests")]
 public class CQWaitUntil : MonoBehaviour {

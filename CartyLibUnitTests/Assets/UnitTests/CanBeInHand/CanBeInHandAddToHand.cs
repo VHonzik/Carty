@@ -2,9 +2,9 @@
 using System.Collections;
 using CartyLib;
 using Testing;
-using CartyLib.CardsComponenets;
+using CartyLib.Internals.CardsComponents;
 using CartyVisuals;
-using CartyLib.BoardComponents;
+using CartyLib.Internals.BoardComponents;
 
 [IntegrationTest.DynamicTest("CartyLibTests")]
 class CanBeInHandAddToHand : MonoBehaviour
@@ -18,13 +18,13 @@ class CanBeInHandAddToHand : MonoBehaviour
     {
         UpdateTime = 0;
         _card = CardsGameObjects.OnlyDetachHandle();
-        _card.AddComponent<CartyLib.CardsComponenets.CanBeDetached>();
-        _card.AddComponent<CartyLib.CardsComponenets.CanBeMoved>();
-        var owned = _card.AddComponent<CartyLib.CardsComponenets.CanBeOwned>();
+        _card.AddComponent<CanBeDetached>();
+        _card.AddComponent<CanBeMoved>();
+        var owned = _card.AddComponent<CanBeOwned>();
         owned.PlayerOwned = true;
 
-        _hand = CartyEntitiesConstructors.CreateHand(true);
-        _canbeinhand = _card.AddComponent<CartyLib.CardsComponenets.CanBeInHand>();
+        _hand = Hand.CreateHand(true);
+        _canbeinhand = _card.AddComponent<CanBeInHand>();
 
         _canbeinhand.AddedToHand(0, 1, _hand);
         IntegrationTest.Assert(_canbeinhand.IsInHand == true);
