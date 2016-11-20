@@ -78,9 +78,15 @@ namespace CartyLib
             EnemyDeck = Deck.CreateDeck(false);
         }
 
-        public void StartMatch()
+        /// <summary>
+        /// Starts a match. Creates all necessary game objects and cards.
+        /// </summary>
+        /// <param name="matchInfo">Information about initial state of the match. See MatchInfo.</param>
+        public void StartMatch(MatchInfo matchInfo)
         {
             CreateBoardObjects();
+            PlayerDeck.FillWithCards(matchInfo.PlayerDeckCards);
+            EnemyDeck.FillWithCards(matchInfo.EnemyDeckCards);
         }
     }
 }

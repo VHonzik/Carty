@@ -1,4 +1,5 @@
 ﻿using CartyLib.Internals.CardsComponents;
+using CartyVisuals;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,15 +22,6 @@ namespace CartyLib.Internals
 
         public CardManager() {
             TypeMapping = new Dictionary<string, Type>();
-        }
-
-        private void AddCardImplementation(GameObject card, string type)
-        {
-            Type cardType;
-            if(TypeMapping.TryGetValue(type, out cardType))
-            {
-                card.AddComponent(cardType);
-            }        
         }
 
         /// <summary>
@@ -93,7 +85,25 @@ namespace CartyLib.Internals
             card.AddComponent<CanBeInHand>();
             card.AddComponent<HasOutline>();
 
-            AddCardImplementation(card, uniqueCardTypeId);
+            Type cardType;
+            if (TypeMapping.TryGetValue(uniqueCardTypeId, out cardType))
+            {
+                var iCard = card.AddComponent(cardType) as ICardType;
+
+                // Attempt to apply front texture
+                var frontTextureName = iCard.GetInfo().CardFrontTexture;
+
+                var frontTexture = Resources.Load(VisualManager.Instance.CardTexturesPath + frontTextureName) as Texture;
+                if(frontTexture == null)
+                {
+                    frontTexture = Resources.Load(frontTextureName) as Texture;
+                }
+
+                if(frontTexture != null)
+                {
+                    VisualManager.Instance.PhysicalCard.SetCardFront(physicalCard, frontTexture);
+                }
+            }
 
             return card;
         }

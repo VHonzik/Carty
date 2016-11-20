@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.4.0b10</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -107,11 +109,15 @@
     <Compile Include="Assets\UnitTests\CoroutineTree\CTOneChildCoroutine.cs" />
     <Compile Include="Assets\UnitTests\CoroutineTree\CTOneCoroutine.cs" />
     <Compile Include="Assets\UnitTests\CoroutineTree\CTThreeRootCoroutines.cs" />
+    <Compile Include="Assets\UnitTests\Deck\DeckFillsCards.cs" />
+    <Compile Include="Assets\UnitTests\Deck\DeckIsCreated.cs" />
     <Compile Include="Assets\UnitTests\GameManager\GameManagerStartsGame.cs" />
     <Compile Include="Assets\UnitTests\Hand\HandAddingMovesCard.cs" />
+    <Compile Include="Assets\UnitTests\Hand\HandIsCreated.cs" />
     <Compile Include="Assets\UnitTests\Hand\HandRemovingMovesCards.cs" />
     <Compile Include="Assets\UnitTests\HasOutline\HasOutlineReachesColor.cs" />
     <Compile Include="Assets\UnitTests\HasOutline\HasOutlineRequestRevoke.cs" />
+    <Compile Include="Assets\UnitTests\TestCards\OtherSimpleCard.cs" />
     <Compile Include="Assets\UnitTests\TestCards\SimpleCard.cs" />
     <Compile Include="Assets\UnitTests\TestingCoroutines.cs" />
     <Compile Include="Assets\UnityTestTools\Assertions\AssertionComponent.cs" />

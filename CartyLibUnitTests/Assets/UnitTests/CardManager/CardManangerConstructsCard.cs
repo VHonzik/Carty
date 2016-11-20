@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
 using CartyLib;
-using Testing;
 using CartyLib.Internals.CardsComponents;
 
 [IntegrationTest.DynamicTest("CartyLibTests")]

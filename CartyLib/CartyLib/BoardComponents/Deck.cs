@@ -11,6 +11,11 @@ namespace CartyLib.Internals.BoardComponents
     public class Deck : MonoBehaviour
     {
         /// <summary>
+        /// List of cards in the deck.
+        /// </summary>
+        public List<GameObject> Cards { get; private set; }
+
+        /// <summary>
         /// Whether it is a player deck or an enemy deck.
         /// </summary>
         public bool PlayerOwned { get; set; }
@@ -27,6 +32,27 @@ namespace CartyLib.Internals.BoardComponents
             var result = go.AddComponent<Deck>();
             result.PlayerOwned = player;
             return result;
+        }
+
+        /// <summary>
+        /// Fills deck with cards of specified card types.
+        /// </summary>
+        /// <param name="cardsTypes">Cards' types. The order of cards in the array is the order of draw from deck. </param>
+        public void FillWithCards(string[] cardsTypes)
+        {
+            if(Cards == null) Cards = new List<GameObject>(cardsTypes.Length);
+            for(int i = 0; i < cardsTypes.Length; i++)
+            {
+                var card = GameManager.Instance.CardManager.CreateCard(cardsTypes[i], PlayerOwned);
+                int visualIndex = cardsTypes.Length - 1 - i;
+                card.transform.position = PlayerOwned ?
+                    VisualManager.Instance.DeckPositioning.PositionPlayer(visualIndex, cardsTypes.Length):
+                    VisualManager.Instance.DeckPositioning.PositionEnemy(visualIndex, cardsTypes.Length);
+                card.transform.rotation = PlayerOwned ?
+                    VisualManager.Instance.DeckPositioning.RotationPlayer(visualIndex, cardsTypes.Length) :
+                    VisualManager.Instance.DeckPositioning.RotationEnemy(visualIndex, cardsTypes.Length);
+                Cards.Add(card);
+            }
         }
     }
 }
