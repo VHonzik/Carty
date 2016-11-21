@@ -109,5 +109,34 @@ namespace CartyLib.Internals.BoardComponents
                 Cards[i].OnIndexChanged(i, Cards.Count);
             }
         }
+
+        /// <summary>
+        /// Fills hand with cards of specified card types.
+        /// Immediately positions them without call to CanBeInHand and CanBeMoved.
+        /// If there are already cards present in hand they will be moved immediately as well.
+        /// </summary>
+        /// <param name="cardsTypes">Cards' types. The order of cards in the array is the order in hand, left to right. </param>
+        public void FillWithCards(string[] cardsTypes)
+        {
+            int alreadyPresentCount = Cards.Count;
+            // Just in case there are some cards already reposition them
+            for (int i=0; i < alreadyPresentCount; i++)
+            {
+                Cards[i].gameObject.transform.position = Cards[i].WantedPosition(i, alreadyPresentCount + cardsTypes.Length);
+                Cards[i].gameObject.transform.rotation = Cards[i].WantedRotation(i, alreadyPresentCount + cardsTypes.Length);
+            }
+
+            for (int i = 0; i < cardsTypes.Length; i++)
+            {
+                var card = GameManager.Instance.CardManager.CreateCard(cardsTypes[i], PlayerOwned);
+                var cardCanBeInHand = card.GetComponent<CanBeInHand>();
+                if (cardCanBeInHand)
+                {
+                    card.transform.position = cardCanBeInHand.WantedPosition(alreadyPresentCount + i, alreadyPresentCount + cardsTypes.Length);
+                    card.transform.rotation = cardCanBeInHand.WantedRotation(alreadyPresentCount + i, alreadyPresentCount + cardsTypes.Length);
+                    Cards.Add(cardCanBeInHand);
+                }                
+            }
+        }
     }
 }

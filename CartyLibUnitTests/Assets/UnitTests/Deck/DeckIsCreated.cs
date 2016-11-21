@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using CartyLib.Internals.BoardComponents;
 
-[IntegrationTest.DynamicTest("CartyLibTests")]
+[IntegrationTest.DynamicTest("CartyLibTestsBoardComponents")]
 class DeckIsCreated : MonoBehaviour
 {
     void Awake()

@@ -2,7 +2,7 @@
 using Testing;
 using CartyLib.Internals.CardsComponents;
 
-[IntegrationTest.DynamicTest("CartyLibTests")]
+[IntegrationTest.DynamicTest("CartyLibTestsCardComponents")]
 public class CanBeDetachedStartsAttached : MonoBehaviour
 {
    void Awake()

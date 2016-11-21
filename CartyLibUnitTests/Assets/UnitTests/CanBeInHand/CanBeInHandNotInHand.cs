@@ -4,7 +4,7 @@ using CartyLib;
 using Testing;
 using CartyLib.Internals.CardsComponents;
 
-[IntegrationTest.DynamicTest("CartyLibTests")]
+[IntegrationTest.DynamicTest("CartyLibTestsCardComponents")]
 class CanBeInHandNotInHand : MonoBehaviour
 {
     private float UpdateTime { get; set; }

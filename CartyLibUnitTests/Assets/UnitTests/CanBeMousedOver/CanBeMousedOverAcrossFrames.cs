@@ -3,7 +3,7 @@ using Testing;
 using CartyLib.Internals.CardsComponents;
 using CartyLib.Internals;
 
-[IntegrationTest.DynamicTest("CartyLibTests")]
+[IntegrationTest.DynamicTest("CartyLibTestsCardComponents")]
 public class CanBeMousedOverAcrossFrames : MonoBehaviour
 {
     private int UpdateCount { get; set; }

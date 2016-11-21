@@ -36,6 +36,7 @@ namespace CartyLib.Internals.BoardComponents
 
         /// <summary>
         /// Fills deck with cards of specified card types.
+        /// Immediately positions them without call to CanBeMoved.
         /// </summary>
         /// <param name="cardsTypes">Cards' types. The order of cards in the array is the order of draw from deck. </param>
         public void FillWithCards(string[] cardsTypes)

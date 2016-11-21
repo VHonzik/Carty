@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using CartyLib.Internals;
 
-[IntegrationTest.DynamicTest("CartyLibTests")]
+[IntegrationTest.DynamicTest("CartyLibTestsCardComponents")]
 public class CTNewIsEmpty : MonoBehaviour
 {
     private CoroutineTree tree = new CoroutineTree();

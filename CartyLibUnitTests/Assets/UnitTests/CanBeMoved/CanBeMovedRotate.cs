@@ -2,7 +2,7 @@
 using Testing;
 using CartyLib.Internals.CardsComponents;
 
-[IntegrationTest.DynamicTest("CartyLibTests")]
+[IntegrationTest.DynamicTest("CartyLibTestsCardComponents")]
 class CanBeMovedRotate : MonoBehaviour
 {
     private float UpdateTime { get; set; }

@@ -3,7 +3,7 @@ using Testing;
 using CartyVisuals;
 using CartyLib.Internals.CardsComponents;
 
-[IntegrationTest.DynamicTest("CartyLibTests")]
+[IntegrationTest.DynamicTest("CartyLibTestsCardComponents")]
 class CanBeMovedInstantFlip : MonoBehaviour
 {
     private int UpdateCount { get; set; }

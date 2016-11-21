@@ -43,6 +43,42 @@ namespace CartyLib.Internals.CardsComponents
         }
 
         /// <summary>
+        /// Wanted position based on index and number of present cards.
+        /// </summary>
+        /// <param name="index">Index of the card in the hand.</param>
+        /// <param name="cards">Number of cards in the hand.</param>
+        /// <returns>Wanted position in world.</returns>
+        public Vector3 WantedPosition(int index, int cards)
+        {
+            if (GetComponent<CanBeOwned>() && GetComponent<CanBeOwned>().PlayerOwned)
+            {
+               return VisualManager.Instance.HandPositioning.PositionPlayer(index, cards);
+            }
+            else
+            {
+                return VisualManager.Instance.HandPositioning.PositionEnemy(index, cards);
+            }
+        }
+
+        /// <summary>
+        /// Wanted rotation based on index and number of present cards.
+        /// </summary>
+        /// <param name="index">Index of the card in the hand.</param>
+        /// <param name="cards">Number of cards in the hand.</param>
+        /// <returns>Wanted rotation.</returns>
+        public Quaternion WantedRotation(int index, int cards)
+        {
+            if (GetComponent<CanBeOwned>() && GetComponent<CanBeOwned>().PlayerOwned)
+            {
+                return VisualManager.Instance.HandPositioning.RotationPlayer(index, cards);
+            }
+            else
+            {
+                return VisualManager.Instance.HandPositioning.RotationEnemy(index, cards);
+            }
+        }
+
+        /// <summary>
         /// Inform the component that the card position in hand or number of cards in hand has changed.
         /// </summary>
         /// <param name="index">Index, possibly a new one, of the card in the hand.</param>
@@ -51,19 +87,8 @@ namespace CartyLib.Internals.CardsComponents
         {
             if(IsInHand)
             {
-                Vector3 position;
-                Quaternion rotation;
-
-                if (GetComponent<CanBeOwned>() && GetComponent<CanBeOwned>().PlayerOwned)
-                {
-                    position = VisualManager.Instance.HandPositioning.PositionPlayer(index, cards);
-                    rotation = VisualManager.Instance.HandPositioning.RotationPlayer(index, cards);
-                }
-                else
-                {
-                    position = VisualManager.Instance.HandPositioning.PositionEnemy(index, cards);
-                    rotation = VisualManager.Instance.HandPositioning.RotationEnemy(index, cards);
-                }
+                Vector3 position = WantedPosition(index, cards);
+                Quaternion rotation = WantedRotation(index, cards);
 
                 var moveComponent = GetComponent<CanBeMoved>();
                 if (moveComponent)

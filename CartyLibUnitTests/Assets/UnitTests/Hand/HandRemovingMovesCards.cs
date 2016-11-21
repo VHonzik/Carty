@@ -5,7 +5,7 @@ using CartyVisuals;
 using CartyLib.Internals.BoardComponents;
 using CartyLib;
 
-[IntegrationTest.DynamicTest("CartyLibTests")]
+[IntegrationTest.DynamicTest("CartyLibTestsBoardComponents")]
 class HandRemovingMovesCards : MonoBehaviour
 {
     private float UpdateTime { get; set; }

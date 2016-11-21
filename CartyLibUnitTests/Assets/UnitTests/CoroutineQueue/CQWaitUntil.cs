@@ -2,7 +2,7 @@
 using System.Collections;
 using CartyLib.Internals;
 
-[IntegrationTest.DynamicTest("CartyLibTests")]
+[IntegrationTest.DynamicTest("CartyLibTestsCardComponents")]
 public class CQWaitUntil : MonoBehaviour {
 
     private CoroutineQueue queue;

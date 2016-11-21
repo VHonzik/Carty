@@ -2,7 +2,7 @@
 using Testing;
 using CartyLib.Internals.CardsComponents;
 
-[IntegrationTest.DynamicTest("CartyLibTests")]
+[IntegrationTest.DynamicTest("CartyLibTestsCardComponents")]
 class CanBeMovedAlreadyInPlace : MonoBehaviour
 {
     private int UpdateCount { get; set; }

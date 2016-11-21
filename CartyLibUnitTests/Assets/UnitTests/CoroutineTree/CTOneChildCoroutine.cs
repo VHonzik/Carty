@@ -3,7 +3,7 @@ using System.Collections;
 using Testing;
 using CartyLib.Internals;
 
-[IntegrationTest.DynamicTest("CartyLibTests")]
+[IntegrationTest.DynamicTest("CartyLibTestsCardComponents")]
 public class CTOneChildCoroutine : MonoBehaviour
 {
     private CoroutineTree tree = new CoroutineTree();

@@ -3,7 +3,7 @@ using Testing;
 using CartyVisuals;
 using CartyLib.Internals.CardsComponents;
 
-[IntegrationTest.DynamicTest("CartyLibTests")]
+[IntegrationTest.DynamicTest("CartyLibTestsCardComponents")]
 class CanBeMovedPauseRotation : MonoBehaviour
 {
     private float UpdateTime { get; set; }

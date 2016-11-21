@@ -79,7 +79,7 @@ namespace CartyLib.Internals
             physicalCard.transform.parent = detachHandle.transform;
 
             card.AddComponent<CanBeDetached>();
-            card.AddComponent<CanBeOwned>();
+            card.AddComponent<CanBeOwned>().PlayerOwned = player;
             card.AddComponent<CanBeMoved>();
             card.AddComponent<CanBeMousedOver>();
             card.AddComponent<CanBeInHand>();

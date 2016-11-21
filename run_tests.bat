@@ -7,7 +7,7 @@ EXIT /B 1
 
 set TESTRESULTS=%cd%\TestResults
 
-start /WAIT %UNITY%\Unity.exe -batchmode -projectPath %cd%\CartyLibUnitTests -executeMethod UnityTest.Batch.RunIntegrationTests -testscenes=CartyLibTests -targetPlatform=StandaloneWindows -resultsFileDirectory=%TESTRESULTS%
+start /WAIT %UNITY%\Unity.exe -batchmode -projectPath %cd%\CartyLibUnitTests -executeMethod UnityTest.Batch.RunIntegrationTests -testscenes=CartyLibTestsCardComponents,CartyLibTestsBoardComponents -targetPlatform=StandaloneWindows -resultsFileDirectory=%TESTRESULTS%
 
 SET ERRNO=%ERRORLEVEL%
 

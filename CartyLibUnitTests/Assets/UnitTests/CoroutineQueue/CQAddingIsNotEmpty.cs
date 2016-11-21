@@ -2,7 +2,7 @@
 using Testing;
 using CartyLib.Internals;
 
-[IntegrationTest.DynamicTest("CartyLibTests")]
+[IntegrationTest.DynamicTest("CartyLibTestsCardComponents")]
 public class CQAddingIsNotEmpty : MonoBehaviour {
 
 	// Use this for initialization

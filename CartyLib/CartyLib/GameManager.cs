@@ -87,6 +87,8 @@ namespace CartyLib
             CreateBoardObjects();
             PlayerDeck.FillWithCards(matchInfo.PlayerDeckCards);
             EnemyDeck.FillWithCards(matchInfo.EnemyDeckCards);
+            PlayerHand.FillWithCards(matchInfo.PlayerStartingHandCards);
+            EnemyHand.FillWithCards(matchInfo.EnemyStartingHandCards);
         }
     }
 }

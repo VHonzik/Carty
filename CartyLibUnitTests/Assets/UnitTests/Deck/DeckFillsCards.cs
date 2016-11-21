@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
-using Testing;
-using CartyLib.Internals.CardsComponents;
-using CartyVisuals;
 using CartyLib.Internals.BoardComponents;
 
-[IntegrationTest.DynamicTest("CartyLibTests")]
+[IntegrationTest.DynamicTest("CartyLibTestsBoardComponents")]
 public class DeckFillsCards : MonoBehaviour
 {
     private float UpdateTime { get; set; }

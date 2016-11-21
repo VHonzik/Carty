@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using CartyLib.Internals;
 
-[IntegrationTest.DynamicTest("CartyLibTests")]
+[IntegrationTest.DynamicTest("CartyLibTestsCardComponents")]
 public class CQAddWait : MonoBehaviour {
 
     private CoroutineQueue queue = new CoroutineQueue();
