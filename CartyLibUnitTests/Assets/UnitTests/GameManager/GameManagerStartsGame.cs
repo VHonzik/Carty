@@ -1,8 +1,4 @@
 ﻿using UnityEngine;
-using Testing;
-using CartyLib.Internals.CardsComponents;
-using CartyVisuals;
-using CartyLib.Internals.BoardComponents;
 using CartyLib;
 
 [IntegrationTest.DynamicTest("CartyLibTestsBoardComponents")]

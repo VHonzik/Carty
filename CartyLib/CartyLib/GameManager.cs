@@ -38,9 +38,32 @@ namespace CartyLib
         /// </summary>
         public GameSettings Settings { get; private set; }
 
+        /// <summary>
+        /// Match info passed in StartMatch call for later use.
+        /// </summary>
+        public MatchInfo MatchInfo { get; private set; }
+
+        private GameQueueManager _queueManager;
+        /// <summary>
+        /// Game queue manager instance.
+        /// See GameQueueManager.
+        /// </summary>
+        public GameQueueManager GameQueue {
+            get
+            {
+                if(_queueManager == null)
+                {
+                    _queueManager = new GameQueueManager();
+                }
+
+                return _queueManager;
+            }
+        }
+
         private CardManager _cardManager;
         /// <summary>
         /// Card manager instance.
+        /// See CardManager.
         /// </summary>
         public CardManager CardManager
         {
@@ -68,6 +91,7 @@ namespace CartyLib
 
             CardManager.Initialize();
             Settings = new GameSettings();
+            GameQueue.Start();
         }
 
         private void CreateBoardObjects()
@@ -89,6 +113,35 @@ namespace CartyLib
             EnemyDeck.FillWithCards(matchInfo.EnemyDeckCards);
             PlayerHand.FillWithCards(matchInfo.PlayerStartingHandCards);
             EnemyHand.FillWithCards(matchInfo.EnemyStartingHandCards);
+
+            if(matchInfo.PlayerGoesFirst)
+            {
+                StartPlayerTurn();
+            }
+            else
+            {
+                StartEnemyTurn();
+            }
+
+            MatchInfo = matchInfo;
+        }
+
+        /// <summary>
+        /// Enqueues a start of a player turn.
+        /// A card(s) is drawn for player, turn start event is called and player is given control over his hand and board.
+        /// </summary>
+        public void StartPlayerTurn()
+        {
+            GameQueue.PlayerDrawCard();
+        }
+
+        /// <summary>
+        ///  Enqueues a start of a enemy turn.
+        ///  A card(s) is drawn for player, turn start event is called and AI takes over.
+        /// </summary>
+        public void StartEnemyTurn()
+        {
+
         }
     }
 }

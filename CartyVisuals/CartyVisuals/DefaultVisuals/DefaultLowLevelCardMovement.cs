@@ -4,11 +4,11 @@ using UnityEngine;
 namespace CartyVisuals.Defaults
 {
     /// <summary>
-    /// Default implementation of ICardMovement.
+    /// Default implementation of ILowLevelCardMovement.
     /// Generally lerps between values with constant speed.
-    /// However Move over larger distances lerps with speed being triangular function over the distance.
+    /// However move over larger distances lerps with speed being triangular function over the distance.
     /// </summary>
-    class DefaultCardMovement : ICardMovement
+    class DefaultLowLevelCardMovement : ILowLevelCardMovement
     {
         private static float MaxSpeed = 7.0f;
         private static float MinSpeed = 3.0f;

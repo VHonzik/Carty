@@ -7,15 +7,10 @@ namespace CartyLib.Internals.CardsComponents
     /// <summary>
     /// Component to allow a card or minion move in the game world.
     /// All the calls are queued in movement or rotation queue which are executed parallelly to each other.
-    /// Note that the actual movement is done by ICardMovement interface living in VisualManager singleton.
+    /// Note that the actual movement is done by ILowLevelCardMovement interface living in VisualManager singleton.
     /// </summary>
     public class CanBeMoved : MonoBehaviour
     {
-
-        /// <summary>
-        /// Implementation of movement and rotation coroutines taken from VisualManager.
-        /// </summary>
-        private ICardMovement _cardMovementImplementation;
 
         /// <summary>
         /// Coroutine queue for movement.
@@ -31,7 +26,6 @@ namespace CartyLib.Internals.CardsComponents
         {
             _movementQueue = new CoroutineQueue();
             _rotationQueue = new CoroutineQueue();
-            _cardMovementImplementation = VisualManager.Instance.CardMovement;
             _movementQueue.Start();
             _rotationQueue.Start();
         }
@@ -43,7 +37,7 @@ namespace CartyLib.Internals.CardsComponents
         /// <returns>Returns this for call chaining.</returns>
         public CanBeMoved Move(Vector3 position)
         {
-            _movementQueue.Add(_cardMovementImplementation.Move(gameObject, position));
+            _movementQueue.Add(VisualManager.Instance.LowLevelCardMovement.Move(gameObject, position));
             return this;
         }
 
@@ -54,7 +48,7 @@ namespace CartyLib.Internals.CardsComponents
         /// <returns>Returns this for call chaining.</returns>
         public CanBeMoved MoveInstantly(Vector3 position)
         {
-            _movementQueue.Add(_cardMovementImplementation.MoveInstantly(gameObject, position));
+            _movementQueue.Add(VisualManager.Instance.LowLevelCardMovement.MoveInstantly(gameObject, position));
             return this;
         }
 
@@ -65,7 +59,7 @@ namespace CartyLib.Internals.CardsComponents
         /// <returns>Returns this for call chaining.</returns>
         public CanBeMoved Rotate(Quaternion rotation)
         {
-            _rotationQueue.Add(_cardMovementImplementation.Rotate(gameObject, rotation));
+            _rotationQueue.Add(VisualManager.Instance.LowLevelCardMovement.Rotate(gameObject, rotation));
             return this;
         }
 
@@ -76,7 +70,7 @@ namespace CartyLib.Internals.CardsComponents
         /// <returns>Returns this for call chaining.</returns>
         public CanBeMoved RotateInstantly(Quaternion rotation)
         {
-            _rotationQueue.Add(_cardMovementImplementation.RotateInstantly(gameObject, rotation));
+            _rotationQueue.Add(VisualManager.Instance.LowLevelCardMovement.RotateInstantly(gameObject, rotation));
             return this;
         }
 
@@ -86,7 +80,7 @@ namespace CartyLib.Internals.CardsComponents
         /// <returns>Returns this for call chaining.</returns>
         public CanBeMoved Flip()
         {
-            _rotationQueue.Add(_cardMovementImplementation.Flip(gameObject));
+            _rotationQueue.Add(VisualManager.Instance.LowLevelCardMovement.Flip(gameObject));
             return this;
         }
 
@@ -96,7 +90,7 @@ namespace CartyLib.Internals.CardsComponents
         /// <returns>Returns this for call chaining.</returns>
         public CanBeMoved FlipInstantly()
         {
-            _rotationQueue.Add(_cardMovementImplementation.FlipInstantly(gameObject));
+            _rotationQueue.Add(VisualManager.Instance.LowLevelCardMovement.FlipInstantly(gameObject));
             return this;
         }
 
@@ -132,6 +126,20 @@ namespace CartyLib.Internals.CardsComponents
         {
             _movementQueue.Add(coroutine);
             return this;
+        }
+
+
+        /// <summary>
+        /// Coroutine which waits until movement queue reaches the point when this was called.
+        /// That is if you queue in a bunch of orders and call this,
+        /// you can yield on this and it will finish once all the previous orders are done.
+        /// </summary>
+        /// <returns>Coroutine.</returns>
+        public IEnumerator WaitUntilMoveReachesThis()
+        {
+            // Magic using MovementArbitraryCoroutine and WaitForCallback. See WaitForCallback.
+            WaitForCallback<CanBeMoved> waitHelper = new WaitForCallback<CanBeMoved>(MovementArbitraryCoroutine);
+            yield return GameManager.Instance.StartCoroutine(waitHelper.Do());
         }
     }
 }

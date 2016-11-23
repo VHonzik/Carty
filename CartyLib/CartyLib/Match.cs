@@ -73,5 +73,11 @@ namespace CartyLib
         /// The cards are added to the hand after EnemyStartingHandCards in order they were in deck from left to right.
         /// </summary>
         public int EnemyAmountOfCardDrawBeforeGame;
+
+
+        /// <summary>
+        /// Whether player goes first or enemy does.
+        /// </summary>
+        public bool PlayerGoesFirst;
     }
 }

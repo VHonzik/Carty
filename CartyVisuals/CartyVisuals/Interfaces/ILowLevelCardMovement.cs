@@ -4,9 +4,10 @@ using UnityEngine;
 namespace CartyVisuals
 {
     /// <summary>
-    /// Interface for customization of card movement.
+    /// Interface for customization of low-level card movement.
+    /// Low level in this case means for example how a card moves from a one place to another.
     /// </summary>
-    public interface ICardMovement
+    public interface ILowLevelCardMovement
     {
         /// <summary>
         /// Move the card from its current position to a new position.

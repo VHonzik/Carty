@@ -35,6 +35,24 @@ namespace CartyLib.Internals.BoardComponents
         }
 
         /// <summary>
+        /// Gets a first card on the top of the deck and removes it from the deck.
+        /// </summary>
+        /// <returns>The very top card.</returns>
+        public GameObject PopCard()
+        {
+            if(Cards.Count > 0)
+            {
+                GameObject result = Cards[0];
+                Cards.RemoveAt(0);
+                return result;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Fills deck with cards of specified card types.
         /// Immediately positions them without call to CanBeMoved.
         /// </summary>

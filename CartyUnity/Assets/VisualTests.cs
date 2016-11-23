@@ -19,6 +19,7 @@ namespace CartyVisuals.Internals
         public bool EnemyHandFillingTest = true;
         public bool PlayerDeck30Test = true;
         public bool EnemyDeck30Test = true;
+        public bool PlayerDrawsCardTest = true;
 
         // Use this for initialization
         void Start()
@@ -36,6 +37,7 @@ namespace CartyVisuals.Internals
             if (EnemyHandFillingTest) yield return StartCoroutine(EnemyHandFilling());
             if (PlayerDeck30Test) yield return StartCoroutine(PlayerDeck30());
             if (EnemyDeck30Test) yield return StartCoroutine(EnemyDeck30());
+            if (PlayerDrawsCardTest) yield return StartCoroutine(PlayerDrawsCard());
         }
 
         private IEnumerator CreateCard()
@@ -199,6 +201,21 @@ namespace CartyVisuals.Internals
             {
                 Destroy(cards[i]);
             }
+        }
+
+        private IEnumerator PlayerDrawsCard()
+        {
+            Text.text = "Player draws a card from deck.";
+
+            GameObject card = GameManager.Instance.CardManager.CreateCard("", false);
+            card.transform.position = VisualManager.Instance.DeckPositioning.PositionPlayer(0, 1);
+            card.transform.rotation = VisualManager.Instance.DeckPositioning.RotationPlayer(0, 1);
+
+            VisualManager.Instance.HighLevelCardMovement.MoveCardFromDeckToDrawDisplayArea(card.GetComponent<CanBeMoved>());
+
+            yield return new WaitForSeconds(5.0f);
+
+            Destroy(card);
         }
 
     }

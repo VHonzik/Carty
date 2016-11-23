@@ -110,6 +110,7 @@
     <Compile Include="Assets\UnitTests\Deck\DeckFillsCards.cs" />
     <Compile Include="Assets\UnitTests\Deck\DeckIsCreated.cs" />
     <Compile Include="Assets\UnitTests\GameManager\GameManagerStartsGame.cs" />
+    <Compile Include="Assets\UnitTests\GameQueue\GameQueueDrawPlayerCardRemovesFromDeck.cs" />
     <Compile Include="Assets\UnitTests\Hand\HandAddingMovesCard.cs" />
     <Compile Include="Assets\UnitTests\Hand\HandFillsCards.cs" />
     <Compile Include="Assets\UnitTests\Hand\HandIsCreated.cs" />

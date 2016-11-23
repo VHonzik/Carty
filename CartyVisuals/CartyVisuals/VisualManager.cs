@@ -25,11 +25,12 @@ namespace CartyVisuals
 
         private VisualManager()
         {
-            CardMovement = new DefaultCardMovement();
+            LowLevelCardMovement = new DefaultLowLevelCardMovement();
             CardOutline = new DefaultCardOutline();
             HandPositioning = new DefaultCardPositionInHand();
             PhysicalCard = new DefaultPhysicalCard();
             DeckPositioning = new DefaultCardPositionInDeck();
+            HighLevelCardMovement = new DefaultHighLevelCardMovement();
 
             FlippedOn = Quaternion.Euler(0, 0, 0);
             FlippedOff = Quaternion.Euler(0, 0, -180);
@@ -59,10 +60,17 @@ namespace CartyVisuals
         }
 
         /// <summary>
-        /// Card movement customization.
-        /// Assign your own implementation in order to customize how cards move and rotate.
+        /// Low level card movement customization. See ILowLevelCardMovement.
+        /// Assign your own implementation in order to customize how cards move and rotate on the low level.
         /// </summary>
-        public ICardMovement CardMovement { get; set; }
+        public ILowLevelCardMovement LowLevelCardMovement { get; set; }
+
+
+        /// <summary>
+        /// High level card movement customization. See IHighLevelCardMovement.
+        /// Assign your own implementation in order to customize how cards move and rotate on the low level.
+        /// </summary>
+        public IHighLevelCardMovement HighLevelCardMovement { get; set; }
 
         /// <summary>
         /// Card outline customization.
@@ -117,6 +125,11 @@ namespace CartyVisuals
         /// Position of the bottom-center of the enemy's deck.
         /// </summary>
         public Vector3 EnemyDeckPosition { get; set; }
+
+        /// <summary>
+        /// Position of the card when it's being shown to player after he has drawn it.
+        /// </summary>
+        public Vector3 PlayerShowDrawnCardPosition { get; set; }
 
         /// <summary>
         /// Height of the physical card.
