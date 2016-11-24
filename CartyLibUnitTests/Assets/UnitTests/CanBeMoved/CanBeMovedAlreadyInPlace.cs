@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using Testing;
-using CartyLib.Internals.CardsComponents;
+using Carty.CartyLib.Internals.CardsComponents;
 
 [IntegrationTest.DynamicTest("CartyLibTestsCardComponents")]
 class CanBeMovedAlreadyInPlace : MonoBehaviour

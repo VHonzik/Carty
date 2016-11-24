@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using CartyLib;
+using Carty.CartyLib;
 
 [IntegrationTest.DynamicTest("CartyLibTestsBoardComponents")]
 class GameManagerStartsGame : MonoBehaviour

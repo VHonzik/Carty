@@ -88,11 +88,8 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>Library\UnityAssemblies\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
-    <Reference Include="CartyLib">
-      <HintPath>Assets\CartyLib\CartyLib.dll</HintPath>
-    </Reference>
-    <Reference Include="CartyVisuals">
-      <HintPath>Assets\CartyVisuals\CartyVisuals.dll</HintPath>
+    <Reference Include="Carty">
+      <HintPath>Assets\Carty\Carty.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil">
       <HintPath>Assets\UnityTestTools\IntegrationTestsFramework\Libs\Mono.Cecil.dll</HintPath>

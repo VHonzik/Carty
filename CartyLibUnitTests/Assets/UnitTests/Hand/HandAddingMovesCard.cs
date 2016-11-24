@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using Testing;
-using CartyLib.Internals.CardsComponents;
-using CartyVisuals;
-using CartyLib.Internals.BoardComponents;
+using Carty.CartyLib.Internals.CardsComponents;
+using Carty.CartyVisuals;
+using Carty.CartyLib.Internals.BoardComponents;
 
 [IntegrationTest.DynamicTest("CartyLibTestsBoardComponents")]
 class HandAddingMovesCard : MonoBehaviour

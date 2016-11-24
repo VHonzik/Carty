@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using CartyLib;
+using Carty.CartyLib;
 using System;
 
 public class OtherSimpleCard : MonoBehaviour, ICardType
