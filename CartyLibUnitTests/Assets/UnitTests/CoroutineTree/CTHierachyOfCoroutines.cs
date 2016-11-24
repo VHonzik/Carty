@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Testing;
-using CartyLib.Internals;
+using Carty.CartyLib.Internals;
 
 [IntegrationTest.DynamicTest("CartyLibTestsCardComponents")]
 public class CTHierachyOfCoroutines : MonoBehaviour

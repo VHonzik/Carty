@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Testing;
-using CartyVisuals;
-using CartyLib.Internals.CardsComponents;
+using Carty.CartyVisuals;
+using Carty.CartyLib.Internals.CardsComponents;
 
 [IntegrationTest.DynamicTest("CartyLibTestsCardComponents")]
 class CanBeMovedPauseRotation : MonoBehaviour

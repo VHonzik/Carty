@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using CartyLib.Internals;
+using Carty.CartyLib.Internals;
 
 [IntegrationTest.DynamicTest("CartyLibTestsCardComponents")]
 public class CQNewIsEmpty : MonoBehaviour {

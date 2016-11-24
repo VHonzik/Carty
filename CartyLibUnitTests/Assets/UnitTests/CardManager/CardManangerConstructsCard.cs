@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using CartyLib;
-using CartyLib.Internals.CardsComponents;
+using Carty.CartyLib;
+using Carty.CartyLib.Internals.CardsComponents;
 
 [IntegrationTest.DynamicTest("CartyLibTestsCardComponents")]
 class CardManangerConstructsCard : MonoBehaviour

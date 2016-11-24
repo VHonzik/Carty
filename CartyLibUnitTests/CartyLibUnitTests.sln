@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartyLibUnitTests.CSharp", "CartyLibUnitTests.CSharp.csproj", "{0AF37B02-86CA-11A0-A2C7-55C1828E20E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartyLibUnitTests.CSharp.Editor", "CartyLibUnitTests.CSharp.Editor.csproj", "{A1007772-0B49-3004-D0E8-049808BE8463}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartyLib", "..\CartyLib\CartyLib\CartyLib.csproj", "{3B1C3582-09B6-4936-B12B-72E8970594CA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartyVisuals", "..\CartyVisuals\CartyVisuals\CartyVisuals.csproj", "{3F9A4E0B-3A54-44A8-B190-375872BCB939}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Carty", "..\Carty\CartyLib\Carty.csproj", "{3B1C3582-09B6-4936-B12B-72E8970594CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +27,6 @@ Global
 		{3B1C3582-09B6-4936-B12B-72E8970594CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B1C3582-09B6-4936-B12B-72E8970594CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B1C3582-09B6-4936-B12B-72E8970594CA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3F9A4E0B-3A54-44A8-B190-375872BCB939}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3F9A4E0B-3A54-44A8-B190-375872BCB939}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3F9A4E0B-3A54-44A8-B190-375872BCB939}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3F9A4E0B-3A54-44A8-B190-375872BCB939}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

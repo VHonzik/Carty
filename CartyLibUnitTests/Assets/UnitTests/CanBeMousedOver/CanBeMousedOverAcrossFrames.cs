@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Testing;
-using CartyLib.Internals.CardsComponents;
-using CartyLib.Internals;
+using Carty.CartyLib.Internals.CardsComponents;
+using Carty.CartyLib.Internals;
 
 [IntegrationTest.DynamicTest("CartyLibTestsCardComponents")]
 public class CanBeMousedOverAcrossFrames : MonoBehaviour

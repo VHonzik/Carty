@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3B1C3582-09B6-4936-B12B-72E8970594CA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Carty</RootNamespace>
+    <AssemblyName>Carty</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEditor, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Unity54\Editor\Data\Managed\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Unity54\Editor\Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CartyLib\BoardComponents\Deck.cs" />
+    <Compile Include="CartyLib\BoardComponents\Hand.cs" />
+    <Compile Include="CartyLib\CardManager.cs" />
+    <Compile Include="CartyLib\Cards\ICardType.cs" />
+    <Compile Include="CartyLib\CardsComponents\CanBeInHand.cs" />
+    <Compile Include="CartyLib\CardsComponents\CanBeOwned.cs" />
+    <Compile Include="CartyLib\CardsComponents\CanBeMoved.cs" />
+    <Compile Include="CartyLib\CoroutineQueue.cs" />
+    <Compile Include="CartyLib\CoroutineTree.cs" />
+    <Compile Include="CartyLib\CardsComponents\CanBeDetached.cs" />
+    <Compile Include="CartyLib\GameManager.cs" />
+    <Compile Include="CartyLib\CardsComponents\CanBeMousedOver.cs" />
+    <Compile Include="CartyLib\GameQueueManager.cs" />
+    <Compile Include="CartyLib\GameSettings.cs" />
+    <Compile Include="CartyLib\Match.cs" />
+    <Compile Include="CartyVisuals\DefaultVisuals\DefaultCardOutline.cs" />
+    <Compile Include="CartyVisuals\DefaultVisuals\DefaultCardPositionInDeck.cs" />
+    <Compile Include="CartyVisuals\DefaultVisuals\DefaultCardPositionInHand.cs" />
+    <Compile Include="CartyVisuals\DefaultVisuals\DefaultHighLevelCardMovement.cs" />
+    <Compile Include="CartyVisuals\DefaultVisuals\DefaultLowLevelCardMovement.cs" />
+    <Compile Include="CartyVisuals\DefaultVisuals\DefaultPhysicalCard.cs" />
+    <Compile Include="CartyVisuals\Interfaces\IDeckCardPositioning.cs" />
+    <Compile Include="CartyVisuals\Interfaces\IHandCardPositioning.cs" />
+    <Compile Include="CartyVisuals\Interfaces\IHighLevelCardMovement.cs" />
+    <Compile Include="CartyVisuals\Interfaces\ILowLevelCardMovement.cs" />
+    <Compile Include="CartyVisuals\Interfaces\IOutline.cs" />
+    <Compile Include="CartyVisuals\Interfaces\IPhysicalCard.cs" />
+    <Compile Include="CartyVisuals\VisualManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CartyLib\UnityBridge.cs" />
+    <Compile Include="CartyLib\CardsComponents\HasOutline.cs" />
+    <Compile Include="CartyLib\WaitForCallback.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)..\CartyUnity\Assets\Carty\$(TargetName).dll"
+copy /Y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)..\CartyUnity\Assets\Carty\$(TargetName).pdb"
+copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)..\CartyLibUnitTests\Assets\Carty\$(TargetName).dll"
+copy /Y "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)..\CartyLibUnitTests\Assets\Carty\$(TargetName).pdb"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

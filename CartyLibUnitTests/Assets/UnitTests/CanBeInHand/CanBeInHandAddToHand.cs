@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
-using CartyLib;
+using Carty.CartyLib;
 using Testing;
-using CartyLib.Internals.CardsComponents;
-using CartyVisuals;
-using CartyLib.Internals.BoardComponents;
+using Carty.CartyLib.Internals.CardsComponents;
+using Carty.CartyVisuals;
+using Carty.CartyLib.Internals.BoardComponents;
 
 [IntegrationTest.DynamicTest("CartyLibTestsCardComponents")]
 class CanBeInHandAddToHand : MonoBehaviour

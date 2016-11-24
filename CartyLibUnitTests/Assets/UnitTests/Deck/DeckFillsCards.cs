@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using CartyLib.Internals.BoardComponents;
+using Carty.CartyLib.Internals.BoardComponents;
 
 [IntegrationTest.DynamicTest("CartyLibTestsBoardComponents")]
 public class DeckFillsCards : MonoBehaviour

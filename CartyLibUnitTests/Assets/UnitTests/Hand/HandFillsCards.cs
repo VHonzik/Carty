@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using CartyLib.Internals.BoardComponents;
-using CartyVisuals;
-using CartyLib.Internals.CardsComponents;
+using Carty.CartyLib.Internals.BoardComponents;
+using Carty.CartyVisuals;
+using Carty.CartyLib.Internals.CardsComponents;
 
 [IntegrationTest.DynamicTest("CartyLibTestsBoardComponents")]
 public class HandFillsCards : MonoBehaviour
