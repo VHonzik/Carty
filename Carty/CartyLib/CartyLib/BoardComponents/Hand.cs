@@ -40,6 +40,19 @@ namespace Carty.CartyLib.Internals.BoardComponents
         }
 
         /// <summary>
+        /// Immediately destroy all cards in the hand.
+        /// </summary>
+        public void CleanUp()
+        {
+            for(int i=0; i < Cards.Count; i++)
+            {
+                Destroy(Cards[i].gameObject);
+            }
+
+            Cards.Clear();
+        }
+
+        /// <summary>
         /// Inform the hand a new card is gonna be added to it and make space for it.
         /// </summary>
         public void PrepareAddingCard()

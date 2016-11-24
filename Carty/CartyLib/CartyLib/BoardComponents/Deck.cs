@@ -34,6 +34,19 @@ namespace Carty.CartyLib.Internals.BoardComponents
         }
 
         /// <summary>
+        /// Immediately destroy all cards in the deck.
+        /// </summary>
+        public void CleanUp()
+        {
+            for (int i = 0; i < Cards.Count; i++)
+            {
+                Destroy(Cards[i].gameObject);
+            }
+
+            Cards.Clear();
+        }
+
+        /// <summary>
         /// Gets a first card on the top of the deck and removes it from the deck.
         /// </summary>
         /// <returns>The very top card.</returns>

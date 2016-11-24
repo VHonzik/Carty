@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Carty.CartyLib.Internals.CardsComponents;
 
 namespace Carty.CartyVisuals.Defaults
@@ -7,8 +8,7 @@ namespace Carty.CartyVisuals.Defaults
     {
         public IEnumerator MoveCardFromDeckToDrawDisplayArea(CanBeMoved card)
         {
-            card.PauseRotation(0.7f)
-                .Flip()
+            card.PauseRotation(0.5f).Flip()
                 .Move(VisualManager.Instance.PlayerShowDrawnCardPosition)
                 .PauseMovement(1.0f)
                 .PauseRotation(1.5f);
@@ -16,5 +16,6 @@ namespace Carty.CartyVisuals.Defaults
             // Wait for the above to finish
             yield return card.WaitUntilMoveReachesThis();
         }
+
     }
 }

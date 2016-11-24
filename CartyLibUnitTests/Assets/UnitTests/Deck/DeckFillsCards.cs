@@ -19,6 +19,9 @@ public class DeckFillsCards : MonoBehaviour
         IntegrationTest.Assert(_deck.Cards[0].GetComponent<SimpleCard>() != null);
         IntegrationTest.Assert(_deck.Cards[1].GetComponent<OtherSimpleCard>() != null);
 
+        _deck.CleanUp();
+        Destroy(_deck.gameObject);
+
         IntegrationTest.Pass(gameObject);
     }
 }

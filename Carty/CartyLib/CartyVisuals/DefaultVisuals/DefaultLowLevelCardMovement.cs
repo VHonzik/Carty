@@ -15,6 +15,8 @@ namespace Carty.CartyVisuals.Defaults
 
         public IEnumerator Flip(GameObject card)
         {
+            if (card == null) yield break;
+
             float t = 0.0f;
 
             float difference = Quaternion.Angle(card.transform.rotation, VisualManager.Instance.FlippedOn);
@@ -41,6 +43,8 @@ namespace Carty.CartyVisuals.Defaults
 
         public IEnumerator FlipInstantly(GameObject card)
         {
+            if (card == null) yield break;
+
             card.transform.rotation = Quaternion.Angle(card.transform.rotation, VisualManager.Instance.FlippedOn) < 5.0f ?
                 VisualManager.Instance.FlippedOff : VisualManager.Instance.FlippedOn;
             yield break;
@@ -81,6 +85,8 @@ namespace Carty.CartyVisuals.Defaults
 
                 while (true)
                 {
+                    if (card == null) yield break;
+
                     if (position == card.transform.position) break;
 
                     float t = 1.0f - (Vector3.Distance(card.transform.position, middle) /
@@ -96,6 +102,8 @@ namespace Carty.CartyVisuals.Defaults
 
         public IEnumerator MoveInstantly(GameObject card, Vector3 position)
         {
+            if (card == null) yield break;
+
             card.transform.position = position;
             yield break;
         }
@@ -129,6 +137,8 @@ namespace Carty.CartyVisuals.Defaults
 
         public IEnumerator RotateInstantly(GameObject card, Quaternion rotation)
         {
+            if (card == null) yield break;
+
             card.transform.rotation = rotation;
             yield break;
         }

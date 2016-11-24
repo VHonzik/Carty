@@ -33,6 +33,16 @@ namespace Carty.CartyLib
         public Deck EnemyDeck { get; private set; }
 
         /// <summary>
+        /// How many turns player has played currently.
+        /// </summary>
+        public int PlayerTurnCount;
+
+        /// <summary>
+        /// How many turns enemy has played currently.
+        /// </summary>
+        public int EnemyTurnCount;
+
+        /// <summary>
         /// Game logic oriented settings and rules.
         /// To modify them simply change the values inside.
         /// </summary>
@@ -42,6 +52,7 @@ namespace Carty.CartyLib
         /// Match info passed in StartMatch call for later use.
         /// </summary>
         public MatchInfo MatchInfo { get; private set; }
+
 
         private GameQueueManager _queueManager;
         /// <summary>
@@ -96,10 +107,10 @@ namespace Carty.CartyLib
 
         private void CreateBoardObjects()
         {
-            PlayerHand = Hand.CreateHand(true);
-            EnemyHand = Hand.CreateHand(false);
-            PlayerDeck = Deck.CreateDeck(true);
-            EnemyDeck = Deck.CreateDeck(false);
+            if (PlayerHand == null) PlayerHand = Hand.CreateHand(true);
+            if (EnemyHand == null) EnemyHand = Hand.CreateHand(false);
+            if (PlayerDeck == null) PlayerDeck = Deck.CreateDeck(true);
+            if (EnemyDeck == null)  EnemyDeck = Deck.CreateDeck(false);
         }
 
         /// <summary>
@@ -114,7 +125,9 @@ namespace Carty.CartyLib
             PlayerHand.FillWithCards(matchInfo.PlayerStartingHandCards);
             EnemyHand.FillWithCards(matchInfo.EnemyStartingHandCards);
 
-            if(matchInfo.PlayerGoesFirst)
+            MatchInfo = matchInfo;
+
+            if (matchInfo.PlayerGoesFirst)
             {
                 StartPlayerTurn();
             }
@@ -122,8 +135,27 @@ namespace Carty.CartyLib
             {
                 StartEnemyTurn();
             }
+        }
 
-            MatchInfo = matchInfo;
+        /// <summary>
+        /// Immediately cleans-up the match, destroying all cards in hands, decks and boards. 
+        /// Prepares everything for new match.
+        /// </summary>
+        public void CleanUpMatch()
+        {
+            GameQueue.CleanUp();
+
+            PlayerHand.CleanUp();
+            EnemyHand.CleanUp();
+
+            PlayerDeck.CleanUp();
+            EnemyDeck.CleanUp();
+
+            CardManager.CleanUp();
+
+            MatchInfo = null;
+            PlayerTurnCount = 0;
+            EnemyTurnCount = 0;
         }
 
         /// <summary>
@@ -132,7 +164,9 @@ namespace Carty.CartyLib
         /// </summary>
         public void StartPlayerTurn()
         {
-            GameQueue.PlayerDrawCard();
+            PlayerTurnCount++;
+            int cardsToDraw = Settings.TurnStartCardDrawSetting(PlayerTurnCount, true, MatchInfo.PlayerGoesFirst);
+            GameQueue.PlayerDrawCards(cardsToDraw);
         }
 
         /// <summary>
@@ -141,7 +175,9 @@ namespace Carty.CartyLib
         /// </summary>
         public void StartEnemyTurn()
         {
-
+            EnemyTurnCount++;
         }
+
+
     }
 }

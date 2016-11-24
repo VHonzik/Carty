@@ -21,6 +21,25 @@ namespace Carty.CartyLib.Internals
 
         public CardManager() {
             TypeMapping = new Dictionary<string, Type>();
+            AllCards = new List<GameObject>();
+        }
+
+        /// <summary>
+        /// All cards created for this match.
+        /// </summary>
+        public List<GameObject> AllCards { get; private set; }
+
+        /// <summary>
+        /// Immediately destroys all remaining cards.
+        /// </summary>
+        public void CleanUp()
+        {
+            for(int i=0; i < AllCards.Count; i++)
+            {
+                GameObject.Destroy(AllCards[i]);
+            }
+
+            AllCards.Clear();
         }
 
         /// <summary>
@@ -103,6 +122,8 @@ namespace Carty.CartyLib.Internals
                     VisualManager.Instance.PhysicalCard.SetCardFront(physicalCard, frontTexture);
                 }
             }
+
+            AllCards.Add(card);
 
             return card;
         }

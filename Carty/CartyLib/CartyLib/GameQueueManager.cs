@@ -10,7 +10,7 @@ namespace Carty.CartyLib.Internals
     /// </summary>
     public class GameQueueManager
     {
-        private CoroutineTree Queue { get; set; }
+        public CoroutineTree Queue { get; private set; }
 
         public GameQueueManager()
         {
@@ -37,15 +37,28 @@ namespace Carty.CartyLib.Internals
         }
 
         /// <summary>
-        /// Enqueue drawing a card for the player.
+        /// Immediately removes all pending game actions.
         /// </summary>
-        public void PlayerDrawCard()
+        public void CleanUp()
         {
-            // Move the top card of the deck to a display area.
-            Queue.AddRoot(PlayerDrawCardDisplayCo());
-            // Trigger card drawn event.
-            // Determine if there is space in hand, if the answer is no destroy the card and leave.
-            // Inform hand and move it there.
+            Queue.CleanUp();
+        }
+
+
+        /// <summary>
+        /// Enqueue drawing a number of cards for the player.
+        /// </summary>
+        /// <param name="cardsAmount">Number of cards to draw.</param>
+        public void PlayerDrawCards(int cardsAmount)
+        {
+            for(int i=0; i < cardsAmount; i++)
+            {
+                // Move the top card of the deck to a display area.
+                Queue.AddRoot(PlayerDrawCardDisplayCo());
+                // Trigger card drawn event.
+                // Determine if there is space in hand, if the answer is no destroy the card and leave.
+                // Inform hand and move it there.
+            }
         }
     }
 }

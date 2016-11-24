@@ -38,8 +38,10 @@ namespace Carty.CartyVisuals
             PlayerHandPosition = new Vector3(0, 4, -3f);
             EnemyHandPosition = new Vector3(0, 4, 3f);
             
-            PlayerDeckPosition = new Vector3(6.11f, 0, -1.9f);
-            EnemyDeckPosition = new Vector3(6.11f, 0, 1.9f);
+            PlayerDeckPosition = new Vector3(7f, 0, -1.9f);
+            EnemyDeckPosition = new Vector3(7f, 0, 1.9f);
+
+            PlayerShowDrawnCardPosition = new Vector3(2.3f, 4.60f, -1.3f);
 
             CardHeight = 0.013f;
 

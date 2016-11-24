@@ -4,9 +4,13 @@ using Carty.CartyLib;
 [IntegrationTest.DynamicTest("CartyLibTestsBoardComponents")]
 class GameManagerStartsGame : MonoBehaviour
 {
+    private int UpdateCount = 0;
+    private float UpdateTime = 0;
+
     void Start()
     {
         MatchInfo match = new MatchInfo();
+        match.PlayerGoesFirst = true;
         match.PlayerDeckCards = new string[2] { "simplecard", "simplecard" };
         match.EnemyDeckCards = new string[1] { "simplecard" };
         match.PlayerStartingHandCards = new string[1] { "simplecard" };
@@ -26,6 +30,21 @@ class GameManagerStartsGame : MonoBehaviour
         IntegrationTest.Assert(GameManager.Instance.PlayerHand.Cards.Count == 1);
         IntegrationTest.Assert(GameManager.Instance.EnemyHand.Cards.Count == 2);
 
-        IntegrationTest.Pass(gameObject);
+    }
+
+    void Update()
+    {
+        if(UpdateCount == 1)
+        {
+            IntegrationTest.Assert(GameManager.Instance.PlayerDeck.Cards.Count == 1);
+            GameManager.Instance.CleanUpMatch();
+        }
+        else if (UpdateTime >= 1.5f)
+        {
+            IntegrationTest.Pass(gameObject);
+        }
+
+        UpdateTime += Time.deltaTime;
+        UpdateCount++;
     }
 }

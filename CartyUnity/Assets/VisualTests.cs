@@ -206,14 +206,22 @@ public class VisualTests : MonoBehaviour
         Text.text = "Player draws a card from deck.";
 
         GameObject card = GameManager.Instance.CardManager.CreateCard("", false);
-        card.transform.position = VisualManager.Instance.DeckPositioning.PositionPlayer(0, 1);
-        card.transform.rotation = VisualManager.Instance.DeckPositioning.RotationPlayer(0, 1);
+        card.transform.position = VisualManager.Instance.DeckPositioning.PositionPlayer(1, 2);
+        card.transform.rotation = VisualManager.Instance.DeckPositioning.RotationPlayer(1, 2);
 
-        VisualManager.Instance.HighLevelCardMovement.MoveCardFromDeckToDrawDisplayArea(card.GetComponent<CanBeMoved>());
+        GameObject card2 = GameManager.Instance.CardManager.CreateCard("", false);
+        card2.transform.position = VisualManager.Instance.DeckPositioning.PositionPlayer(0, 2);
+        card2.transform.rotation = VisualManager.Instance.DeckPositioning.RotationPlayer(0, 2);
+
+        var canBeMoved = card.GetComponent<CanBeMoved>();
+
+        StartCoroutine(VisualManager.Instance.HighLevelCardMovement.MoveCardFromDeckToDrawDisplayArea(canBeMoved));
+
 
         yield return new WaitForSeconds(5.0f);
 
         Destroy(card);
+        Destroy(card2);
     }
 
 }

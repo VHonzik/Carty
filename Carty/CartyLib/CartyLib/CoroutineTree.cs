@@ -154,6 +154,8 @@ namespace Carty.CartyLib.Internals
                 CurrentNode = node[i];
                 yield return UnityBridge.Instance.StartCoroutine(node[i].Value);
 
+                if (i >= node.ChildrenCount) yield break;
+
                 if(node[i].ChildrenCount > 0)
                 {
                     // Recursion on children.
@@ -184,6 +186,15 @@ namespace Carty.CartyLib.Internals
                     yield return null;
                 }
             }
+        }
+
+        /// <summary>
+        /// Removes all pending coroutines.
+        /// </summary>
+        public void CleanUp()
+        {
+            CurrentNode = Root;
+            Root.ClearChildren();
         }
     }
 }

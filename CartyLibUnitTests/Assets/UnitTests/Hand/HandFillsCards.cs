@@ -27,6 +27,10 @@ public class HandFillsCards : MonoBehaviour
         IntegrationTest.Assert(_hand.Cards[1].transform.position == VisualManager.Instance.HandPositioning.PositionPlayer(1, 2));
         IntegrationTest.Assert(_hand.Cards[1].transform.rotation == VisualManager.Instance.HandPositioning.RotationPlayer(1, 2));
 
+        _hand.CleanUp();
+        Destroy(_hand.gameObject);
+
+
         IntegrationTest.Pass(gameObject);
     }
 }

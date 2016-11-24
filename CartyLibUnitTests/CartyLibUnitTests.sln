@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2015
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartyLibUnitTests.CSharp", "CartyLibUnitTests.CSharp.csproj", "{0AF37B02-86CA-11A0-A2C7-55C1828E20E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartyLibUnitTests.CSharp.Editor", "CartyLibUnitTests.CSharp.Editor.csproj", "{A1007772-0B49-3004-D0E8-049808BE8463}"

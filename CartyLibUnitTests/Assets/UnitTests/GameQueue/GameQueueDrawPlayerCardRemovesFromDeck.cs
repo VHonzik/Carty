@@ -18,7 +18,7 @@ class GameQueueDrawPlayerCardRemovesFromDeck : MonoBehaviour
         matchInfo.PlayerDeckCards = new string[1] { "simplecard" };
         GameManager.Instance.Settings.TurnStartCardDrawSetting = NoDrawSetting;
         GameManager.Instance.StartMatch(matchInfo);
-        GameManager.Instance.GameQueue.PlayerDrawCard();
+        GameManager.Instance.GameQueue.PlayerDrawCards(1);
     }
 
     // Update is called once per frame
