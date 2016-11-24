@@ -30,9 +30,12 @@ __Three pillars: Visuals - Game logic - Cards__
 
 The engine attempts to separate these three pillars as much as possible. 
 
-The reason for separating Visuals from Game logic was already hinted at in the previous sections with the "defaults" and customizability. While the game logic is relatively unchanging, visuals are the easiest way to customize the engine. Therefore game logic and visuals are a separate projects (and dlls).
+The reason for separating Visuals from Game logic was already hinted at in the previous sections with the "defaults" and customizability. While the game logic is relatively unchanging, visuals are the easiest way to customize the engine. Therefore game logic and visuals are under separate namespaces and talk to each other exclusively through GameManager and VisualManager singletons. 
+
+However these two still need to talk to each other so they can't be separated into different assemblies. Instead they form together Carty dll.
 
 Separation of the Game logic and Cards is the already described API approach. It makes lives of the users of the engine easier and plays along nicely with seperate dll for game logic.
+User simply imports Carty dll to his Unity project and start writing new cards as MonoBehaviours which implement certain interface(s). Carty dll through "reflection magic" finds these MonoBehaviours and plugs them into the system.
 
 ## Project structure
 
