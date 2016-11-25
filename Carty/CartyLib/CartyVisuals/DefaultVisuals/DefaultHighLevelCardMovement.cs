@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using Carty.CartyLib.Internals.CardsComponents;
+using Carty.CartyLib;
+using UnityEngine;
 
 namespace Carty.CartyVisuals.Defaults
 {
@@ -17,5 +19,12 @@ namespace Carty.CartyVisuals.Defaults
             yield return card.WaitUntilMoveReachesThis();
         }
 
+        public IEnumerator MoveCardFromDisplayAreaToHand(CanBeMoved card, Vector3 wantedPosition, Quaternion wantedRotation)
+        {
+            card.Move(wantedPosition).Rotate(wantedRotation);
+
+            // Wait for the above to finish
+            yield return card.WaitUntilMoveReachesThis();
+        }
     }
 }

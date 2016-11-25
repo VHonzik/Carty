@@ -24,7 +24,7 @@ class GameManagerStartsGame : MonoBehaviour
 
         IntegrationTest.Assert(GameManager.Instance.Settings != null);
 
-        IntegrationTest.Assert(GameManager.Instance.PlayerDeck.Cards.Count == 2);
+        IntegrationTest.Assert(GameManager.Instance.PlayerDeck.Cards.Count == 1);
         IntegrationTest.Assert(GameManager.Instance.EnemyDeck.Cards.Count == 1);
 
         IntegrationTest.Assert(GameManager.Instance.PlayerHand.Cards.Count == 1);
@@ -36,7 +36,6 @@ class GameManagerStartsGame : MonoBehaviour
     {
         if(UpdateCount == 1)
         {
-            IntegrationTest.Assert(GameManager.Instance.PlayerDeck.Cards.Count == 1);
             GameManager.Instance.CleanUpMatch();
         }
         else if (UpdateTime >= 1.5f)

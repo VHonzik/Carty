@@ -1,5 +1,6 @@
 ﻿using Carty.CartyLib.Internals.CardsComponents;
 using System.Collections;
+using UnityEngine;
 
 namespace Carty.CartyVisuals
 {
@@ -13,11 +14,21 @@ namespace Carty.CartyVisuals
     public interface IHighLevelCardMovement
     {
         /// <summary>
-        /// First step of player drawing card when it is flipped and moved to display area.
+        /// First step of player drawing a card when it is flipped and moved to display area.
         /// Display area is generally defined by VisualManager.Instance.PlayerShowDrawnCardPosition.
         /// </summary>
         /// <param name="card">Card in deck to move to display area.</param>
-        /// <returns>Coroutine which finishes after it is done moving.</returns>
+        /// <returns>Coroutine which finishes after the move is done.</returns>
         IEnumerator MoveCardFromDeckToDrawDisplayArea(CanBeMoved card);
+
+
+        /// <summary>
+        /// Second step of player drawing a card when it is moved from display area to the hand.
+        /// </summary>
+        /// <param name="card">Card in deck to moved to hand.</param>
+        /// <param name="wantedPosition">Wanted position as determined by current state of player hand.</param>
+        /// <param name="wantedRotation">Wanted rotation as determined by current state of player hand.</param>
+        /// <returns>Coroutine which finishes after the move is done.</returns>
+        IEnumerator MoveCardFromDisplayAreaToHand(CanBeMoved card, Vector3 wantedPosition, Quaternion wantedRotation);
     }
 }

@@ -34,7 +34,7 @@ namespace Carty.CartyVisuals.Defaults
             float angle = index_relative_to_center * angle_pos_dif;
 
             Quaternion result = (player ? VisualManager.Instance.FlippedOn : VisualManager.Instance.FlippedOff)
-                * Quaternion.Euler(0, angle, 0);
+               * Quaternion.Euler(0, angle, 0);
 
             return result;
         }

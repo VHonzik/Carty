@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Carty.CartyVisuals.Defaults
@@ -19,6 +20,12 @@ namespace Carty.CartyVisuals.Defaults
 
             GameObject result = GameObject.Instantiate(physicalCard) as GameObject;
             return result;
+        }
+
+        public IEnumerator DestroyPhysicalCard(GameObject physicalCardGO)
+        {
+            GameObject.Destroy(physicalCardGO);
+            yield return null;
         }
 
         public void SetCardBack(GameObject physicalCardGO, Texture backTexture)

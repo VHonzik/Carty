@@ -91,10 +91,7 @@ namespace Carty.CartyLib.Internals
             GameObject card = new GameObject("card");
 
             GameObject detachHandle = new GameObject("handle");
-            detachHandle.transform.parent = card.transform;
-
-            GameObject physicalCard = CartyVisuals.VisualManager.Instance.PhysicalCard.CreatePhysicalCardObject();
-            physicalCard.transform.parent = detachHandle.transform;
+            detachHandle.transform.parent = card.transform;            
 
             card.AddComponent<CanBeDetached>();
             card.AddComponent<CanBeOwned>().PlayerOwned = player;
@@ -102,6 +99,7 @@ namespace Carty.CartyLib.Internals
             card.AddComponent<CanBeMousedOver>();
             card.AddComponent<CanBeInHand>();
             card.AddComponent<HasOutline>();
+            var physicalCard = card.AddComponent<HasPhysicalCard>();
 
             Type cardType;
             if (TypeMapping.TryGetValue(uniqueCardTypeId, out cardType))
@@ -119,7 +117,7 @@ namespace Carty.CartyLib.Internals
 
                 if(frontTexture != null)
                 {
-                    VisualManager.Instance.PhysicalCard.SetCardFront(physicalCard, frontTexture);
+                    VisualManager.Instance.PhysicalCard.SetCardFront(physicalCard.PhysicalCardGO, frontTexture);
                 }
             }
 

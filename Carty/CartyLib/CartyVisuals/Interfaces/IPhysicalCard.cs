@@ -28,5 +28,13 @@ namespace Carty.CartyVisuals
         /// <param name="backTexture">Texture to apply.</param>
         void SetCardBack(GameObject physicalCardGO, Texture backTexture);
 
+        /// <summary>
+        /// Animate destroying of a card.
+        /// The result of the destruction should be invisible, completely transparent or destroyed game object.
+        /// </summary>
+        /// <param name="physicalCardGO">Physical card game object. Created by CreatePhysicalCardObject.</param>
+        /// <returns>Coroutine which ends when the card was destroyed.</returns>
+        IEnumerator DestroyPhysicalCard(GameObject physicalCardGO);
+
     }
 }

@@ -34,7 +34,7 @@ namespace Carty.CartyLib.Internals.CardsComponents
         /// <summary>
         /// GameObject representing the outline. Created via IOutline.CreateOutlineObject from VisualManager.
         /// </summary>
-        private GameObject OutlineGO { get; set; }
+        public GameObject OutlineGO { get; private set; }
 
         /// <summary>
         /// List of outline requests.

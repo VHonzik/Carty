@@ -18,13 +18,32 @@ namespace Carty.CartyLib.Internals
             
         }
 
-        private IEnumerator PlayerDrawCardDisplayCo()
+        private IEnumerator PlayerDrawCardDisplayCo(GameObject card)
         {
-            GameObject card = GameManager.Instance.PlayerDeck.PopCard();
             CanBeMoved canBeMoved = card.GetComponent<CanBeMoved>(); 
 
             yield return GameManager.Instance.StartCoroutine(VisualManager.Instance.
                 HighLevelCardMovement.MoveCardFromDeckToDrawDisplayArea(canBeMoved));
+        }
+
+        private IEnumerator PlayerDrawCardFinishCo(GameObject card)
+        {
+            CanBeMoved canBeMoved = card.GetComponent<CanBeMoved>();
+
+            yield return GameManager.Instance.StartCoroutine(VisualManager.Instance.
+                HighLevelCardMovement.MoveCardFromDisplayAreaToHand(canBeMoved, 
+                GameManager.Instance.PlayerHand.NewCardPosition(),
+                GameManager.Instance.PlayerHand.NewCardRotation()
+                ));
+            GameManager.Instance.PlayerHand.Add(card.GetComponent<CanBeInHand>());
+        }
+
+        private IEnumerator DestroyCardCo(GameObject card)
+        {
+            var physicalCardGO = card.GetComponent<HasPhysicalCard>().PhysicalCardGO;
+            yield return GameManager.Instance.StartCoroutine(
+                VisualManager.Instance.PhysicalCard.DestroyPhysicalCard(physicalCardGO));
+            GameObject.Destroy(card);
         }
 
 
@@ -53,11 +72,20 @@ namespace Carty.CartyLib.Internals
         {
             for(int i=0; i < cardsAmount; i++)
             {
+                var card = GameManager.Instance.PlayerDeck.PopCard();
                 // Move the top card of the deck to a display area.
-                Queue.AddRoot(PlayerDrawCardDisplayCo());
-                // Trigger card drawn event.
+                Queue.AddRoot(PlayerDrawCardDisplayCo(card));
+
                 // Determine if there is space in hand, if the answer is no destroy the card and leave.
+                if(GameManager.Instance.PlayerHand.Cards.Count >= GameManager.Instance.Settings.MaxCardsInHand)
+                {
+                    Queue.AddRoot(DestroyCardCo(card));
+                    continue;
+                }
+
                 // Inform hand and move it there.
+                GameManager.Instance.PlayerHand.PrepareAddingCard();
+                Queue.AddRoot(PlayerDrawCardFinishCo(card));
             }
         }
     }

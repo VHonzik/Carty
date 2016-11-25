@@ -215,8 +215,11 @@ public class VisualTests : MonoBehaviour
 
         var canBeMoved = card.GetComponent<CanBeMoved>();
 
-        StartCoroutine(VisualManager.Instance.HighLevelCardMovement.MoveCardFromDeckToDrawDisplayArea(canBeMoved));
+        yield return StartCoroutine(VisualManager.Instance.HighLevelCardMovement.MoveCardFromDeckToDrawDisplayArea(canBeMoved));
 
+        yield return StartCoroutine(VisualManager.Instance.HighLevelCardMovement.MoveCardFromDisplayAreaToHand(canBeMoved,
+            VisualManager.Instance.HandPositioning.PositionPlayer(0,1),
+            VisualManager.Instance.HandPositioning.RotationPlayer(0, 1)));
 
         yield return new WaitForSeconds(5.0f);
 
