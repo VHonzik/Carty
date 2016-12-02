@@ -22,12 +22,29 @@ namespace Carty.CartyLib.Internals.CardsComponents
         /// </summary>
         private CoroutineQueue _rotationQueue;
 
+        /// <summary>
+        /// Pointer to CanBeDetached to avoid requesting it all the time.
+        /// </summary>
+        private CanBeDetached _detached;
+
+        /// <summary>
+        /// Whether the card is currently moving or rotating.
+        /// </summary>
+        public bool IsMoving {
+            get
+            {
+                return _movementQueue.Empty == false || _rotationQueue.Empty == false;
+            }
+        }
+
         void Awake()
         {
             _movementQueue = new CoroutineQueue();
             _rotationQueue = new CoroutineQueue();
             _movementQueue.Start();
             _rotationQueue.Start();
+
+            _detached = GetComponent<CanBeDetached>();
         }
 
         /// <summary>

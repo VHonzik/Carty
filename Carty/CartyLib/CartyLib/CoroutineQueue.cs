@@ -10,6 +10,9 @@ namespace Carty.CartyLib.Internals
     {
         private Queue<IEnumerator> _queue;
 
+        /// <summary>
+        /// Whether the queue is empty, that is there is nothing queued and nothing is currently being executed.
+        /// </summary>
         public bool Empty { get; private set; }
 
         /// <summary>

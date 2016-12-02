@@ -1,27 +1,30 @@
 ﻿using UnityEngine;
 using Testing;
-using Carty.CartyVisuals;
 using Carty.CartyLib.Internals.CardsComponents;
 
 [IntegrationTest.DynamicTest("CartyLibTestsCardComponents")]
-class CanBeMovedFlip : MonoBehaviour
+class CanBeMovedMoveShortAndIsMoving : MonoBehaviour
 {
     private float UpdateTime { get; set; }
     private GameObject _card;
-
+    private CanBeMoved _move;
     void Start()
     {
         UpdateTime = 0;
         _card = CardsGameObjects.OnlyDetachHandle();
-        var move = _card.AddComponent<CanBeMoved>();
-        move.Flip();
+        _move = _card.AddComponent<CanBeMoved>();
+        _move.Move(Vector3.one);
     }
 
     void Update()
     {
-        if (UpdateTime >= 2.0f)
+        if(UpdateTime <= 0.2f)
         {
-            IntegrationTest.Assert(Quaternion.Angle(_card.transform.rotation, VisualManager.Instance.FlippedOff) <= 0.1f);
+            IntegrationTest.Assert(_move.IsMoving == true);
+        }
+        if (UpdateTime >= 1.0f)
+        {
+            IntegrationTest.Assert(_card.transform.position == Vector3.one);
             Destroy(_card);
             IntegrationTest.Pass(gameObject);
         }
@@ -29,6 +32,5 @@ class CanBeMovedFlip : MonoBehaviour
         UpdateTime += Time.deltaTime;
     }
 }
-
 
 

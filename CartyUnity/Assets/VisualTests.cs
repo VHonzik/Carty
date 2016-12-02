@@ -18,6 +18,7 @@ public class VisualTests : MonoBehaviour
     public bool PlayerDeck30Test = true;
     public bool EnemyDeck30Test = true;
     public bool PlayerDrawsCardTest = true;
+    public bool HighlightedCardInHandTest = true;
 
     // Use this for initialization
     void Start()
@@ -36,6 +37,7 @@ public class VisualTests : MonoBehaviour
         if (PlayerDeck30Test) yield return StartCoroutine(PlayerDeck30());
         if (EnemyDeck30Test) yield return StartCoroutine(EnemyDeck30());
         if (PlayerDrawsCardTest) yield return StartCoroutine(PlayerDrawsCard());
+        if (HighlightedCardInHandTest) yield return StartCoroutine(HighlightedCardInHand());
     }
 
     private IEnumerator CreateCard()
@@ -213,11 +215,11 @@ public class VisualTests : MonoBehaviour
         card2.transform.position = VisualManager.Instance.DeckPositioning.PositionPlayer(0, 2);
         card2.transform.rotation = VisualManager.Instance.DeckPositioning.RotationPlayer(0, 2);
 
-        var canBeMoved = card.GetComponent<CanBeMoved>();
+        var wrapper = new VisualCardWrapper(card);
 
-        yield return StartCoroutine(VisualManager.Instance.HighLevelCardMovement.MoveCardFromDeckToDrawDisplayArea(canBeMoved));
+        yield return StartCoroutine(VisualManager.Instance.HighLevelCardMovement.MoveCardFromDeckToDrawDisplayArea(wrapper));
 
-        yield return StartCoroutine(VisualManager.Instance.HighLevelCardMovement.MoveCardFromDisplayAreaToHand(canBeMoved,
+        yield return StartCoroutine(VisualManager.Instance.HighLevelCardMovement.MoveCardFromDisplayAreaToHand(wrapper,
             VisualManager.Instance.HandPositioning.PositionPlayer(0,1),
             VisualManager.Instance.HandPositioning.RotationPlayer(0, 1)));
 
@@ -225,6 +227,35 @@ public class VisualTests : MonoBehaviour
 
         Destroy(card);
         Destroy(card2);
+    }
+
+    private IEnumerator HighlightedCardInHand()
+    {
+        Text.text = "The middle card in players hand is highlighted and unhighlighted";
+
+        int max = 3;
+        GameObject[] cards = new GameObject[max];
+        for (int i = 0; i < max; i++)
+        {
+            cards[i] = GameManager.Instance.CardManager.CreateCard("", true);
+            cards[i].transform.position = VisualManager.Instance.HandPositioning.PositionPlayer(i, max);
+            cards[i].transform.rotation = VisualManager.Instance.HandPositioning.RotationPlayer(i, max);
+        }
+
+        yield return StartCoroutine(
+            VisualManager.Instance.HighLevelCardMovement.HighlightCardInHand(new VisualCardWrapper(cards[1])));
+
+        yield return new WaitForSeconds(4.0f);
+
+        yield return StartCoroutine(
+            VisualManager.Instance.HighLevelCardMovement.UnhighlightCardInHand(new VisualCardWrapper(cards[1])));
+
+        yield return new WaitForSeconds(1.0f);
+
+        for (int i = 0; i < max; i++)
+        {
+            Destroy(cards[i]);
+        }
     }
 
 }

@@ -28,6 +28,16 @@ namespace Carty.CartyVisuals.Defaults
             yield return null;
         }
 
+        public void AttachPhysicalCardCollider(GameObject card)
+        {
+            GameObject physical = CreatePhysicalCardObject();
+            if (physical.GetComponent<MeshFilter>())
+            {
+                card.AddComponent<MeshCollider>().sharedMesh = physical.GetComponent<MeshFilter>().sharedMesh;
+            }
+            GameObject.Destroy(physical);
+        }
+
         public void SetCardBack(GameObject physicalCardGO, Texture backTexture)
         {
             string matName = "CardBack";

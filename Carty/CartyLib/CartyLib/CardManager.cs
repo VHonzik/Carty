@@ -15,7 +15,7 @@ namespace Carty.CartyLib.Internals
     public class CardManager
     {
         /// <summary>
-        /// Map between unique card type id <-> card type.
+        /// Map between unique card type id and card type.
         /// </summary>
         private Dictionary<string, Type> TypeMapping { get; set; }
 
@@ -99,7 +99,10 @@ namespace Carty.CartyLib.Internals
             card.AddComponent<CanBeMousedOver>();
             card.AddComponent<CanBeInHand>();
             card.AddComponent<HasOutline>();
+            card.AddComponent<CanBeHighlighted>();
             var physicalCard = card.AddComponent<HasPhysicalCard>();
+
+            VisualManager.Instance.PhysicalCard.AttachPhysicalCardCollider(card);
 
             Type cardType;
             if (TypeMapping.TryGetValue(uniqueCardTypeId, out cardType))

@@ -83,6 +83,7 @@ namespace Carty.CartyLib.Internals.BoardComponents
                     VisualManager.Instance.DeckPositioning.RotationPlayer(visualIndex, cardsTypes.Length) :
                     VisualManager.Instance.DeckPositioning.RotationEnemy(visualIndex, cardsTypes.Length);
                 Cards.Add(card);
+                card.transform.parent = gameObject.transform;
             }
         }
     }

@@ -34,6 +34,19 @@ namespace Carty.CartyLib.Internals.CardsComponents
         }
 
         /// <summary>
+        /// Similar to AddedToHand but don't move card.
+        /// Useful when position was already updated.
+        /// </summary>
+        /// <param name="hand">Hand to which the card was added.</param>
+        public void AddedToHandWithoutFitting(Hand hand)
+        {
+            IsInHand = true;
+            var owned = GetComponent<CanBeOwned>();
+            if (owned && owned.PlayerOwned != hand.PlayerOwned) owned.PlayerOwned = hand.PlayerOwned;
+            transform.parent = hand.transform;
+        }
+
+        /// <summary>
         /// Inform the component that the card was removed from a hand.
         /// </summary>
         public void RemovedFromHand()

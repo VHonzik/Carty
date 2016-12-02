@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Carty.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -47,6 +48,7 @@
     <Compile Include="CartyLib\BoardComponents\Deck.cs" />
     <Compile Include="CartyLib\BoardComponents\Hand.cs" />
     <Compile Include="CartyLib\CardManager.cs" />
+    <Compile Include="CartyLib\CardsComponents\CanBeHighlighted.cs" />
     <Compile Include="CartyLib\CardsComponents\HasPhysicalCard.cs" />
     <Compile Include="CartyLib\Cards\ICardType.cs" />
     <Compile Include="CartyLib\CardsComponents\CanBeInHand.cs" />
@@ -55,6 +57,7 @@
     <Compile Include="CartyLib\CoroutineQueue.cs" />
     <Compile Include="CartyLib\CoroutineTree.cs" />
     <Compile Include="CartyLib\CardsComponents\CanBeDetached.cs" />
+    <Compile Include="CartyLib\DeckBuilder.cs" />
     <Compile Include="CartyLib\GameManager.cs" />
     <Compile Include="CartyLib\CardsComponents\CanBeMousedOver.cs" />
     <Compile Include="CartyLib\GameQueueManager.cs" />
@@ -72,6 +75,7 @@
     <Compile Include="CartyVisuals\Interfaces\ILowLevelCardMovement.cs" />
     <Compile Include="CartyVisuals\Interfaces\IOutline.cs" />
     <Compile Include="CartyVisuals\Interfaces\IPhysicalCard.cs" />
+    <Compile Include="CartyVisuals\VisualCardWrapper.cs" />
     <Compile Include="CartyVisuals\VisualManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CartyLib\UnityBridge.cs" />

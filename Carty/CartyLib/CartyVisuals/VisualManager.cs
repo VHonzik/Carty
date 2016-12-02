@@ -10,6 +10,9 @@ namespace Carty.CartyVisuals
     public class VisualManager
     {
         private static VisualManager _the_one_and_only;
+        /// <summary>
+        /// Singleton accessor.
+        /// </summary>
         public static VisualManager Instance
         {
             get
@@ -46,6 +49,12 @@ namespace Carty.CartyVisuals
             CardHeight = 0.013f;
 
             CardTexturesPath = "";
+
+            if(Camera.main != null)
+            {
+                Camera.main.transform.position = new Vector3(0, 10, 0);
+                Camera.main.transform.rotation = Quaternion.Euler(90, 0, 0);
+            }
         }
 
         /// <summary>

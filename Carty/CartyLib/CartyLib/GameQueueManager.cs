@@ -20,22 +20,22 @@ namespace Carty.CartyLib.Internals
 
         private IEnumerator PlayerDrawCardDisplayCo(GameObject card)
         {
-            CanBeMoved canBeMoved = card.GetComponent<CanBeMoved>(); 
+            VisualCardWrapper wrapper = new VisualCardWrapper(card);
 
             yield return GameManager.Instance.StartCoroutine(VisualManager.Instance.
-                HighLevelCardMovement.MoveCardFromDeckToDrawDisplayArea(canBeMoved));
+                HighLevelCardMovement.MoveCardFromDeckToDrawDisplayArea(wrapper));
         }
 
         private IEnumerator PlayerDrawCardFinishCo(GameObject card)
         {
-            CanBeMoved canBeMoved = card.GetComponent<CanBeMoved>();
+            VisualCardWrapper wrapper = new VisualCardWrapper(card);
 
             yield return GameManager.Instance.StartCoroutine(VisualManager.Instance.
-                HighLevelCardMovement.MoveCardFromDisplayAreaToHand(canBeMoved, 
+                HighLevelCardMovement.MoveCardFromDisplayAreaToHand(wrapper, 
                 GameManager.Instance.PlayerHand.NewCardPosition(),
                 GameManager.Instance.PlayerHand.NewCardRotation()
                 ));
-            GameManager.Instance.PlayerHand.Add(card.GetComponent<CanBeInHand>());
+            GameManager.Instance.PlayerHand.Add(wrapper.CanBeInHand);
         }
 
         private IEnumerator DestroyCardCo(GameObject card)

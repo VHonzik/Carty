@@ -10,6 +10,9 @@ namespace Carty.CartyLib
     /// </summary>
     public class GameManager : MonoBehaviour
     {
+        /// <summary>
+        /// Singleton accessor.
+        /// </summary>
         public static GameManager Instance { get; set; }
 
         /// <summary>
@@ -35,11 +38,13 @@ namespace Carty.CartyLib
         /// <summary>
         /// How many turns player has played currently.
         /// </summary>
+        [HideInInspector]
         public int PlayerTurnCount;
 
         /// <summary>
         /// How many turns enemy has played currently.
         /// </summary>
+        [HideInInspector]
         public int EnemyTurnCount;
 
         /// <summary>
@@ -126,6 +131,16 @@ namespace Carty.CartyLib
             EnemyHand.FillWithCards(matchInfo.EnemyStartingHandCards);
 
             MatchInfo = matchInfo;
+
+            if(matchInfo.PlayerAmountOfCardDrawBeforeGame > 0)
+            {
+                PlayerHand.ImmidiatelyTakeCardsFromDeck(PlayerDeck, matchInfo.PlayerAmountOfCardDrawBeforeGame);
+            }
+
+            if (matchInfo.EnemyAmountOfCardDrawBeforeGame > 0)
+            {
+                EnemyHand.ImmidiatelyTakeCardsFromDeck(EnemyDeck, matchInfo.EnemyAmountOfCardDrawBeforeGame);
+            }
 
             if (matchInfo.PlayerGoesFirst)
             {
