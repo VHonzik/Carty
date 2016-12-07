@@ -11,24 +11,16 @@ namespace Carty.CartyLib.Internals.CardsComponents
         /// <summary>
         /// Whether the card is currently highlighted.
         /// </summary>
-        public bool HighLighted { get; private set; }
+        public bool HighLighted { get; set; }
 
         /// <summary>
-        /// Pointer to CanBeMousedOver to avoid requesting it all the time.
+        /// Pointers to other components to avoid requesting them all the time.
         /// </summary>
         private CanBeMousedOver _mouseOver;
-
-        /// <summary>
-        /// Pointer to CanBeMoved to avoid requesting it all the time.
-        /// </summary>
         private CanBeMoved _move;
-
-        /// <summary>
-        /// Pointer to CanBeInHand to avoid requesting it all the time. 
-        /// </summary>
         private CanBeInHand _hand;
-
         private CanBeOwned _owned;
+        private CanBeInteractedWith _interact;
 
         private VisualCardWrapper _wrapper;
 
@@ -39,12 +31,13 @@ namespace Carty.CartyLib.Internals.CardsComponents
             _owned = GetComponent<CanBeOwned>();
             _move = GetComponent<CanBeMoved>();
             _hand = GetComponent<CanBeInHand>();
+            _interact = GetComponent<CanBeInteractedWith>();
             _wrapper = new VisualCardWrapper(gameObject);
         }
 
         void Update()
         {
-            if(_move.IsMoving == false)
+            if(_interact.InteractionAllowed)
             {
                 if (_mouseOver.MouseOver && !HighLighted && _hand.IsInHand && _owned.PlayerOwned)
                 {

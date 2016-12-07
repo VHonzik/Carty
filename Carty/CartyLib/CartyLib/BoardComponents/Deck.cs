@@ -1,4 +1,5 @@
-﻿using Carty.CartyVisuals;
+﻿using Carty.CartyLib.Internals.CardsComponents;
+using Carty.CartyVisuals;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -40,7 +41,7 @@ namespace Carty.CartyLib.Internals.BoardComponents
         {
             for (int i = 0; i < Cards.Count; i++)
             {
-                Destroy(Cards[i].gameObject);
+                GameManager.Instance.CardManager.DestroyCard(Cards[i].gameObject);
             }
 
             Cards.Clear();

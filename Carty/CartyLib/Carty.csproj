@@ -48,7 +48,9 @@
     <Compile Include="CartyLib\BoardComponents\Deck.cs" />
     <Compile Include="CartyLib\BoardComponents\Hand.cs" />
     <Compile Include="CartyLib\CardManager.cs" />
+    <Compile Include="CartyLib\CardsComponents\CanBeDragged.cs" />
     <Compile Include="CartyLib\CardsComponents\CanBeHighlighted.cs" />
+    <Compile Include="CartyLib\CardsComponents\CanBeInteractedWith.cs" />
     <Compile Include="CartyLib\CardsComponents\HasPhysicalCard.cs" />
     <Compile Include="CartyLib\Cards\ICardType.cs" />
     <Compile Include="CartyLib\CardsComponents\CanBeInHand.cs" />

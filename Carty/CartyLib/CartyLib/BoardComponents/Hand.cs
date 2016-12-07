@@ -46,7 +46,7 @@ namespace Carty.CartyLib.Internals.BoardComponents
         {
             for(int i=0; i < Cards.Count; i++)
             {
-                Destroy(Cards[i].gameObject);
+                GameManager.Instance.CardManager.DestroyCard(Cards[i].gameObject);
             }
 
             Cards.Clear();
@@ -166,7 +166,7 @@ namespace Carty.CartyLib.Internals.BoardComponents
                 {
                     numberOfValidCards++;
                     AddWithoutFitting(cardCanBeInHand);
-                }                
+                }
             }
 
             ImmediatelyFitCards(alreadyPresentCount + numberOfValidCards);
@@ -198,6 +198,18 @@ namespace Carty.CartyLib.Internals.BoardComponents
             }
 
             ImmediatelyFitCards(alreadyPresentCount + numberOfValidCards);
+        }
+
+        /// <summary>
+        /// Enables or disables interaction with all cards in the hand. See CanBeInteractedWith.
+        /// </summary>
+        /// <param name="enable">Whether to enable or disable interaction.</param>
+        public void EnableInteraction(bool enable)
+        {
+            foreach(var card in Cards)
+            {
+                if (card.GetComponent<CanBeInteractedWith>()) card.GetComponent<CanBeInteractedWith>().InteractionAllowed = enable;
+            }
         }
     }
 }

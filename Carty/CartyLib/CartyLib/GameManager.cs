@@ -193,6 +193,15 @@ namespace Carty.CartyLib
             EnemyTurnCount++;
         }
 
+        /// <summary>
+        /// Enables or disables interaction with all player cards. See CanBeInteractedWith.
+        /// </summary>
+        /// <param name="enable">Whether to enable or disable interaction.</param>
+        public void EnableInteraction(bool enable)
+        {
+            PlayerHand.EnableInteraction(enable);
+        }
+
 
     }
 }

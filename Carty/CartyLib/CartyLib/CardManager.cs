@@ -36,7 +36,7 @@ namespace Carty.CartyLib.Internals
         {
             for(int i=0; i < AllCards.Count; i++)
             {
-                GameObject.Destroy(AllCards[i]);
+                DestroyCard(AllCards[i]);
             }
 
             AllCards.Clear();
@@ -100,6 +100,8 @@ namespace Carty.CartyLib.Internals
             card.AddComponent<CanBeInHand>();
             card.AddComponent<HasOutline>();
             card.AddComponent<CanBeHighlighted>();
+            card.AddComponent<CanBeDragged>();
+            card.AddComponent<CanBeInteractedWith>();
             var physicalCard = card.AddComponent<HasPhysicalCard>();
 
             VisualManager.Instance.PhysicalCard.AttachPhysicalCardCollider(card);
@@ -127,6 +129,16 @@ namespace Carty.CartyLib.Internals
             AllCards.Add(card);
 
             return card;
+        }
+
+        /// <summary>
+        /// Immediately destroys the card.
+        /// </summary>
+        /// <param name="card"></param>
+        public void DestroyCard(GameObject card)
+        {
+            AllCards.Remove(card);
+            GameObject.Destroy(card);
         }
     }
 }

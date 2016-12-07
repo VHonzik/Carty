@@ -19,7 +19,10 @@ class CardManangerConstructsCard : MonoBehaviour
         IntegrationTest.Assert(card.GetComponent<HasPhysicalCard>() != null);
         IntegrationTest.Assert(card.GetComponent<HasOutline>() != null);
         IntegrationTest.Assert(card.GetComponent<CanBeHighlighted>() != null);
+        IntegrationTest.Assert(card.GetComponent<CanBeInteractedWith>() != null);
+        IntegrationTest.Assert(card.GetComponent<CanBeDragged>() != null);
         IntegrationTest.Assert(card.GetComponent<SimpleCard>() != null);
+
     }
 
     void Update()

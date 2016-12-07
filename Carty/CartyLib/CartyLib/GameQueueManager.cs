@@ -36,6 +36,7 @@ namespace Carty.CartyLib.Internals
                 GameManager.Instance.PlayerHand.NewCardRotation()
                 ));
             GameManager.Instance.PlayerHand.Add(wrapper.CanBeInHand);
+            if (card.GetComponent<CanBeInteractedWith>()) card.GetComponent<CanBeInteractedWith>().InteractionAllowed = true;
         }
 
         private IEnumerator DestroyCardCo(GameObject card)
@@ -43,7 +44,13 @@ namespace Carty.CartyLib.Internals
             var physicalCardGO = card.GetComponent<HasPhysicalCard>().PhysicalCardGO;
             yield return GameManager.Instance.StartCoroutine(
                 VisualManager.Instance.PhysicalCard.DestroyPhysicalCard(physicalCardGO));
-            GameObject.Destroy(card);
+            GameManager.Instance.CardManager.DestroyCard(card);
+        }
+
+        private IEnumerator EnableInteractionCo()
+        {
+            GameManager.Instance.EnableInteraction(true);
+            yield break;
         }
 
 
@@ -70,6 +77,7 @@ namespace Carty.CartyLib.Internals
         /// <param name="cardsAmount">Number of cards to draw.</param>
         public void PlayerDrawCards(int cardsAmount)
         {
+            GameManager.Instance.EnableInteraction(false);
             for(int i=0; i < cardsAmount; i++)
             {
                 var card = GameManager.Instance.PlayerDeck.PopCard();
@@ -87,6 +95,8 @@ namespace Carty.CartyLib.Internals
                 GameManager.Instance.PlayerHand.PrepareAddingCard();
                 Queue.AddRoot(PlayerDrawCardFinishCo(card));
             }
+
+            Queue.AddRoot(EnableInteractionCo());
         }
     }
 }
