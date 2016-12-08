@@ -1,5 +1,6 @@
 ﻿using Carty.CartyLib.Internals;
 using Carty.CartyLib.Internals.BoardComponents;
+using Carty.CartyLib.Internals.CardsComponents;
 using UnityEngine;
 
 namespace Carty.CartyLib
@@ -202,6 +203,17 @@ namespace Carty.CartyLib
             PlayerHand.EnableInteraction(enable);
         }
 
+        /// <summary>
+        /// Card was played from hand.
+        /// </summary>
+        /// <param name="card">Played card.</param>
+        public void CardPlayedFromHand(GameObject card)
+        {
+            card.GetComponent<CanBeInteractedWith>().InteractionAllowed = false;
+            Hand hand = card.GetComponent<CanBeOwned>().PlayerOwned ? PlayerHand : EnemyHand;
+            hand.Remove(card.GetComponent<CanBeInHand>());
+            GameQueue.DestroyCard(card);
+        }
 
     }
 }

@@ -56,6 +56,8 @@
     <Compile Include="CartyLib\CardsComponents\CanBeInHand.cs" />
     <Compile Include="CartyLib\CardsComponents\CanBeOwned.cs" />
     <Compile Include="CartyLib\CardsComponents\CanBeMoved.cs" />
+    <Compile Include="CartyLib\Cards\IGameState.cs" />
+    <Compile Include="CartyLib\Cards\ISpell.cs" />
     <Compile Include="CartyLib\CoroutineQueue.cs" />
     <Compile Include="CartyLib\CoroutineTree.cs" />
     <Compile Include="CartyLib\CardsComponents\CanBeDetached.cs" />
@@ -66,11 +68,13 @@
     <Compile Include="CartyLib\GameSettings.cs" />
     <Compile Include="CartyLib\Match.cs" />
     <Compile Include="CartyVisuals\DefaultVisuals\DefaultCardOutline.cs" />
+    <Compile Include="CartyVisuals\DefaultVisuals\DefaultCardPlaying.cs" />
     <Compile Include="CartyVisuals\DefaultVisuals\DefaultCardPositionInDeck.cs" />
     <Compile Include="CartyVisuals\DefaultVisuals\DefaultCardPositionInHand.cs" />
     <Compile Include="CartyVisuals\DefaultVisuals\DefaultHighLevelCardMovement.cs" />
     <Compile Include="CartyVisuals\DefaultVisuals\DefaultLowLevelCardMovement.cs" />
     <Compile Include="CartyVisuals\DefaultVisuals\DefaultPhysicalCard.cs" />
+    <Compile Include="CartyVisuals\Interfaces\ICardPlaying.cs" />
     <Compile Include="CartyVisuals\Interfaces\IDeckCardPositioning.cs" />
     <Compile Include="CartyVisuals\Interfaces\IHandCardPositioning.cs" />
     <Compile Include="CartyVisuals\Interfaces\IHighLevelCardMovement.cs" />

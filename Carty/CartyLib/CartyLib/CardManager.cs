@@ -8,6 +8,16 @@ using UnityEngine;
 
 namespace Carty.CartyLib.Internals
 {
+
+    public class CardManagerCardInfo
+    {
+        public GameObject Card = null;
+        public ICardType CardType = null;
+
+        public bool IsSpell = false;
+        public ISpell Spell = null;
+    }
+
     /// <summary>
     /// Class responsible for creating and keeping track of cards.
     /// Through reflection gathers all user created cards from application assemblies.
@@ -21,13 +31,13 @@ namespace Carty.CartyLib.Internals
 
         public CardManager() {
             TypeMapping = new Dictionary<string, Type>();
-            AllCards = new List<GameObject>();
+            AllCards = new List<CardManagerCardInfo>();
         }
 
         /// <summary>
         /// All cards created for this match.
         /// </summary>
-        public List<GameObject> AllCards { get; private set; }
+        public List<CardManagerCardInfo> AllCards { get; private set; }
 
         /// <summary>
         /// Immediately destroys all remaining cards.
@@ -36,7 +46,7 @@ namespace Carty.CartyLib.Internals
         {
             for(int i=0; i < AllCards.Count; i++)
             {
-                DestroyCard(AllCards[i]);
+                DestroyCard(AllCards[i].Card);
             }
 
             AllCards.Clear();
@@ -106,10 +116,20 @@ namespace Carty.CartyLib.Internals
 
             VisualManager.Instance.PhysicalCard.AttachPhysicalCardCollider(card);
 
+            CardManagerCardInfo cardInfo = new CardManagerCardInfo();
+            cardInfo.Card = card;
+
             Type cardType;
             if (TypeMapping.TryGetValue(uniqueCardTypeId, out cardType))
             {
                 var iCard = card.AddComponent(cardType) as ICardType;
+                cardInfo.CardType = iCard;
+
+                if(cardType.GetInterfaces().Contains(typeof(ISpell)))
+                {
+                    cardInfo.IsSpell = true;
+                    cardInfo.Spell = iCard as ISpell;
+                }
 
                 // Attempt to apply front texture
                 var frontTextureName = iCard.GetInfo().CardFrontTexture;
@@ -126,7 +146,7 @@ namespace Carty.CartyLib.Internals
                 }
             }
 
-            AllCards.Add(card);
+            AllCards.Add(cardInfo);
 
             return card;
         }
@@ -137,8 +157,18 @@ namespace Carty.CartyLib.Internals
         /// <param name="card"></param>
         public void DestroyCard(GameObject card)
         {
-            AllCards.Remove(card);
+            AllCards.RemoveAll(x => x.Card == card);
             GameObject.Destroy(card);
+        }
+
+        /// <summary>
+        /// Find info about a card, searching in all created cards.
+        /// </summary>
+        /// <param name="card">Card to find.</param>
+        /// <returns>CardManagerCardInfo wrapper around the card.</returns>
+        public CardManagerCardInfo FindCardInfo(GameObject card)
+        {
+            return AllCards.Find(x => x.Card == card);
         }
     }
 }

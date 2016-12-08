@@ -41,6 +41,7 @@ namespace Carty.CartyLib.Internals
 
         private IEnumerator DestroyCardCo(GameObject card)
         {
+            card.GetComponent<CanBeInteractedWith>().InteractionAllowed = false;
             var physicalCardGO = card.GetComponent<HasPhysicalCard>().PhysicalCardGO;
             yield return GameManager.Instance.StartCoroutine(
                 VisualManager.Instance.PhysicalCard.DestroyPhysicalCard(physicalCardGO));
@@ -50,6 +51,12 @@ namespace Carty.CartyLib.Internals
         private IEnumerator EnableInteractionCo()
         {
             GameManager.Instance.EnableInteraction(true);
+            yield break;
+        }
+
+        private IEnumerator CastSpell(ISpell spell)
+        {
+            spell.OnCast(null);
             yield break;
         }
 
@@ -70,6 +77,25 @@ namespace Carty.CartyLib.Internals
             Queue.CleanUp();
         }
 
+        /// <summary>
+        /// Play a card and trigger all necessary callbacks depending on the card implementation.
+        /// </summary>
+        /// <param name="card">Card to play.</param>
+        public void PlayCard(GameObject card)
+        {
+            var info = GameManager.Instance.CardManager.FindCardInfo(card);
+            if (info.IsSpell == true) Queue.AddRoot(CastSpell(info.Spell));
+        }
+
+        /// <summary>
+        /// Play destroy animation of physical card and then destroy it.
+        /// </summary>
+        /// <param name="card">Card to destroy.</param>
+        public void DestroyCard(GameObject card)
+        {
+            Queue.AddRoot(DestroyCardCo(card));
+        }
+
 
         /// <summary>
         /// Enqueue drawing a number of cards for the player.
@@ -87,7 +113,7 @@ namespace Carty.CartyLib.Internals
                 // Determine if there is space in hand, if the answer is no destroy the card and leave.
                 if(GameManager.Instance.PlayerHand.Cards.Count >= GameManager.Instance.Settings.MaxCardsInHand)
                 {
-                    Queue.AddRoot(DestroyCardCo(card));
+                    DestroyCard(card);
                     continue;
                 }
 

@@ -34,6 +34,7 @@ namespace Carty.CartyVisuals
             PhysicalCard = new DefaultPhysicalCard();
             DeckPositioning = new DefaultCardPositionInDeck();
             HighLevelCardMovement = new DefaultHighLevelCardMovement();
+            CardPlaying = new DefaultCardPlaying();
 
             FlippedOn = Quaternion.Euler(0, 0, 0);
             FlippedOff = Quaternion.Euler(0, 0, -180);
@@ -106,6 +107,12 @@ namespace Carty.CartyVisuals
         /// Assign your own implementation in order to customize how cards look like.
         /// </summary>
         public IPhysicalCard PhysicalCard { get; set; }
+
+        /// <summary>
+        /// Customization of details of playing cards.
+        /// Assign your own implementation in order to change details of how cards are played.
+        /// </summary>
+        public ICardPlaying CardPlaying { get; set; }
 
         /// <summary>
         /// Default rotation of the card when its face is facing camera.

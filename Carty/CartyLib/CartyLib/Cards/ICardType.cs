@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Carty.CartyLib
+﻿namespace Carty.CartyLib
 {
     /// <summary>
     /// Basic information about a card type.

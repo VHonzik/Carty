@@ -1,4 +1,5 @@
-﻿using Carty.CartyVisuals;
+﻿using Carty.CartyLib.Internals.BoardComponents;
+using Carty.CartyVisuals;
 using UnityEngine;
 
 namespace Carty.CartyLib.Internals.CardsComponents
@@ -46,8 +47,16 @@ namespace Carty.CartyLib.Internals.CardsComponents
                 if(Input.GetMouseButton(0) == false)
                 {
                     Dragging = false;
-                    _detach.Detached = false;
                     GameManager.Instance.EnableInteraction(true);
+                    if (VisualManager.Instance.CardPlaying.IsOutsideOfHandArea(_detach.DetachedPosition))
+                    {
+                        GameManager.Instance.CardPlayedFromHand(gameObject);
+                    }
+                    else
+                    {                       
+                        _detach.Detached = false;                        
+                    }
+                    
                 }
             }
         }
