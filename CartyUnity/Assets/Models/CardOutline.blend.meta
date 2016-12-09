@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: fbf6a9713a72be14dbb2df118f7ffb74
-timeCreated: 1478986091
+guid: a46b0f9bc89b16449b5a180e253f0168
+timeCreated: 1481315856
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,8 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: BezierCurve
-    4300002: CardModel
+    4300000: OutlineModel
     7400000: Default Take
     9500000: //RootNode
   materials:

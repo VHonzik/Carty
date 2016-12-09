@@ -17,18 +17,21 @@ namespace Carty.CartyLib.Internals.CardsComponents
         private CanBeInteractedWith _interact;
         private CanBeHighlighted _highlight;
         private CanBeDetached _detach;
+        private HasCost _cost;
 
         void Start()
         {
             _detach = GetComponent<CanBeDetached>();
             _highlight = GetComponent<CanBeHighlighted>();
             _interact = GetComponent<CanBeInteractedWith>();
+            _cost = GetComponent<HasCost>();
         }
 
         void Update()
         {
             if (_highlight.HighLighted == true && Dragging == false
-                && Input.GetMouseButton(0) == true && _interact.InteractionAllowed == true)
+                && Input.GetMouseButton(0) == true && _interact.InteractionAllowed == true
+                && _cost.CanBePlayed())
             {
                 Dragging = true;
                 _highlight.HighLighted = false;

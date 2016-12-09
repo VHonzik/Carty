@@ -218,7 +218,7 @@ namespace Carty.CartyLib
 
             int cardsToDraw = Settings.TurnStartCardDrawSetting(PlayerTurnCount, true, MatchInfo.PlayerGoesFirst);
             GameQueue.PlayerDrawCards(cardsToDraw);
-            Debug.Log("Started Player turn. " + cardsToDraw + " card(s) drawn. Now has " + 
+            Debug.Log("Started player turn "+ PlayerTurnCount + ". " + cardsToDraw + " card(s) drawn. Now has " + 
                 PlayerResources.ResourcesCount + " resources.");
         }
 
@@ -245,10 +245,18 @@ namespace Carty.CartyLib
         /// </summary>
         /// <param name="card">Played card.</param>
         public void CardPlayedFromHand(GameObject card)
-        {
+        {    
             card.GetComponent<CanBeInteractedWith>().InteractionAllowed = false;
-            Hand hand = card.GetComponent<CanBeOwned>().PlayerOwned ? PlayerHand : EnemyHand;
+            bool player = card.GetComponent<CanBeOwned>().PlayerOwned;
+            Hand hand = player ? PlayerHand : EnemyHand;
             hand.Remove(card.GetComponent<CanBeInHand>());
+
+            GameResources resources = player ? PlayerResources : EnemyResources;
+            int cost = card.GetComponent<HasCost>().CurrentCost;
+            resources.Pay(cost);
+
+            Debug.Log("Playing card from hand. It cost "+ cost+".");
+
             GameQueue.PlayCard(card);
             GameQueue.DestroyCard(card);
         }

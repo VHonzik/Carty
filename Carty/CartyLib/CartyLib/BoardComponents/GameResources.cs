@@ -58,5 +58,25 @@ namespace Carty.CartyLib.Internals.BoardComponents
             ResourcesCount += increaseAmount;
             ResourcesAvailable = ResourcesCount;
         }
+
+        /// <summary>
+        /// Checks if a card can be played.
+        /// </summary>
+        /// <param name="resourceCost">Cost of the card to be played.</param>
+        /// <returns>Whether there is enough resources to play the card.</returns>
+        public bool CanAfford(int resourceCost)
+        {
+            return ResourcesAvailable >= resourceCost;
+        }
+
+        /// <summary>
+        /// Decrease the current amount of resources.
+        /// Does not check for enough resources, use CanAfford for that.
+        /// </summary>
+        /// <param name="resourceCost">Cost of the card.</param>
+        public void Pay(int resourceCost)
+        {
+            ResourcesAvailable -= resourceCost;
+        }
     }
 }

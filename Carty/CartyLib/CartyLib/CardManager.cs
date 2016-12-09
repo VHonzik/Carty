@@ -112,6 +112,7 @@ namespace Carty.CartyLib.Internals
             card.AddComponent<CanBeHighlighted>();
             card.AddComponent<CanBeDragged>();
             card.AddComponent<CanBeInteractedWith>();
+            card.AddComponent<HasCost>();
             var physicalCard = card.AddComponent<HasPhysicalCard>();
 
             VisualManager.Instance.PhysicalCard.AttachPhysicalCardCollider(card);
