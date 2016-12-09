@@ -37,6 +37,16 @@ namespace Carty.CartyLib
         public Deck EnemyDeck { get; private set; }
 
         /// <summary>
+        /// Hero of Player.
+        /// </summary>
+        public Hero PlayerHero { get; private set; }
+
+        /// <summary>
+        /// Hero of Player.
+        /// </summary>
+        public Hero EnemyHero { get; private set; }
+
+        /// <summary>
         /// How many turns player has played currently.
         /// </summary>
         [HideInInspector]
@@ -117,6 +127,8 @@ namespace Carty.CartyLib
             if (EnemyHand == null) EnemyHand = Hand.CreateHand(false);
             if (PlayerDeck == null) PlayerDeck = Deck.CreateDeck(true);
             if (EnemyDeck == null)  EnemyDeck = Deck.CreateDeck(false);
+            if (PlayerHero == null) PlayerHero = Hero.CreateHero(true);
+            if (EnemyHero == null) EnemyHero = Hero.CreateHero(false);
         }
 
         /// <summary>
@@ -130,6 +142,10 @@ namespace Carty.CartyLib
             EnemyDeck.FillWithCards(matchInfo.EnemyDeckCards);
             PlayerHand.FillWithCards(matchInfo.PlayerStartingHandCards);
             EnemyHand.FillWithCards(matchInfo.EnemyStartingHandCards);
+
+            PlayerHero.MaxHealth = PlayerHero.CurrentHealth = matchInfo.PlayerHealth;
+            
+            EnemyHero.MaxHealth = EnemyHero.CurrentHealth = matchInfo.EnemyHealth;
 
             MatchInfo = matchInfo;
 
@@ -212,6 +228,7 @@ namespace Carty.CartyLib
             card.GetComponent<CanBeInteractedWith>().InteractionAllowed = false;
             Hand hand = card.GetComponent<CanBeOwned>().PlayerOwned ? PlayerHand : EnemyHand;
             hand.Remove(card.GetComponent<CanBeInHand>());
+            GameQueue.PlayCard(card);
             GameQueue.DestroyCard(card);
         }
 

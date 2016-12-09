@@ -2,20 +2,20 @@
 using Carty.CartyVisuals;
 using System.Collections;
 using UnityEngine;
+using System;
 
 namespace Carty.CartyLib.Internals
 {
     /// <summary>
     /// Class responsible for turn-based gameplay and layered game "event system".
     /// </summary>
-    public class GameQueueManager
+    public class GameQueueManager : IGameState
     {
         public CoroutineTree Queue { get; private set; }
 
         public GameQueueManager()
         {
-            Queue = new CoroutineTree();
-            
+            Queue = new CoroutineTree();            
         }
 
         private IEnumerator PlayerDrawCardDisplayCo(GameObject card)
@@ -56,10 +56,22 @@ namespace Carty.CartyLib.Internals
 
         private IEnumerator CastSpell(ISpell spell)
         {
-            spell.OnCast(null);
+            spell.OnCast(this);
             yield break;
         }
 
+        private IEnumerator DealDamageToOpponentCo(int damage)
+        {
+            Hero 
+            GameManager.Instance.PlayerHero.CurrentHealth -= damage;
+            yield break;
+        }
+
+        private IEnumerator DealDamageToSelfCo(int damage)
+        {
+            GameManager.Instance.EnemyHero.CurrentHealth -= damage;
+            yield break;
+        }
 
         /// <summary>
         /// Start processing of the game queue.
@@ -123,6 +135,16 @@ namespace Carty.CartyLib.Internals
             }
 
             Queue.AddRoot(EnableInteractionCo());
+        }
+
+        public void DealDamageToOpponent(int damage)
+        {
+            Queue.AddCurrent(DealDamageToOpponentCo(damage));
+        }
+
+        public void DealDamageToSelf(int damage)
+        {
+            Queue.AddCurrent(DealDamageToSelfCo(damage));
         }
     }
 }

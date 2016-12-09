@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="CartyLib\BoardComponents\Deck.cs" />
     <Compile Include="CartyLib\BoardComponents\Hand.cs" />
+    <Compile Include="CartyLib\BoardComponents\Hero.cs" />
     <Compile Include="CartyLib\CardManager.cs" />
     <Compile Include="CartyLib\CardsComponents\CanBeDragged.cs" />
     <Compile Include="CartyLib\CardsComponents\CanBeHighlighted.cs" />

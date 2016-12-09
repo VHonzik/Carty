@@ -20,6 +20,8 @@ namespace Carty.CartyLib
             PlayerStartingHandCards = new string[0];
             EnemyDeckCards = new string[0];
             EnemyStartingHandCards = new string[0];
+            PlayerHealth = 30;
+            EnemyHealth = 30;
         }
 
         /// <summary>
@@ -49,6 +51,11 @@ namespace Carty.CartyLib
         public int PlayerAmountOfCardDrawBeforeGame;
 
         /// <summary>
+        /// Starting amount of player's health and also the maximum amount.
+        /// </summary>
+        public int PlayerHealth;
+
+        /// <summary>
         /// Array of cards to be created in enemy's deck.
         /// The order of cards in this array is the order of draw from deck. 
         /// </summary>
@@ -73,6 +80,11 @@ namespace Carty.CartyLib
         /// The cards are added to the hand after EnemyStartingHandCards in order they were in deck from left to right.
         /// </summary>
         public int EnemyAmountOfCardDrawBeforeGame;
+
+        /// <summary>
+        /// Starting amount of enemy's health and also the maximum amount.
+        /// </summary>
+        public int EnemyHealth;
 
 
         /// <summary>
