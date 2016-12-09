@@ -3,8 +3,9 @@ using System.Collections;
 using Carty.CartyLib;
 using System;
 
-public class SpellDeal1DamageToEnemyHero : MonoBehaviour, ICardType, ISpell
+public class SpellDeal1DamageToOponnent : MonoBehaviour, ICardType, ISpell
 {
+    // ICardType, bare minimum information about the card
     public CardInfo GetInfo()
     {
         CardInfo info = new CardInfo();
@@ -17,8 +18,9 @@ public class SpellDeal1DamageToEnemyHero : MonoBehaviour, ICardType, ISpell
         return info;
     }
 
+    // ISpell, triggered when the card is played
     public void OnCast(IGameState state)
     {
-        throw new NotImplementedException();
+        state.DealDamageToOpponent(1);
     }
 }

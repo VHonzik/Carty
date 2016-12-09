@@ -48,6 +48,7 @@
     <Compile Include="CartyLib\BoardComponents\Deck.cs" />
     <Compile Include="CartyLib\BoardComponents\Hand.cs" />
     <Compile Include="CartyLib\BoardComponents\Hero.cs" />
+    <Compile Include="CartyLib\BoardComponents\GameResources.cs" />
     <Compile Include="CartyLib\CardManager.cs" />
     <Compile Include="CartyLib\CardsComponents\CanBeDragged.cs" />
     <Compile Include="CartyLib\CardsComponents\CanBeHighlighted.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="CartyLib\CardsComponents\CanBeMousedOver.cs" />
     <Compile Include="CartyLib\GameQueueManager.cs" />
     <Compile Include="CartyLib\GameSettings.cs" />
+    <Compile Include="CartyLib\GameStateWrapper.cs" />
     <Compile Include="CartyLib\Match.cs" />
     <Compile Include="CartyVisuals\DefaultVisuals\DefaultCardOutline.cs" />
     <Compile Include="CartyVisuals\DefaultVisuals\DefaultCardPlaying.cs" />

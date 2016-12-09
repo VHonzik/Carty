@@ -47,6 +47,16 @@ namespace Carty.CartyLib
         public Hero EnemyHero { get; private set; }
 
         /// <summary>
+        /// Resources of Player.
+        /// </summary>
+        public GameResources PlayerResources { get; set; }
+
+        /// <summary>
+        /// Resources of Enemy.
+        /// </summary>
+        public GameResources EnemyResources { get; set; }
+
+        /// <summary>
         /// How many turns player has played currently.
         /// </summary>
         [HideInInspector]
@@ -129,6 +139,8 @@ namespace Carty.CartyLib
             if (EnemyDeck == null)  EnemyDeck = Deck.CreateDeck(false);
             if (PlayerHero == null) PlayerHero = Hero.CreateHero(true);
             if (EnemyHero == null) EnemyHero = Hero.CreateHero(false);
+            if (PlayerResources == null) PlayerResources = GameResources.CreateResources(true);
+            if (EnemyResources == null) EnemyResources = GameResources.CreateResources(false);
         }
 
         /// <summary>
@@ -143,9 +155,11 @@ namespace Carty.CartyLib
             PlayerHand.FillWithCards(matchInfo.PlayerStartingHandCards);
             EnemyHand.FillWithCards(matchInfo.EnemyStartingHandCards);
 
-            PlayerHero.MaxHealth = PlayerHero.CurrentHealth = matchInfo.PlayerHealth;
-            
+            PlayerHero.MaxHealth = PlayerHero.CurrentHealth = matchInfo.PlayerHealth;            
             EnemyHero.MaxHealth = EnemyHero.CurrentHealth = matchInfo.EnemyHealth;
+
+            PlayerResources.Init(matchInfo.PlayerStartingResource);
+            EnemyResources.Init(matchInfo.EnemyStartingResource);
 
             MatchInfo = matchInfo;
 
@@ -197,8 +211,15 @@ namespace Carty.CartyLib
         public void StartPlayerTurn()
         {
             PlayerTurnCount++;
+
+            int resourcesIncrease = Settings.TurnStartResourceIncreaseSetting(PlayerTurnCount, true, 
+                MatchInfo.PlayerGoesFirst,PlayerResources.ResourcesCount);
+            PlayerResources.TurnStart(resourcesIncrease);
+
             int cardsToDraw = Settings.TurnStartCardDrawSetting(PlayerTurnCount, true, MatchInfo.PlayerGoesFirst);
             GameQueue.PlayerDrawCards(cardsToDraw);
+            Debug.Log("Started Player turn. " + cardsToDraw + " card(s) drawn. Now has " + 
+                PlayerResources.ResourcesCount + " resources.");
         }
 
         /// <summary>

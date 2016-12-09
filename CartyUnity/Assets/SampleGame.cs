@@ -17,7 +17,7 @@ public class SampleGame : MonoBehaviour {
 
         // Use deck builder utility class
         DeckBuilder deckBuilder = new DeckBuilder();
-        deckBuilder.Add("minion23", 20);
+        deckBuilder.Add("spell1dmgoponnent", 20);
 
         match.PlayerDeckCards = deckBuilder.ToArray();
         match.EnemyDeckCards = deckBuilder.ToArray();

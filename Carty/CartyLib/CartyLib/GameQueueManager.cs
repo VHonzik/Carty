@@ -9,13 +9,33 @@ namespace Carty.CartyLib.Internals
     /// <summary>
     /// Class responsible for turn-based gameplay and layered game "event system".
     /// </summary>
-    public class GameQueueManager : IGameState
+    public class GameQueueManager
     {
         public CoroutineTree Queue { get; private set; }
 
         public GameQueueManager()
         {
             Queue = new CoroutineTree();            
+        }
+
+        private GameStateWrapper CreateStateWrapper(bool playerOwned)
+        {
+            GameStateWrapper wrapper = new GameStateWrapper();
+            if (playerOwned)
+            {
+                wrapper.DmgToOpponentD = amount => Queue.AddCurrent(DealDamageToEnemyCo(amount));
+                wrapper.DmgToSelfD = amount => Queue.AddCurrent(DealDamageToPlayerCo(amount));
+                wrapper.HealOpponentD = amount => Queue.AddCurrent(HealEnemyCo(amount));
+                wrapper.HealSelfD = amount => Queue.AddCurrent(HealPlayerCo(amount));
+            }
+            else
+            {
+                wrapper.DmgToOpponentD = amount => Queue.AddCurrent(DealDamageToPlayerCo(amount));
+                wrapper.DmgToSelfD = amount => Queue.AddCurrent(DealDamageToEnemyCo(amount));
+                wrapper.HealOpponentD = amount => Queue.AddCurrent(HealPlayerCo(amount));
+                wrapper.HealSelfD = amount => Queue.AddCurrent(HealEnemyCo(amount));
+            }
+            return wrapper;
         }
 
         private IEnumerator PlayerDrawCardDisplayCo(GameObject card)
@@ -54,23 +74,39 @@ namespace Carty.CartyLib.Internals
             yield break;
         }
 
-        private IEnumerator CastSpell(ISpell spell)
+        private IEnumerator CastSpell(CardManagerCardInfo info)
         {
-            spell.OnCast(this);
-            yield break;
+            var wrapper = CreateStateWrapper(info.Card.GetComponent<CanBeOwned>().PlayerOwned);
+            info.Spell.OnCast(wrapper);
+            yield return null;
         }
 
-        private IEnumerator DealDamageToOpponentCo(int damage)
+        private IEnumerator DealDamageToPlayerCo(int amount)
         {
-            Hero 
-            GameManager.Instance.PlayerHero.CurrentHealth -= damage;
-            yield break;
+            Debug.Log("Dealt " + amount + " damage to player.");
+            GameManager.Instance.PlayerHero.DealDamage(amount);
+            yield return null;
         }
 
-        private IEnumerator DealDamageToSelfCo(int damage)
+        private IEnumerator DealDamageToEnemyCo(int amount)
         {
-            GameManager.Instance.EnemyHero.CurrentHealth -= damage;
-            yield break;
+            Debug.Log("Dealt " + amount + " damage to enemy.");
+            GameManager.Instance.EnemyHero.DealDamage(amount);
+            yield return null;
+        }
+
+        private IEnumerator HealPlayerCo(int amount)
+        {
+            Debug.Log("Healed player for " + amount + " damage.");
+            GameManager.Instance.PlayerHero.Heal(amount);
+            yield return null;
+        }
+
+        private IEnumerator HealEnemyCo(int amount)
+        {
+            Debug.Log("Healed enemy for " + amount + " damage.");
+            GameManager.Instance.EnemyHero.Heal(amount);
+            yield return null;
         }
 
         /// <summary>
@@ -96,7 +132,7 @@ namespace Carty.CartyLib.Internals
         public void PlayCard(GameObject card)
         {
             var info = GameManager.Instance.CardManager.FindCardInfo(card);
-            if (info.IsSpell == true) Queue.AddRoot(CastSpell(info.Spell));
+            if (info.IsSpell == true) Queue.AddRoot(CastSpell(info));
         }
 
         /// <summary>
@@ -137,14 +173,5 @@ namespace Carty.CartyLib.Internals
             Queue.AddRoot(EnableInteractionCo());
         }
 
-        public void DealDamageToOpponent(int damage)
-        {
-            Queue.AddCurrent(DealDamageToOpponentCo(damage));
-        }
-
-        public void DealDamageToSelf(int damage)
-        {
-            Queue.AddCurrent(DealDamageToSelfCo(damage));
-        }
     }
 }
