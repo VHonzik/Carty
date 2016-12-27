@@ -113,6 +113,7 @@
     <Compile Include="Assets\UnitTests\GameManager\GameManagerCleanUps.cs" />
     <Compile Include="Assets\UnitTests\GameManager\GameManagerGameSettingsDraw.cs" />
     <Compile Include="Assets\UnitTests\GameManager\GameManagerStartsGame.cs" />
+    <Compile Include="Assets\UnitTests\GameQueue\GameQueueCastSpell.cs" />
     <Compile Include="Assets\UnitTests\GameQueue\GameQueueDrawPlayerCardRemovesFromDeck.cs" />
     <Compile Include="Assets\UnitTests\GameQueue\GameQueueDrawPlayerEnablesInteraction.cs" />
     <Compile Include="Assets\UnitTests\Hand\HandAddingMovesCard.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="Assets\UnitTests\HasOutline\HasOutlineRequestRevoke.cs" />
     <Compile Include="Assets\UnitTests\TestCards\OtherSimpleCard.cs" />
     <Compile Include="Assets\UnitTests\TestCards\SimpleCard.cs" />
+    <Compile Include="Assets\UnitTests\TestCards\SimpleSpell.cs" />
     <Compile Include="Assets\UnitTests\TestingCoroutines.cs" />
     <Compile Include="Assets\UnityTestTools\Assertions\AssertionComponent.cs" />
     <Compile Include="Assets\UnityTestTools\Assertions\AssertionException.cs" />
@@ -167,5 +169,6 @@
     <None Include="Assets\UnityTestTools\LICENSE.txt" />
     <None Include="Assets\UnityTestTools\changelog.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

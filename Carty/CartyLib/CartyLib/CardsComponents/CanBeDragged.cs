@@ -42,7 +42,7 @@ namespace Carty.CartyLib.Internals.CardsComponents
 
             if (Dragging == true)
             {
-                Vector3 point = Input.mousePosition;
+                Vector3 point = UnityBridge.Instance.MousePosition();
                 point.z = Camera.main.transform.position.y - transform.position.y;
                 Vector3 wantedPos = Camera.main.ScreenToWorldPoint(point);
                 _detach.DetachedPosition = wantedPos;

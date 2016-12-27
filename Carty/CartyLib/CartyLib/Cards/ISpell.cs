@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// Card of spell type.
-    /// Spells does neither have target nor create any minions.
+    /// Spells neither have target nor create any minions.
     /// When dropped on board they simply trigger the OnCast callback and are destroyed.
     /// </summary>
     public interface ISpell
