@@ -66,10 +66,11 @@ namespace Carty.CartyLib.Internals.CardsComponents
         }
 
         void Start()
-        {
+        {            
             OutlineGO = VisualManager.Instance.CardOutline.CreateOutlineObject();
+            var offset = OutlineGO.transform.position;
             OutlineGO.transform.parent = GetComponent<CanBeDetached>().Handle.transform;
-            OutlineGO.transform.localPosition = Vector3.zero;
+            OutlineGO.transform.localPosition = offset;
             OutlineGO.transform.localRotation = Quaternion.identity;
 
             OriginalColor = HiddenColor;

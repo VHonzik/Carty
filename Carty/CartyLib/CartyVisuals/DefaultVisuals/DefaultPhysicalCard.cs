@@ -61,13 +61,13 @@ namespace Carty.CartyVisuals.Defaults
 
         public void SetCardFront(GameObject physicalCardGO, Texture frontTexture)
         {
-            string matName = "CardFront";
+            string matName = "CardTop";
             var renderer = physicalCardGO.GetComponent<Renderer>();
             if (renderer != null)
             {
                 foreach (var material in renderer.materials)
                 {
-                    if (material.name == matName)
+                    if (material.name.StartsWith(matName))
                     {
                         material.mainTexture = frontTexture;
                         return;

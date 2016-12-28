@@ -134,8 +134,11 @@ namespace Carty.CartyLib.Internals
 
                 // Attempt to apply front texture
                 var frontTextureName = iCard.GetInfo().CardFrontTexture;
+                var frontTextureFolder = VisualManager.Instance.CardTexturesPath;
 
-                var frontTexture = Resources.Load(VisualManager.Instance.CardTexturesPath + frontTextureName) as Texture;
+                if (frontTextureFolder.EndsWith("\\") == false) frontTextureFolder += "\\";
+
+                var frontTexture = Resources.Load(frontTextureFolder + frontTextureName) as Texture;
                 if(frontTexture == null)
                 {
                     frontTexture = Resources.Load(frontTextureName) as Texture;

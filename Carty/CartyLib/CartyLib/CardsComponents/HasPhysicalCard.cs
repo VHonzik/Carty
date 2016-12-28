@@ -15,7 +15,7 @@ namespace Carty.CartyLib.Internals.CardsComponents
         /// </summary>
         public GameObject PhysicalCardGO { get; private set; }
 
-        void Start()
+        void Awake()
         {
             PhysicalCardGO = VisualManager.Instance.PhysicalCard.CreatePhysicalCardObject();
             PhysicalCardGO.transform.parent = GetComponent<CanBeDetached>().Handle.transform;

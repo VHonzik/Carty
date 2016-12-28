@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Carty.CartyLib;
+using Carty.CartyVisuals;
 
 /// <summary>
 /// Example of how to start a sample game.
@@ -7,6 +8,9 @@ using Carty.CartyLib;
 public class SampleGame : MonoBehaviour {
 
 	void Start () {
+
+        VisualManager.Instance.CardTexturesPath = "CardsFronts";
+
         // Basic match info needed for GameManager.StartMatch
         MatchInfo match = new MatchInfo();
         match.PlayerAmountOfCardDrawBeforeGame = 3;
@@ -17,7 +21,7 @@ public class SampleGame : MonoBehaviour {
 
         // Use deck builder utility class
         DeckBuilder deckBuilder = new DeckBuilder();
-        deckBuilder.Add("spell1dmgoponnent", 20);
+        deckBuilder.Add("bowarrowhat", 20);
 
         match.PlayerDeckCards = deckBuilder.ToArray();
         match.EnemyDeckCards = deckBuilder.ToArray();
