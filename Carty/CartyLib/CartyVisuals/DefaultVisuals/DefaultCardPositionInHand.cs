@@ -62,7 +62,7 @@ namespace Carty.CartyVisuals.Defaults
             float reference_angle = 0.5f * Mathf.PI - (Mathf.Deg2Rad * angle);
             Vector3 result = new Vector3(Radius * Mathf.Cos(reference_angle), 0, Radius * Mathf.Sin(reference_angle));
             result -= middle_card;
-            result.y = VisualManager.Instance.CardHeight * (index_relative_to_center + 1);
+            result.y = VisualManager.Instance.CardHeight * index_relative_to_center;
             result.z *= (player ? 1 : -1);
 
             result += hand_pos;
