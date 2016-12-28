@@ -120,34 +120,22 @@ namespace Carty.CartyLib.Internals
             CardManagerCardInfo cardInfo = new CardManagerCardInfo();
             cardInfo.Card = card;
 
+            // Find in type mapping
             Type cardType;
             if (TypeMapping.TryGetValue(uniqueCardTypeId, out cardType))
             {
                 var iCard = card.AddComponent(cardType) as ICardType;
                 cardInfo.CardType = iCard;
 
-                if(cardType.GetInterfaces().Contains(typeof(ISpell)))
+                if (cardType.GetInterfaces().Contains(typeof(ISpell)))
                 {
                     cardInfo.IsSpell = true;
                     cardInfo.Spell = iCard as ISpell;
                 }
 
-                // Attempt to apply front texture
-                var frontTextureName = iCard.GetInfo().CardFrontTexture;
-                var frontTextureFolder = VisualManager.Instance.CardTexturesPath;
-
-                if (frontTextureFolder.EndsWith("\\") == false) frontTextureFolder += "\\";
-
-                var frontTexture = Resources.Load(frontTextureFolder + frontTextureName) as Texture;
-                if(frontTexture == null)
-                {
-                    frontTexture = Resources.Load(frontTextureName) as Texture;
-                }
-
-                if(frontTexture != null)
-                {
-                    VisualManager.Instance.PhysicalCard.SetCardFront(physicalCard.PhysicalCardGO, frontTexture);
-                }
+                // Attempt to apply front and back texture
+                ApplyFrontTexture(physicalCard, iCard.GetInfo());
+                ApplyBackTexture(physicalCard, player);
             }
 
             AllCards.Add(cardInfo);
@@ -173,6 +161,45 @@ namespace Carty.CartyLib.Internals
         public CardManagerCardInfo FindCardInfo(GameObject card)
         {
             return AllCards.Find(x => x.Card == card);
+        }
+
+        private void ApplyBackTexture(HasPhysicalCard physicalCard, bool player)
+        {
+            var backTextureName = player ? GameManager.Instance.MatchInfo.PlayerCardBackTexture :
+                GameManager.Instance.MatchInfo.EnemyCardBackTexture;
+
+            var textureFolder = VisualManager.Instance.CardTexturesPath;
+            if (textureFolder.EndsWith("\\") == false) textureFolder += "\\";
+
+            var backTexture = Resources.Load(textureFolder + backTextureName) as Texture;
+            if (backTexture == null)
+            {
+                backTexture = Resources.Load(backTextureName) as Texture;
+            }
+
+            if (backTexture != null)
+            {
+                VisualManager.Instance.PhysicalCard.SetCardBack(physicalCard.PhysicalCardGO, backTexture);
+            }
+        }
+
+        private void ApplyFrontTexture(HasPhysicalCard physicalCard, CardInfo cardInfo)
+        {
+            var frontTextureName = cardInfo.CardFrontTexture;
+
+            var textureFolder = VisualManager.Instance.CardTexturesPath;
+            if (textureFolder.EndsWith("\\") == false) textureFolder += "\\";
+
+            var frontTexture = Resources.Load(textureFolder + frontTextureName) as Texture;
+            if (frontTexture == null)
+            {
+                frontTexture = Resources.Load(frontTextureName) as Texture;
+            }
+
+            if (frontTexture != null)
+            {
+                VisualManager.Instance.PhysicalCard.SetCardFront(physicalCard.PhysicalCardGO, frontTexture);
+            }
         }
     }
 }

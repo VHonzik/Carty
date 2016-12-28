@@ -8,8 +8,7 @@ using Carty.CartyVisuals;
 public class SampleGame : MonoBehaviour {
 
 	void Start () {
-
-        VisualManager.Instance.CardTexturesPath = "CardsFronts";
+        VisualManager.Instance.CardTexturesPath = "CardsTextures";
 
         // Basic match info needed for GameManager.StartMatch
         MatchInfo match = new MatchInfo();
@@ -18,6 +17,8 @@ public class SampleGame : MonoBehaviour {
         match.PlayerGoesFirst = true;
         match.PlayerStartingResource = 1;
         match.EnemyStartingResource = 1;
+        match.PlayerCardBackTexture = "PlayerBack";
+        match.EnemyCardBackTexture = "PlayerBack";
 
         // Use deck builder utility class
         DeckBuilder deckBuilder = new DeckBuilder();

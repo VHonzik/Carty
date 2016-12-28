@@ -40,13 +40,13 @@ namespace Carty.CartyVisuals.Defaults
 
         public void SetCardBack(GameObject physicalCardGO, Texture backTexture)
         {
-            string matName = "CardBack";
+            string matName = "CardBottom";
             var renderer = physicalCardGO.GetComponent<Renderer>();
             if (renderer != null)
             {
                 foreach(var material in renderer.materials)
                 {
-                    if(material.name == matName)
+                    if(material.name.StartsWith(matName))
                     {
                         material.mainTexture = backTexture;
                         return;

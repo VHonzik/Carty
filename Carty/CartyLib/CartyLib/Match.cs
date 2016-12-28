@@ -86,10 +86,25 @@ namespace Carty.CartyLib
         /// </summary>
         public int EnemyHealth;
 
-
         /// <summary>
         /// Whether player goes first or enemy does.
         /// </summary>
         public bool PlayerGoesFirst;
+
+        /// <summary>
+        /// Name of the texture to use for player's card back.
+        /// Search order:
+        ///     1. Resources folder + VisualManager.Instance.CardTexturesPath
+        ///     2. Resources folder
+        /// </summary>
+        public string PlayerCardBackTexture;
+
+        /// <summary>
+        /// Name of the texture to use for enemy's card back.
+        /// Search order:
+        ///     1. Resources folder + VisualManager.Instance.CardTexturesPath
+        ///     2. Resources folder
+        /// </summary>
+        public string EnemyCardBackTexture;
     }
 }

@@ -149,6 +149,8 @@ namespace Carty.CartyLib
         /// <param name="matchInfo">Information about initial state of the match. See MatchInfo.</param>
         public void StartMatch(MatchInfo matchInfo)
         {
+            MatchInfo = matchInfo;
+
             CreateBoardObjects();
             PlayerDeck.FillWithCards(matchInfo.PlayerDeckCards);
             EnemyDeck.FillWithCards(matchInfo.EnemyDeckCards);
@@ -161,7 +163,6 @@ namespace Carty.CartyLib
             PlayerResources.Init(matchInfo.PlayerStartingResource);
             EnemyResources.Init(matchInfo.EnemyStartingResource);
 
-            MatchInfo = matchInfo;
 
             if(matchInfo.PlayerAmountOfCardDrawBeforeGame > 0)
             {
