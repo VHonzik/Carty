@@ -11,5 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d01dc4c8f278da489d7d54c83f19cb9, type: 3}
   m_Name: IntegrationTestsRunnerSettings
   m_EditorClassIdentifier: 
-  blockUIWhenRunning: 0
+  blockUIWhenRunning: 1
   pauseOnTestFailure: 0

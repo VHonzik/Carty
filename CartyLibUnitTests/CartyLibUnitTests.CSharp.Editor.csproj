@@ -115,11 +115,8 @@
     <Reference Include="Carty">
       <HintPath>Assets\Carty\Carty.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.Cecil">
-      <HintPath>Assets\UnityTestTools\IntegrationTestsFramework\Libs\Mono.Cecil.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil.Mdb">
-      <HintPath>Assets\UnityTestTools\IntegrationTestsFramework\Libs\Mono.Cecil.Mdb.dll</HintPath>
+    <Reference Include="NSubstitute">
+      <HintPath>Assets\UnityTestTools\UnitTesting\Editor\NSubstitute\NSubstitute.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

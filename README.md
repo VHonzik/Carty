@@ -4,6 +4,8 @@ Warning the following text is WIP.
 
 Carty [[kʌrtɪ]](https://en.wikipedia.org/wiki/Help:IPA_for_English) is a game engine for Trading Card Games (TCG) written in Unity. The word origin is an approximate English transcription of Czech word for cards.
 
+Currently the project is using Unity 5.5.0f3.
+
 *Disclaimer right from the start, the engine is inspired by Hearthstone and following description might be using Hearthstone terminology.*
 
 ## Vision of the engine
@@ -39,13 +41,16 @@ User simply imports Carty dll to his Unity project and start writing new cards a
 
 ## Project structure
 
-TODO
+..* Carty - C# solution of the Carty library. Its project is imported into the following Unity projects so one usually doesn't need to use this solution. The output dll of building this solution (and project) is copied over to the following Unity projects asset folders.
+..* CartyLibUnitTests - Unity project using Unity Test Tools to unit/integration test the Carty library. Unfortunately it is currently broken because of Unity Test Tools incompatibility with 5.5.
+..*CartySampleGame - Sample game serving as an example of using Carty library.
 
 ## Getting started
 
-TODO
+WIP section. For now just open CartySampleGame in Unity and explore how Carty library is used.
 
 ## History
 
 * Late August 2016 - Precursor of Carty - TCG Game - is created for Ludum Dare 36 ([link](http://ludumdare.com/compo/ludum-dare-36/?action=preview&uid=36014)). 
 * September 2016 - December 2016 - First iteraction of Carty is in development. While functionaly it is almost identical to the precursor, heavy refactoring is happening.
+* January 2017 - Project put on hold while a custom card implementation and evalution is worked on in a different project.
