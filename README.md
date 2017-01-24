@@ -41,9 +41,9 @@ User simply imports Carty dll to his Unity project and start writing new cards a
 
 ## Project structure
 
-..* Carty - C# solution of the Carty library. Its project is imported into the following Unity projects so one usually doesn't need to use this solution. The output dll of building this solution (and project) is copied over to the following Unity projects asset folders.
-..* CartyLibUnitTests - Unity project using Unity Test Tools to unit/integration test the Carty library. Unfortunately it is currently broken because of Unity Test Tools incompatibility with 5.5.
-..*CartySampleGame - Sample game serving as an example of using Carty library.
+* Carty - C# solution of the Carty library. Its project is imported into the following Unity projects so one usually doesn't need to use this solution. The output dll of building this solution (and project) is copied over to the following Unity projects asset folders.
+* CartyLibUnitTests - Unity project using Unity Test Tools to unit/integration test the Carty library. Unfortunately it is currently broken because of Unity Test Tools incompatibility with 5.5.
+* CartySampleGame - Sample game serving as an example of using Carty library.
 
 ## Getting started
 
