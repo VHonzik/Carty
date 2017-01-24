@@ -33,8 +33,18 @@ namespace Carty.CartyLib.Internals.CardsComponents
             _outline = GetComponent<HasOutline>();
             _hand = GetComponent<CanBeInHand>();
 
-            var info = GameManager.Instance.CardManager.FindCardInfo(gameObject).CardType.GetInfo();
-            DefaultCost = CurrentCost = info.Cost;
+            var cardManagerInfo = GameManager.Instance.CardManager.FindCardInfo(gameObject);
+            if(cardManagerInfo.CardType != null)
+            {
+                var info = cardManagerInfo.CardType.GetInfo();
+                DefaultCost = CurrentCost = info.Cost;
+            }
+            else
+            {
+                Debug.Log("No card implementation found for a card in HasCost component. Either it is dummy card or something went wrong.");
+                DefaultCost = CurrentCost = 0;
+            }
+
             _previouslyCouldBePlayed = false;
             _canBePlayed = false;
         }
@@ -50,23 +60,26 @@ namespace Carty.CartyLib.Internals.CardsComponents
 
         void Update()
         {
-            GameResources resources = _owned.PlayerOwned ? GameManager.Instance.PlayerResources :
-                GameManager.Instance.EnemyResources;
-            _canBePlayed = _owned.PlayerOwned && _hand.IsInHand && resources.CanAfford(CurrentCost);
-
-            if (_canBePlayed != _previouslyCouldBePlayed)
+            if(GameManager.Instance.PlayerResources)
             {
-                if (_canBePlayed == true)
-                {
-                    _outline.Request(this, GreenOutlineColor);
-                }
-                else
-                {
-                    _outline.Revoke(this);
-                }
-            }
+                GameResources resources = _owned.PlayerOwned ? GameManager.Instance.PlayerResources :
+    GameManager.Instance.EnemyResources;
+                _canBePlayed = _owned.PlayerOwned && _hand.IsInHand && resources.CanAfford(CurrentCost);
 
-            _previouslyCouldBePlayed = _canBePlayed;
+                if (_canBePlayed != _previouslyCouldBePlayed)
+                {
+                    if (_canBePlayed == true)
+                    {
+                        _outline.Request(this, GreenOutlineColor);
+                    }
+                    else
+                    {
+                        _outline.Revoke(this);
+                    }
+                }
+
+                _previouslyCouldBePlayed = _canBePlayed;
+            }
         }
     }
 }

@@ -78,6 +78,8 @@
     <Compile Include="CartyVisuals\DefaultVisuals\DefaultHighLevelCardMovement.cs" />
     <Compile Include="CartyVisuals\DefaultVisuals\DefaultLowLevelCardMovement.cs" />
     <Compile Include="CartyVisuals\DefaultVisuals\DefaultPhysicalCard.cs" />
+    <Compile Include="CartyVisuals\DefaultVisuals\DefaultTurnTimer.cs" />
+    <Compile Include="CartyVisuals\DefaultVisuals\TurnTimer.cs" />
     <Compile Include="CartyVisuals\Interfaces\ICardPlaying.cs" />
     <Compile Include="CartyVisuals\Interfaces\IDeckCardPositioning.cs" />
     <Compile Include="CartyVisuals\Interfaces\IHandCardPositioning.cs" />
@@ -85,6 +87,7 @@
     <Compile Include="CartyVisuals\Interfaces\ILowLevelCardMovement.cs" />
     <Compile Include="CartyVisuals\Interfaces\IOutline.cs" />
     <Compile Include="CartyVisuals\Interfaces\IPhysicalCard.cs" />
+    <Compile Include="CartyVisuals\Interfaces\ITurnTimer.cs" />
     <Compile Include="CartyVisuals\VisualCardWrapper.cs" />
     <Compile Include="CartyVisuals\VisualManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

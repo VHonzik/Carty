@@ -35,6 +35,7 @@ namespace Carty.CartyVisuals
             DeckPositioning = new DefaultCardPositionInDeck();
             HighLevelCardMovement = new DefaultHighLevelCardMovement();
             CardPlaying = new DefaultCardPlaying();
+            TurnTimer = new DefaultTurnTimer();
 
             FlippedOn = Quaternion.Euler(0, 0, 0);
             FlippedOff = Quaternion.Euler(0, 0, -180);
@@ -113,6 +114,12 @@ namespace Carty.CartyVisuals
         /// Assign your own implementation in order to change details of how cards are played.
         /// </summary>
         public ICardPlaying CardPlaying { get; set; }
+
+        /// <summary>
+        /// Customization of turn timer.
+        /// Assign your own implementation in order to change how turn timer is displayed.
+        /// </summary>
+        public ITurnTimer TurnTimer { get; set; }
 
         /// <summary>
         /// Default rotation of the card when its face is facing camera.
