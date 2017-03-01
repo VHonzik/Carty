@@ -1,0 +1,4 @@
+# Since we are using premake ignore pretty much everything
+build/*
+!build/premake/
+bin/
