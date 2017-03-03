@@ -103,5 +103,15 @@ namespace Carty.Core.Internals
 
             AllCards.Clear();
         }
+
+        /// <summary>
+        /// Removes the card from AllCards list and destroys it.
+        /// </summary>
+        /// <param name="card">Card to destroy.</param>
+        public void FindAndDestroy(CardWrapper card)
+        {
+            AllCards.RemoveAll(x => x == card);
+            card.Destroy();
+        }
     }
 }
