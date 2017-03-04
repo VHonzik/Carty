@@ -2,7 +2,6 @@
 
 namespace Carty.Core.Internals
 {
-
     /// <summary>
     /// Wrapper around visuals side of card and core logic side of card.
     /// </summary>

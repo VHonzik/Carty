@@ -24,10 +24,18 @@ namespace Carty.Core
         /// </summary>
         internal CardManager CardManager { get; private set; }
 
+        /// <summary>
+        /// Game logic oriented settings and rules.
+        /// To modify them simply change the properties inside.
+        /// See GameSettings.
+        /// </summary>
+        public GameSettings Settings { get; set; }
+
         void Awake()
         {
             CardManager = new CardManager();
             CardManager.Initialize();
+            Settings = new DefaultGameSettings();
         }
     }
 }

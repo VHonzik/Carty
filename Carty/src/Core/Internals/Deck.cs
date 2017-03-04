@@ -1,3 +1,4 @@
+using Carty.Visuals.Internals;
 using System.Collections.Generic;
 
 namespace Carty.Core.Internals
@@ -11,6 +12,11 @@ namespace Carty.Core.Internals
         /// List of cards in the deck.
         /// </summary>
         public List<CardWrapper> Cards { get; private set; }
+
+        /// <summary>
+        /// Triggered when a card position needs to be updated instantly to match a certain position in a deck.
+        /// </summary>
+        public event DeckCardPositionDelegate CardInDeckInstantPositionChange;
 
         /// <summary>
         /// Immediately destroy all cards in the deck.
@@ -53,6 +59,7 @@ namespace Carty.Core.Internals
             for (int i = 0; i < cardsTypes.Length; i++)
             {
                 var card = GameManager.Instance.CardManager.CreateCard(cardsTypes[i]);
+                CardInDeckInstantPositionChange(card, 0, cardsTypes.Length);
                 Cards.Add(card);
             }
         }
