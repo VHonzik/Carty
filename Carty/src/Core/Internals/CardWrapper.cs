@@ -1,4 +1,5 @@
 ﻿using Carty.Core.Cards;
+using UnityEngine;
 
 namespace Carty.Core.Internals
 {
@@ -21,6 +22,12 @@ namespace Carty.Core.Internals
         /// If IsSpell is true, this is pointer to spell type of the card.
         /// </summary>
         public ISpellType Spell = null;
+
+        /// <summary>
+        /// Game object for visual representation of the card.
+        /// This is driven by Visuals side of the Carty engine.
+        /// </summary>
+        public GameObject CardVisuals;
 
         /// <summary>
         /// Release all resources associated with the card.

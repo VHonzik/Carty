@@ -8,6 +8,7 @@ project "Carty"
   kind "SharedLib"
   language "C#"
   location("../" .. action .. "/Carty")
+  dotnetframework "3.5"
 
   targetdir "../../bin"
 
@@ -16,6 +17,9 @@ project "Carty"
   
   links { "UnityEditor", "UnityEngine"}
   libdirs  { "../../../SampleGame/Library/UnityAssemblies/" }  
+  
+  postbuildcommands { "copy /Y \"$(TargetDir)$(TargetName).dll\" \"$(SolutionDir)..\\..\\..\\SampleGame\\Assets\\Carty\\$(TargetName).dll\"" }
+
 
   filter "configurations:Debug"
     defines { "DEBUG" }

@@ -12,6 +12,13 @@ namespace Carty.Core
         public int MaxCardsInHand { get; set; }
 
         /// <summary>
+        /// Default amount of health player's or enemy's hero starts with.
+        /// Also determines maximal amount of health hero can have.
+        /// Can be overwritten per match basis. See MatchInfo.
+        /// </summary>
+        public int StartingHeroHealth { get; set; }
+
+        /// <summary>
         /// Rule for how many cards player and enemy draw each turn. 
         /// See CardDrawRule delegate.
         /// </summary>

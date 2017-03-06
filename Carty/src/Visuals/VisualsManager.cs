@@ -1,13 +1,10 @@
 using Carty.Core;
-using Carty.Core.Internals;
-using Carty.Visuals.Internals;
-using UnityEngine;
 
 namespace Carty.Visuals
 {
     public class VisualsManager
     {
-        private static VisualsManager _the_one_and_only;
+        private static VisualsManager TheOneAndOnly;
         /// <summary>
         /// Singleton accessor.
         /// </summary>
@@ -15,30 +12,53 @@ namespace Carty.Visuals
         {
             get
             {
-                if (_the_one_and_only == null)
+                if (TheOneAndOnly == null)
                 {
-                    _the_one_and_only = new VisualsManager();
+                    TheOneAndOnly = new VisualsManager();
                 }
 
-                return _the_one_and_only;
+                return TheOneAndOnly;
             }
         }
 
-        /// <summary>
-        /// See Deck.CardInDeckInstantPositionChange
-        /// </summary>
-        internal void PositionCardInPlayerDeckInstantly(CardWrapper card, int cardPositionInDeck, int deck)
-        {
-            
+        private Visuals _Visuals;
+        public Visuals Visuals {
+            get
+            {
+                if(_Visuals == null)
+                {
+                    Visuals = new Visuals();
+                }
+                return _Visuals;
+            }
+            set
+            {
+                if (_Visuals != value)
+                {
+                    UnHookUpEvents(GameManager.Instance);
+                    _Visuals = value;
+                    if (_Visuals != null)
+                    {
+                        HookUpEvents(GameManager.Instance);
+                    }
+                }
+            }
         }
 
         /// <summary>
         /// Subscribe to all of the visuals events in Core.
         /// </summary>
         /// <param name="gameManager">GameManager instance to avoid going through singleton.</param>
-        internal void HookUpEvents(GameManager gameManager)
+        private void HookUpEvents(GameManager gameManager)
         {
-            gameManager.PlayerDeck.CardInDeckInstantPositionChange += PositionCardInPlayerDeckInstantly;
+            gameManager.PlayerDeck.CardInDeckInstantPositionChange += Visuals.PositionCardInPlayerDeckInstantly;
+            gameManager.CardManager.CardCreated += Visuals.AssembleCard;
+        }
+
+        private void UnHookUpEvents(GameManager gameManager)
+        {
+            gameManager.PlayerDeck.CardInDeckInstantPositionChange -= Visuals.PositionCardInPlayerDeckInstantly;
+            gameManager.CardManager.CardCreated -= Visuals.AssembleCard;
         }
     }
 }

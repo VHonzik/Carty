@@ -1,4 +1,5 @@
 using Carty.Core.Cards;
+using Carty.Visuals;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,6 +66,11 @@ namespace Carty.Core.Internals
         }
 
         /// <summary>
+        /// Triggered when a card is created.
+        /// </summary>
+        public event CardCreatedDelegate CardCreated;
+
+        /// <summary>
         /// Assembles a card.
         /// </summary>
         /// <param name="uniqueCardTypeId">Unique card type id. See ICardType.UniqueCardTypeId.</param>
@@ -72,6 +78,8 @@ namespace Carty.Core.Internals
         public CardWrapper CreateCard(string uniqueCardTypeId)
         {
             CardWrapper card = new CardWrapper();
+
+            card.CardVisuals = new GameObject(uniqueCardTypeId);
 
             // Find in type mapping
             ICardType cardType;
@@ -87,6 +95,8 @@ namespace Carty.Core.Internals
             }
 
             AllCards.Add(card);
+
+            if(CardCreated != null) CardCreated(card.CardVisuals);
 
             return card;
         }
