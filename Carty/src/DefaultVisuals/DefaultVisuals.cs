@@ -1,9 +1,11 @@
+using System;
 using Carty.Visuals.CardComponents;
+using Carty.Visuals.Interfaces;
 using UnityEngine;
 
 namespace Carty.Visuals
 {
-    public class Visuals
+    internal class DefaultVisuals : ICardManagment, ICardPositioning
     {
         /// <summary>
         /// Height of the physical card.
@@ -32,32 +34,19 @@ namespace Carty.Visuals
         /// </summary>
         public Vector3 EnemyDeckPosition { get; set; }
 
-        public Visuals()
+        public DefaultVisuals()
         {
             CardHeight = 0.013f;
             EnemyDeckPosition = new Vector3(7f, 0, 1.9f);
             PlayerDeckPosition = new Vector3(7f, 0, -1.9f);
         }
 
-        /// <summary>
-        /// Called when a card is created.
-        /// Should be used to add any visual behaviors.
-        /// Hooked-up into CardManager.CardCreated event.
-        /// <param name="card">Top-level parent game object to use for visuals of the card.</param>
-        /// </summary>
-        public virtual void AssembleCard(GameObject card)
+        public void AssembleCard(GameObject card)
         {
-            card.AddComponent<CanBeInDeck>();
+            card.AddComponent<CanBeInDeck>().DVisuals = this;
         }
 
-        /// <summary>
-        /// Called when a card was instantly placed into a specific deck position.
-        /// Hooked-up into Deck.CardInDeckInstantPositionChange event.
-        /// </summary>
-        /// <param name="card">Top-level parent game object to use for visuals of the card.</param>
-        /// <param name="deckIndex">Index of the card in the deck where zero is top of the deck.</param>
-        /// <param name="deckSize">Number of cards in the deck.</param>
-        public virtual void PositionCardInPlayerDeckInstantly(GameObject card, int deckIndex, int deckSize)
+        public void PositionCardInPlayerDeckInstantly(GameObject card, int deckIndex, int deckSize)
         {
             card.GetComponent<CanBeInDeck>().ChangePosition(true, deckIndex, deckSize);
         }

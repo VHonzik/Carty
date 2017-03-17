@@ -1,4 +1,5 @@
 using Carty.Core;
+using Carty.Visuals.Interfaces;
 
 namespace Carty.Visuals
 {
@@ -21,26 +22,73 @@ namespace Carty.Visuals
             }
         }
 
-        private Visuals _Visuals;
-        public Visuals Visuals {
+        private VisualsManager()
+        {
+            ActualCardManagment = null;
+            DefaultVisuals = new DefaultVisuals();
+
+            HookUpEvents(GameManager.Instance);
+        }
+
+        /// <summary>
+        /// Default implementation of visual interfaces.
+        /// </summary>
+        private DefaultVisuals DefaultVisuals;
+
+        /// <summary>
+        /// Overridden implementation of ICardManagment.
+        /// </summary>
+        private ICardManagment ActualCardManagment;
+
+        /// <summary>
+        /// Implementation of ICardManagment.
+        /// Use it to assign your custom implementation.
+        /// </summary>
+        public ICardManagment CardManagment
+        {
             get
             {
-                if(_Visuals == null)
+                if(ActualCardManagment != null)
                 {
-                    Visuals = new Visuals();
+                    return ActualCardManagment;
                 }
-                return _Visuals;
+
+                return DefaultVisuals;
             }
             set
             {
-                if (_Visuals != value)
+                if(value != null)
                 {
-                    UnHookUpEvents(GameManager.Instance);
-                    _Visuals = value;
-                    if (_Visuals != null)
-                    {
-                        HookUpEvents(GameManager.Instance);
-                    }
+                    ActualCardManagment = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Overridden implementation of ICardPositioning.
+        /// </summary>
+        private ICardPositioning ActualCardPositioning;
+
+        /// <summary>
+        /// Implementation of ICardPositioning.
+        /// Use it to assign your custom implementation.
+        /// </summary>
+        public ICardPositioning CardPositioning
+        {
+            get
+            {
+                if (ActualCardPositioning != null)
+                {
+                    return ActualCardPositioning;
+                }
+
+                return DefaultVisuals;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    ActualCardPositioning = value;
                 }
             }
         }
@@ -51,14 +99,8 @@ namespace Carty.Visuals
         /// <param name="gameManager">GameManager instance to avoid going through singleton.</param>
         private void HookUpEvents(GameManager gameManager)
         {
-            gameManager.PlayerDeck.CardInDeckInstantPositionChange += Visuals.PositionCardInPlayerDeckInstantly;
-            gameManager.CardManager.CardCreated += Visuals.AssembleCard;
-        }
-
-        private void UnHookUpEvents(GameManager gameManager)
-        {
-            gameManager.PlayerDeck.CardInDeckInstantPositionChange -= Visuals.PositionCardInPlayerDeckInstantly;
-            gameManager.CardManager.CardCreated -= Visuals.AssembleCard;
+            gameManager.PlayerDeck.CardInDeckInstantPositionChange += CardPositioning.PositionCardInPlayerDeckInstantly;
+            gameManager.CardManager.CardCreated += CardManagment.AssembleCard;
         }
     }
 }
