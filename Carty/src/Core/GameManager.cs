@@ -20,6 +20,21 @@ namespace Carty.Core
         internal Deck PlayerDeck { get; private set; }
 
         /// <summary>
+        /// Deck of the enemy.
+        /// </summary>
+        internal Deck EnemyDeck { get; private set; }
+
+        /// <summary>
+        /// Hand of the player.
+        /// </summary>
+        internal Hand PlayerHand { get; private set; }
+
+        /// <summary>
+        /// Hand of the enemy.
+        /// </summary>
+        internal Hand EnemyHand { get; private set; }
+
+        /// <summary>
         /// Card manager instance. See CardManager class.
         /// </summary>
         internal CardManager CardManager { get; private set; }
@@ -35,6 +50,13 @@ namespace Carty.Core
         {
             CardManager = new CardManager();
             CardManager.Initialize();
+
+            PlayerDeck = new Deck();
+            EnemyDeck = new Deck();
+
+            PlayerHand = new Hand();
+            EnemyHand = new Hand();
+
             Settings = new DefaultGameSettings();
         }
     }

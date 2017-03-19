@@ -1,5 +1,9 @@
 using Carty.Core;
+using Carty.Visuals.Defaults;
 using Carty.Visuals.Interfaces;
+using Carty.Visuals.Internals;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Carty.Visuals
 {
@@ -26,7 +30,9 @@ namespace Carty.Visuals
         {
             ActualCardManagment = null;
             DefaultVisuals = new DefaultVisuals();
+            VisualQueue = new CoroutineQueue();
 
+            VisualQueue.Start();
             HookUpEvents(GameManager.Instance);
         }
 
@@ -48,7 +54,7 @@ namespace Carty.Visuals
         {
             get
             {
-                if(ActualCardManagment != null)
+                if (ActualCardManagment != null)
                 {
                     return ActualCardManagment;
                 }
@@ -57,7 +63,7 @@ namespace Carty.Visuals
             }
             set
             {
-                if(value != null)
+                if (value != null)
                 {
                     ActualCardManagment = value;
                 }
@@ -94,13 +100,33 @@ namespace Carty.Visuals
         }
 
         /// <summary>
+        /// Queue for visuals effects.
+        /// </summary>
+        private CoroutineQueue VisualQueue { get; set; }
+
+        private void QueueAddingCardToPlayerHand(GameObject card, int handIndex,
+            IEnumerable<GameObject> cardsInHand)
+        {
+            VisualQueue.Add(CardPositioning.MoveCardToPlayerHandAndAdjustHand(card, handIndex, cardsInHand));
+        }
+
+        private void QueueAddingCardToEnemyHand(GameObject card, int handIndex,
+            IEnumerable<GameObject> cardsInHand)
+        {
+            VisualQueue.Add(CardPositioning.MoveCardToEnemyHandAndAdjustHand(card, handIndex, cardsInHand));
+        }
+
+        /// <summary>
         /// Subscribe to all of the visuals events in Core.
         /// </summary>
         /// <param name="gameManager">GameManager instance to avoid going through singleton.</param>
         private void HookUpEvents(GameManager gameManager)
         {
-            gameManager.PlayerDeck.CardInDeckInstantPositionChange += CardPositioning.PositionCardInPlayerDeckInstantly;
             gameManager.CardManager.CardCreated += CardManagment.AssembleCard;
+            gameManager.PlayerDeck.CardInDeckInstantPositionChange += CardPositioning.PositionCardInPlayerDeckInstantly;
+            gameManager.EnemyDeck.CardInDeckInstantPositionChange += CardPositioning.PositionCardInEnemyDeckInstantly;
+            gameManager.PlayerHand.CardAddedToHand += QueueAddingCardToPlayerHand;
+            gameManager.EnemyHand.CardAddedToHand += QueueAddingCardToEnemyHand;
         }
     }
 }

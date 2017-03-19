@@ -1,7 +1,10 @@
 using UnityEngine;
 
-namespace Carty.Visuals.CardComponents
+namespace Carty.Visuals.Defaults.CardComponents
 {
+    /// <summary>
+    /// A component responsible for positiong cards in deck.
+    /// </summary>
     internal class CanBeInDeck : MonoBehaviour
     {
         internal DefaultVisuals DVisuals;

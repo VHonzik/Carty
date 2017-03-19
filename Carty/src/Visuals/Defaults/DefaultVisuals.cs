@@ -1,9 +1,11 @@
 using System;
-using Carty.Visuals.CardComponents;
+using System.Collections;
+using System.Collections.Generic;
+using Carty.Visuals.Defaults.CardComponents;
 using Carty.Visuals.Interfaces;
 using UnityEngine;
 
-namespace Carty.Visuals
+namespace Carty.Visuals.Defaults
 {
     internal class DefaultVisuals : ICardManagment, ICardPositioning
     {
@@ -49,6 +51,21 @@ namespace Carty.Visuals
         public void PositionCardInPlayerDeckInstantly(GameObject card, int deckIndex, int deckSize)
         {
             card.GetComponent<CanBeInDeck>().ChangePosition(true, deckIndex, deckSize);
+        }
+
+        public void PositionCardInEnemyDeckInstantly(GameObject card, int deckIndex, int deckSize)
+        {
+            card.GetComponent<CanBeInDeck>().ChangePosition(false, deckIndex, deckSize);
+        }
+
+        public IEnumerator MoveCardToPlayerHandAndAdjustHand(GameObject card, int handIndex, IEnumerable<GameObject> cardsInHand)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerator MoveCardToEnemyHandAndAdjustHand(GameObject card, int handIndex, IEnumerable<GameObject> cardsInHand)
+        {
+            throw new NotImplementedException();
         }
     }
 }
