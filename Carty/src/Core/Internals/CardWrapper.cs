@@ -24,10 +24,10 @@ namespace Carty.Core.Internals
         public ISpellType Spell = null;
 
         /// <summary>
-        /// Game object for visual representation of the card.
-        /// This is driven by Visuals side of the Carty engine.
+        /// Unique ID of the card.
+        /// Used by Carty Core to talk to the Visuals side of the engine.
         /// </summary>
-        public GameObject CardVisuals;
+        public int CardID;
 
         /// <summary>
         /// Release all resources associated with the card.

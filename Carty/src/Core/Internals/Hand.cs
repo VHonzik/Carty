@@ -44,8 +44,8 @@ namespace Carty.Core.Internals
         /// <param name="card">Card to be added.</param>
         public void AddCard(CardWrapper card)
         {            
-            if (CardAddedToHand != null) CardAddedToHand(card.CardVisuals, Cards.Count, 
-                Cards.Select(c => c.CardVisuals));
+            if (CardAddedToHand != null) CardAddedToHand(card.CardID, Cards.Count, 
+                Cards.Select(c => c.CardID));
             Cards.Add(card);
         }
     }

@@ -59,7 +59,7 @@ namespace Carty.Core.Internals
             for (int i = 0; i < cardsTypes.Length; i++)
             {
                 var card = GameManager.Instance.CardManager.CreateCard(cardsTypes[i]);
-                if(CardInDeckInstantPositionChange != null) CardInDeckInstantPositionChange(card.CardVisuals , 0, cardsTypes.Length);
+                if(CardInDeckInstantPositionChange != null) CardInDeckInstantPositionChange(card.CardID, 0, cardsTypes.Length);
                 Cards.Add(card);
             }
         }

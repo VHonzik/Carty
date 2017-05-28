@@ -36,6 +36,8 @@ namespace Carty.Visuals.Defaults
         /// </summary>
         public Vector3 EnemyDeckPosition { get; set; }
 
+        private Dictionary<int, GameObject> CardMapping { get; set; }
+
         public DefaultVisuals()
         {
             CardHeight = 0.013f;
@@ -43,27 +45,31 @@ namespace Carty.Visuals.Defaults
             PlayerDeckPosition = new Vector3(7f, 0, -1.9f);
         }
 
-        public void AssembleCard(GameObject card)
+        public void AssembleCard(int cardID)
         {
+            GameObject card = new GameObject(String.Format("Card {0}", cardID));
             card.AddComponent<CanBeInDeck>().DVisuals = this;
+            CardMapping.Add(cardID, card);
         }
 
-        public void PositionCardInPlayerDeckInstantly(GameObject card, int deckIndex, int deckSize)
+        public void PositionCardInPlayerDeckInstantly(int cardID, int deckIndex, int deckSize)
         {
+            GameObject card = CardMapping[cardID];
             card.GetComponent<CanBeInDeck>().ChangePosition(true, deckIndex, deckSize);
         }
 
-        public void PositionCardInEnemyDeckInstantly(GameObject card, int deckIndex, int deckSize)
+        public void PositionCardInEnemyDeckInstantly(int cardID, int deckIndex, int deckSize)
         {
+            GameObject card = CardMapping[cardID];
             card.GetComponent<CanBeInDeck>().ChangePosition(false, deckIndex, deckSize);
         }
 
-        public IEnumerator MoveCardToPlayerHandAndAdjustHand(GameObject card, int handIndex, IEnumerable<GameObject> cardsInHand)
+        public IEnumerator MoveCardToPlayerHandAndAdjustHand(int cardID, int handIndex, IEnumerable<int> cardsInHand)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerator MoveCardToEnemyHandAndAdjustHand(GameObject card, int handIndex, IEnumerable<GameObject> cardsInHand)
+        public IEnumerator MoveCardToEnemyHandAndAdjustHand(int cardID, int handIndex, IEnumerable<int> cardsInHand)
         {
             throw new NotImplementedException();
         }

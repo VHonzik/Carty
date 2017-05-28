@@ -15,7 +15,7 @@ project "Carty"
   vpaths { ["*"] = "../../src" }
   files { "../../src/**.cs"}
   
-  links { "UnityEditor", "UnityEngine"}
+  links { "UnityEditor", "UnityEngine", "System"}
   libdirs  { "../../../SampleGame/Library/UnityAssemblies/" }  
   
   postbuildcommands { "copy /Y \"$(TargetDir)$(TargetName).dll\" \"$(SolutionDir)..\\..\\..\\SampleGame\\Assets\\Carty\\$(TargetName).dll\"" }

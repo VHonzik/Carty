@@ -104,16 +104,16 @@ namespace Carty.Visuals
         /// </summary>
         private CoroutineQueue VisualQueue { get; set; }
 
-        private void QueueAddingCardToPlayerHand(GameObject card, int handIndex,
-            IEnumerable<GameObject> cardsInHand)
+        private void QueueAddingCardToPlayerHand(int cardID, int handIndex,
+            IEnumerable<int> cardsInHand)
         {
-            VisualQueue.Add(CardPositioning.MoveCardToPlayerHandAndAdjustHand(card, handIndex, cardsInHand));
+            VisualQueue.Add(CardPositioning.MoveCardToPlayerHandAndAdjustHand(cardID, handIndex, cardsInHand));
         }
 
-        private void QueueAddingCardToEnemyHand(GameObject card, int handIndex,
-            IEnumerable<GameObject> cardsInHand)
+        private void QueueAddingCardToEnemyHand(int cardID, int handIndex,
+            IEnumerable<int> cardsInHand)
         {
-            VisualQueue.Add(CardPositioning.MoveCardToEnemyHandAndAdjustHand(card, handIndex, cardsInHand));
+            VisualQueue.Add(CardPositioning.MoveCardToEnemyHandAndAdjustHand(cardID, handIndex, cardsInHand));
         }
 
         /// <summary>

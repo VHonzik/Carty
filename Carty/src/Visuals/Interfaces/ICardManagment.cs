@@ -9,9 +9,9 @@ namespace Carty.Visuals.Interfaces
     {
         /// <summary>
         /// Called when a card is created.
-        /// Should be used to add any visual behaviors.
-        /// <param name="card">Top-level parent game object to use for visuals of the card.</param>
+        /// Should be used create visual representation of the card.
+        /// <param name="card">Card ID associated with the new card.</param>
         /// </summary>
-        void AssembleCard(GameObject card);
+        void AssembleCard(int cardID);
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Carty.Visuals.Defaults.CardComponents
 {
     /// <summary>
-    /// A component responsible for positiong cards in deck.
+    /// A component responsible for positioning cards in deck.
     /// </summary>
     internal class CanBeInDeck : MonoBehaviour
     {

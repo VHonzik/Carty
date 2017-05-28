@@ -19,6 +19,8 @@ namespace Carty.Core.Internals
         /// </summary>
         private Dictionary<string, ICardType> TypeMapping { get; set; }
 
+        private int nextAvailableCardId = 0;
+
         /// <summary>
         /// All cards created for the currently ongoing match.
         /// Otherwise empty.
@@ -79,7 +81,7 @@ namespace Carty.Core.Internals
         {
             CardWrapper card = new CardWrapper();
 
-            card.CardVisuals = new GameObject(uniqueCardTypeId);
+            card.CardID = ++nextAvailableCardId;
 
             // Find in type mapping
             ICardType cardType;
@@ -96,7 +98,7 @@ namespace Carty.Core.Internals
 
             AllCards.Add(card);
 
-            if(CardCreated != null) CardCreated(card.CardVisuals);
+            if(CardCreated != null) CardCreated(card.CardID);
 
             return card;
         }
